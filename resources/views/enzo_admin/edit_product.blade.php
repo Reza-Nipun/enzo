@@ -183,7 +183,7 @@
                                 @foreach($product_colors as $k => $product_color)
                                     <tr>
                                         <td class="text-center">
-                                            <input type="text" id="" class="form-control" name="color_name_old[]" required="required" autocomplete="off" value="{{ $product_color->color }}">
+                                            <input type="text" id="" class="form-control" name="color_name_old[]" required="required" autocomplete="off" value="{{ $product_color->color }}" rea>
                                             <input type="hidden" id="" class="form-control" name="color_ids[]" required="required" autocomplete="off" value="{{ $product_color->id }}" readonly="readonly">
                                         </td>
                                         <td class="text-center">

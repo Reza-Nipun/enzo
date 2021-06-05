@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                <table class="table table-striped projects">
+                <table class="table table-bordered projects">
                     <thead>
                         <tr>
                             <th class="text-center">
@@ -97,7 +97,7 @@
                                     {{ $prod->price_in_usd }}
                                 </td>
                                 <td class="text-center">
-                                    Stock Qty
+                                    {{ ($prod->total_stock_qty != '' ? $prod->total_stock_qty : 0) }}
                                 </td>
                                 <td class="text-center">
                                     @if($prod->status == 1)
@@ -110,6 +110,9 @@
                                 <td class="text-center">
                                     <a class="btn btn-info btn-xs" href="{{ route('product.edit', $prod->id) }}" title="Edit" data-toggle="tooltip" data-placement="top">
                                         <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <a class="btn btn-secondary btn-xs" href="{{ route('product_stock_management', $prod->id) }}" title="Stock" data-toggle="tooltip" data-placement="top">
+                                        <i class="fas fa-warehouse"></i>
                                     </a>
                                 </td>
                             </tr>

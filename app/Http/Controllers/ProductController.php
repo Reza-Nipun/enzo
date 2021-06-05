@@ -7,10 +7,12 @@ use App\ProductColor;
 use App\ProductImage;
 use App\ProductSize;
 use App\ProductSpecification;
+use App\ProductStock;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
 use App\Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,9 +32,25 @@ class ProductController extends Controller
     {
         $title = 'ENZO | Product List';
 
-        $product_list = Product::join('categories', 'categories.id', '=', 'products.category_id')
-                            ->join('sub_categories', 'sub_categories.id', '=', 'products.sub_category_id')
-                            ->get(['products.*', 'categories.name AS category_name', 'sub_categories.sub_category_name']);
+        $product_list = DB::select("SELECT t1.*, t2.name AS category_name, t3.sub_category_name, t4.total_stock_qty
+                    FROM 
+                    products AS t1
+                    
+                    INNER JOIN
+                    categories AS t2
+                    ON t2.id=t1.category_id
+                    
+                    INNER JOIN
+                    sub_categories AS t3
+                    ON t3.id=t1.sub_category_id
+                    
+                    LEFT JOIN
+                    (SELECT product_id, SUM(quantity) AS total_stock_qty 
+                    FROM `product_stocks` 
+                    WHERE color_id IN (SELECT id FROM product_colors WHERE status=1) 
+                    AND size_id IN (SELECT id FROM product_sizes WHERE status=1) 
+                    GROUP BY product_id) AS t4
+                    ON t4.product_id=t1.id");
 
         return view('enzo_admin.product_list', compact('title', 'product_list'));
     }
@@ -467,5 +485,60 @@ class ProductController extends Controller
         File::delete('storage/app/public/uploads/'.$product_image_url);
 
         return response()->json('success', 200);
+    }
+
+    public function productStockManagement($id){
+        $title = 'ENZO | Product Stock';
+
+        $product = Product::find($id);
+        $product_colors = ProductColor::where('product_id', $id)->where('status', 1)->get();
+        $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
+        $product_stocks = ProductStock::join('product_colors', 'product_colors.id', '=', 'product_stocks.color_id')
+                            ->join('product_sizes', 'product_sizes.id', '=', 'product_stocks.size_id')
+                            ->where('product_stocks.product_id', $id)
+                            ->where('product_sizes.status', 1)
+                            ->where('product_colors.status', 1)
+                            ->get(['product_stocks.*', 'product_colors.color', 'product_colors.status as color_status',
+                                'product_sizes.size', 'product_sizes.status as size_status', 'product_sizes.size_description']);
+
+        return view('enzo_admin.product_stock_list', compact('title', 'product', 'product_colors', 'product_sizes', 'product_stocks'));
+    }
+
+    public function saveNewColorSizeCombination(Request $request){
+        $product_id = $request->product_id;
+        $color_id = $request->color_id;
+        $size_id = $request->size_id;
+
+        $product_stock_info = ProductStock::where('product_id', $product_id)->where('color_id', $color_id)->where('size_id', $size_id)->get();
+
+        if(sizeof($product_stock_info) == 0){
+
+            $product_stock = new ProductStock();
+            $product_stock->product_id = $product_id;
+            $product_stock->color_id = $color_id;
+            $product_stock->size_id = $size_id;
+            $product_stock->quantity = 0;
+            $product_stock->save();
+        }
+
+        return response()->json($product_stock_info, 200);
+    }
+
+    public function updateProductStock(Request $request){
+
+        $product_stock_ids = $request->product_stock_id;
+        $product_stock_quantitys = $request->product_stock_quantity;
+
+        foreach($product_stock_ids as $k => $product_stock_id){
+
+            $product_stock = ProductStock::find($product_stock_id);
+            $product_stock->quantity = $product_stock_quantitys[$k];
+            $product_stock->save();
+
+        }
+
+        \Session::flash('message', "Product Stock Successfully Updated!");
+
+        return redirect()->back();
     }
 }
