@@ -425,7 +425,7 @@
 
     function getSubCategoryList() {
         var category = $("#inputCategory").val();
-        var selected = '';
+
 
         $("#inputSubCategory").empty();
 
@@ -438,8 +438,9 @@
 
                 $("#inputSubCategory").append('<option  value="">Select Sub-Category</option>');
 
-                for(var i=0; i < data.length; i++){
 
+                for(var i=0; i < data.length; i++){
+                    var selected = '';
                     if('<?php echo $product->sub_category_id;?>' == data[i].id){
                         selected = 'selected="selected"';
                     }

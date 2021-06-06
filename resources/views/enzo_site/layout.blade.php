@@ -134,13 +134,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     //		$('#myModal88').modal('show');
 </script>
-<div class="header">
+<div class="header" id="home1">
     <div class="container">
         <div class="w3l_login">
             <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </div>
         <div class="w3l_logo">
-            <a href="index.php"><img src="{{ asset('enzo_website_assets/images/enzo_logo.jpeg') }}" alt="Responsive image" class="img-responsive" width="280" height="100"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('enzo_website_assets/images/enzo_logo.jpeg') }}" alt="Responsive image" class="img-responsive" width="280" height="100"></a>
         </div>
         <!--			<div class="search">-->
         <!--				<input class="search_box" type="checkbox" id="search_box">-->
@@ -188,7 +188,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 @foreach($category_list as $category)
                                     @if($category->status == 1)
                                         @if($category->has('subcategories'))
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-6">
                                             <ul class="multi-column-dropdown">
                                                 <h6>{{ $category->name }}</h6>
 
@@ -209,6 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         @endif
                                     @endif
                                 @endforeach
+
                                 <div class="clearfix"></div>
                             </div>
                         </ul>
@@ -282,11 +283,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer-copy">
         <div class="footer-copy1">
             <div class="footer-copy-pos">
-                <a href="#home1" class="scroll"><img src="images/arrow.png" alt=" " class="img-responsive" /></a>
+                <a href="#home1" class="scroll"><img src="{{ asset('enzo_website_assets/images/arrow.png') }}" alt=" " class="img-responsive" /></a>
             </div>
         </div>
         <div class="container">
-            <p>&copy; 2016 Women's Fashion. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+            <p style="display: none;">&copy; 2016 Women's Fashion. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+            <p>&copy; 2021 <a href="https://enzo.fashion/">ENZO.FASHION</a> All rights reserved. <a href="http://w3layouts.com/" style="display: none;">Developed by M NIPUN SARKER</a></p>
         </div>
     </div>
 </div>
