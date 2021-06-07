@@ -109,7 +109,7 @@
                                     <div class="form-group">
                                         <label for="inputShortDescription">Short Description</label>
 
-                                        <textarea id="summernote" placeholder="Short Description Here..." name="product_short_description">{{ $product->product_short_description }}</textarea>
+                                        <textarea class="form-control" placeholder="Short Description Here..." name="product_short_description">{{ $product->product_short_description }}</textarea>
 
                                     </div>
                                 </div>

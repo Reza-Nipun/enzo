@@ -14,15 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Website Start From Here...
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 Route::get('/')->uses('Website\HomeController@index')->name('index');
+Route::post('/get_products_by_id')->uses('Website\HomeController@getProductsById')->name('get_products_by_id');
+Route::post('/get_product_images')->uses('Website\HomeController@getProductImages')->name('get_product_images');
+Route::get('/view_single_product/{id}/{color_id?}')->uses('Website\HomeController@viewSingleProduct')->name('view_single_product');
 
 
 // ADMIN Start From Here...
-
 Auth::routes(['login' => false, 'register' => false]);
 
 Route::get('enzo_admin')->name('login')->uses('Auth\LoginController@showLoginForm');

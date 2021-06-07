@@ -43,6 +43,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //end-smooth-scrolling -->
+
+    <link href="{{ asset('enzo_website_assets/fontawesome-free-5.15.3-web/css/all.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -134,7 +136,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
     //		$('#myModal88').modal('show');
 </script>
-<div class="header" id="home1">
+<div class="header" id="">
     <div class="container">
         <div class="w3l_login">
             <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>

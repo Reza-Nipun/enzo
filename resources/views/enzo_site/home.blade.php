@@ -44,7 +44,7 @@
 						<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
 					</a>
 				</div>
-				<!-- pop-up-box -->    
+				<!-- pop-up-box -->
 						<link href="{{ asset('enzo_website_assets/css/popuo-box.css') }}" rel="stylesheet" type="text/css" property="" media="all" />
 						<script src="{{ asset('enzo_website_assets/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
 					<!--//pop-up-box -->
@@ -64,7 +64,7 @@
 							removalDelay: 300,
 							mainClass: 'my-mfp-zoom-in'
 						});
-																						
+
 						});
 					</script>
 			</div>
@@ -74,7 +74,7 @@
 
                         @foreach($sub_category_list as $k => $sub_category)
                             @php
-                                $sub_cat_lastest_prods_count = sizeof(HomeController::getProductsBySubcategoryId($sub_category->id, 3));
+                                $sub_cat_lastest_prods_count = sizeof(HomeController::getProductsBySubcategoryId($sub_category->id, 4));
                             @endphp
 
                             @if($sub_cat_lastest_prods_count > 0)
@@ -108,19 +108,19 @@
                                                 <div class="w3_hs_bottom">
                                                     <ul>
                                                         <li>
-                                                            <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                                            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <h5><a href="single.php">{{ $sub_cat_lastest_prod->product_name }}</a></h5>
+                                            <h5><a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">{{ $sub_cat_lastest_prod->product_name }}</a></h5>
                                             <div class="simpleCart_shelfItem">
                                                 <p>
 													{{--<span>$320</span> --}}
 													<i class="item_price">
 														৳ {{ $sub_cat_lastest_prod->price_in_bdt }}
 													</i></p>
-                                                <p><a class="item_add" href="#">Add to cart</a></p>
+                                                <p><a class="item_add" href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">View Detail</a></p>
                                             </div>
                                         </div>
                                     @endforeach
@@ -141,12 +141,13 @@
 							</div>
 							<section>
 								<div class="modal-body">
-									<div class="col-md-5 modal_body_left">
+									<div class="col-md-5 modal_body_left" id="product_image">
 										<img src="{{ asset('enzo_website_assets/images/20.jpg') }}" alt=" " class="img-responsive" />
 									</div>
 									<div class="col-md-7 modal_body_right">
-										<h4>a good look women's shirt</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
+										<h4 id="product_name">a good look women's shirt</h4>
+										<span id="product_code">Product Code: Style 1</span>
+										<p id="short_description">Ut enim ad minim veniam, quis nostrud
 											exercitation ullamco laboris nisi ut aliquip ex ea 
 											commodo consequat.Duis aute irure dolor in 
 											reprehenderit in voluptate velit esse cillum dolore 
@@ -176,13 +177,13 @@
 										<div class="modal_body_right_cart simpleCart_shelfItem">
 											<p>
 												{{--<span>$320</span> --}}
-												<i class="item_price">$250</i>
+												<i class="item_price" id="product_price_in_bdt">$ 250</i>
 											</p>
-											<p><a class="" href="#">View Detail</a></p>
+											<p><a class="" href="#" id="view_detail_product">View Detail</a></p>
 										</div>
 										<h5>Color</h5>
 										<div class="color-quality">
-											<ul>
+											<ul id="colors">
 												<li><a href="#"><span></span>Red</a></li>
 												<li><a href="#" class="brown"><span></span>Yellow</a></li>
 												<li><a href="#" class="purple"><span></span>Purple</a></li>
@@ -498,39 +499,43 @@
 										<img src="{{ asset('enzo_website_assets/images/27.jpeg') }}" alt=" " class="img-responsive" />
 									</div>
 									<div class="col-md-7 modal_body_right">
-										<h4>a good look women's Long Skirt</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
+										<h4 id="product_name_1">a good look women's Long Skirt</h4>
+										<span id="product_code_1">Product Code: Style 1</span>
+										<p id="short_description_1">Ut enim ad minim veniam, quis nostrud
 											exercitation ullamco laboris nisi ut aliquip ex ea 
 											commodo consequat.Duis aute irure dolor in 
 											reprehenderit in voluptate velit esse cillum dolore 
 											eu fugiat nulla pariatur. Excepteur sint occaecat 
 											cupidatat non proident, sunt in culpa qui officia 
 											deserunt mollit anim id est laborum.</p>
-										<div class="rating">
-											<div class="rating-left">
-												<img src="images/star-.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="rating-left">
-												<img src="images/star-.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="rating-left">
-												<img src="images/star-.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="rating-left">
-												<img src="images/star.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="rating-left">
-												<img src="images/star.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="clearfix"> </div>
-										</div>
+										{{--<div class="rating">--}}
+											{{--<div class="rating-left">--}}
+												{{--<img src="images/star-.png" alt=" " class="img-responsive" />--}}
+											{{--</div>--}}
+											{{--<div class="rating-left">--}}
+												{{--<img src="images/star-.png" alt=" " class="img-responsive" />--}}
+											{{--</div>--}}
+											{{--<div class="rating-left">--}}
+												{{--<img src="images/star-.png" alt=" " class="img-responsive" />--}}
+											{{--</div>--}}
+											{{--<div class="rating-left">--}}
+												{{--<img src="images/star.png" alt=" " class="img-responsive" />--}}
+											{{--</div>--}}
+											{{--<div class="rating-left">--}}
+												{{--<img src="images/star.png" alt=" " class="img-responsive" />--}}
+											{{--</div>--}}
+											{{--<div class="clearfix"> </div>--}}
+										{{--</div>--}}
 										<div class="modal_body_right_cart simpleCart_shelfItem">
-											<p><span>$320</span> <i class="item_price">$250</i></p>
-											<p><a class="item_add" href="#">Add to cart</a></p>
+											<p>
+												{{--<span>$320</span> --}}
+												<i class="item_price">$250</i>
+											</p>
+											<p><a class="" href="#">View Detail</a></p>
 										</div>
 										<h5>Color</h5>
 										<div class="color-quality">
-											<ul>
+											<ul id="colors_1">
 												<li><a href="#"><span></span>Red</a></li>
 												<li><a href="#" class="brown"><span></span>Yellow</a></li>
 												<li><a href="#" class="purple"><span></span>Purple</a></li>
@@ -715,12 +720,12 @@
 								<div class="w3_hs_bottom w3_hs_bottom_sub">
 									<ul>
 										<li>
-											<a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+											<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 										</li>
 									</ul>
 								</div>
 							</div>
-							<h5><a href="single.php">{{ $new_product->product_name }}</a></h5>
+							<h5><a href="{{ route('view_single_product', $new_product->id) }}">{{ $new_product->product_name }}</a></h5>
 							<div class="simpleCart_shelfItem">
 								<p>
 									{{--<span>$320</span> --}}
@@ -728,7 +733,7 @@
 										৳ {{ $new_product->price_in_bdt }}
 									</i>
 								</p>
-								<p><a class="item_add" href="#">Add to cart</a></p>
+								<p><a class="item_add" href="{{ route('view_single_product', $new_product->id) }}">View Detail</a></p>
 							</div>
 						</div>
 					</div>
@@ -810,4 +815,59 @@
 		{{--</div>--}}
 	{{--</div>--}}
 <!-- //newsletter -->
+
+<script type="text/javascript">
+
+    function viewProductShortDetail(product_id){
+
+        $('#product_name').empty();
+        $('#product_code').empty();
+        $('#short_description').empty();
+        $('#colors').empty();
+        $('#product_price_in_bdt').empty();
+        $('#product_image').empty();
+
+        $.ajax({
+            url: "{{ route("get_products_by_id") }}",
+            type:'POST',
+            data: {_token:"{{csrf_token()}}", product_id: product_id},
+            dataType: "json",
+            success: function (data) {
+                $('#product_name').append(data[0].product_name);
+				$('#product_code').append('Product Code: '+data[0].product_code);
+                $('#short_description').append(data[0].product_short_description);
+                $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
+                $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+
+                var a = document.getElementById('view_detail_product');
+                a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
+
+                for(var i=0; i < data.length; i++ ){
+                    $("#colors").append('<li><a href="javaScript:void(0)" onclick="getSelectedColorImage('+product_id+', '+data[i].color_id+')"><span style="border: solid; background-color: '+data[i].color_code+';"></span>'+data[i].color+'</a></li>');
+				}
+
+                $('#myModal').modal('show');
+            }
+        });
+	}
+
+	function getSelectedColorImage(product_id, color_id) {
+
+        $('#product_image').empty();
+
+        $.ajax({
+            url: "{{ route("get_product_images") }}",
+            type:'POST',
+            data: {_token:"{{csrf_token()}}", product_id: product_id, color_id: color_id},
+            dataType: "json",
+            success: function (data) {
+
+                $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+
+                $('#myModal').modal('show');
+            }
+        });
+    }
+
+</script>
 @endsection
