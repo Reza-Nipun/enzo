@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Category;
+use App\CompanyInfo;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\ProductColor;
@@ -16,12 +17,15 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     public function index(){
+        $title = "ENZO | Home";
+
+        $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
         $new_products = Product::orderBy('id', 'desc')->take(8)->get();
 
-        return view('enzo_site.home', compact('category_list', 'sub_category_list', 'new_products'));
+        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info'));
     }
 
     public function menuCategoryItems(){
@@ -30,6 +34,10 @@ class HomeController extends Controller
 
     public function menuSubCategoryItems(){
         return $sub_category_list = SubCategory::where('status', 1)->limit(5)->get();
+    }
+
+    public function companyInfo(){
+        return $company_info = CompanyInfo::all();
     }
 
     static function getProductsBySubcategoryId($sub_cat_id, $limit){
@@ -63,10 +71,15 @@ class HomeController extends Controller
     }
 
     public function viewSingleProduct($id=null, $color_id=null){
+        $product_info = Product::find($id);
+        $product_sub_category_id = $product_info->sub_category_id;
+
+        $title = "ENZO | ".$product_info->product_name;
+
+        $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        $product_info = Product::find($id);
         $product_colors = ProductColor::where('product_id', $id)->where('status', 1)->get();
 
         if($color_id == null){
@@ -84,6 +97,30 @@ class HomeController extends Controller
         $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
         $product_specifications = ProductSpecification::where('product_id', $id)->where('status', 1)->get();
 
-        return view('enzo_site.single_product', compact('category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications'));
+        $related_products = Product::where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
+
+        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info'));
+    }
+
+    public function getSubCategoryWiseProductList($sub_cat_id=null){
+        $sub_cat_info = SubCategory::find($sub_cat_id);
+
+        $title = "ENZO | ".$sub_cat_info->sub_category_name;
+
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        $products = Product::where('sub_category_id', $sub_cat_id)->where('status', 1)->orderBy('id', 'desc')->get();
+
+        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info'));
+    }
+
+    public function aboutUs(){
+        return 'About Us';
+    }
+
+    public function contactUs(){
+        return 'Contact Us';
     }
 }

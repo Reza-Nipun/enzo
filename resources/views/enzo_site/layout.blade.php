@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Enzo Fashion a Ecommerce Online Shopping | Home</title>
+    <title>{{ isset($title) ? $title : 'ENZO' }}</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -139,10 +139,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header" id="">
     <div class="container">
         <div class="w3l_login">
-            <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </div>
         <div class="w3l_logo">
-            <a href="{{ route('index') }}"><img src="{{ asset('enzo_website_assets/images/enzo_logo.jpeg') }}" alt="Responsive image" class="img-responsive" width="280" height="100"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('storage/app/public/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive" width="250" height="100"></a>
         </div>
         <!--			<div class="search">-->
         <!--				<input class="search_box" type="checkbox" id="search_box">-->
@@ -180,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ route('index') }}" class="act">Home</a></li>
+                    <li class="active" id="home1"><a href="{{ route('index') }}" class="act">Home</a></li>
                     <!-- Mega Menu -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -197,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 @foreach($category->subcategories as $subcategory)
 
                                                     @if($subcategory->status == 1)
-                                                        <li><a href="dresses.php">{{$subcategory->sub_category_name}}</a></li>
+                                                        <li><a href="{{ route('product_list', $subcategory->id) }}">{{$subcategory->sub_category_name}}</a></li>
                                                     @endif
 
                                                 @endforeach
@@ -216,9 +216,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </ul>
                     </li>
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="short-codes.php">Short Codes</a></li>
-                    <li><a href="mail.php">Mail Us</a></li>
+                    <li><a href="{{ route('about_us') }}">About</a></li>
+                    {{--<li><a href="short-codes.php">Short Codes</a></li>--}}
+                    <li><a href="{{ route('contact_us') }}">Contact Us</a></li>
                 </ul>
             </div>
         </nav>
@@ -234,36 +234,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="footer">
     <div class="container">
         <div class="w3_footer_grids">
-            <div class="col-md-3 w3_footer_grid">
-                <h3>Contact</h3>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+            <div class="col-md-4 w3_footer_grid">
+                <h3>Contact Info</h3>
+
+                @if($company_info[0]->company_name != '')
+                    <h4>{{ $company_info[0]->company_name }}</h4>
+                @endif
+
+                @if($company_info[0]->company_description != '')
+                    <p>{{ $company_info[0]->company_description }}</p>
+                @endif
+
                 <ul class="address">
-                    <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>1234k Avenue, 4th block, <span>New York City.</span></li>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@example.com</a></li>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>+1234 567 567</li>
+
+                    @if($company_info[0]->company_full_address != '')
+                        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>{{ $company_info[0]->company_full_address }}</li>
+                    @endif
+
+                    @if($company_info[0]->company_email != '')
+                        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:{{ $company_info[0]->company_email }}">{{ $company_info[0]->company_email }}</a></li>
+                    @endif
+
+                    @if($company_info[0]->company_phone != '')
+                        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>{{ $company_info[0]->company_phone }}</li>
+                    @endif
                 </ul>
             </div>
-            <div class="col-md-3 w3_footer_grid">
+            <div class="col-md-4 w3_footer_grid">
                 <h3>Information</h3>
                 <ul class="info">
-                    <li><a href="about.php">About Us</a></li>
-                    <li><a href="mail.php">Contact Us</a></li>
-                    <li><a href="short-codes.php">Short Codes</a></li>
+                    <li><a href="{{ route('about_us') }}">About</a></li>
+                    <li><a href="{{ route('contact_us') }}">Contact Us</a></li>
+                    {{--<li><a href="short-codes.php">Short Codes</a></li>--}}
                     <li><a href="faq.php">FAQ's</a></li>
-                    <li><a href="products.php">Special Products</a></li>
+                    {{--<li><a href="products.php">Special Products</a></li>--}}
                 </ul>
             </div>
-            <div class="col-md-3 w3_footer_grid">
-                <h3>Category</h3>
-                <ul class="info">
-                    <li><a href="dresses.php">Dresses</a></li>
-                    <li><a href="sweaters.php">Sweaters</a></li>
-                    <li><a href="shirts.php">Shirts</a></li>
-                    <li><a href="sarees.php">Sarees</a></li>
-                    <li><a href="skirts.php">Shorts & Skirts</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 w3_footer_grid">
+            {{--<div class="col-md-3 w3_footer_grid">--}}
+                {{--<h3>Category</h3>--}}
+                {{--<ul class="info">--}}
+                    {{--<li><a href="dresses.php">Dresses</a></li>--}}
+                    {{--<li><a href="sweaters.php">Sweaters</a></li>--}}
+                    {{--<li><a href="shirts.php">Shirts</a></li>--}}
+                    {{--<li><a href="sarees.php">Sarees</a></li>--}}
+                    {{--<li><a href="skirts.php">Shorts & Skirts</a></li>--}}
+                {{--</ul>--}}
+            {{--</div>--}}
+            <div class="col-md-4 w3_footer_grid">
                 <h3>Profile</h3>
                 <ul class="info">
                     <li><a href="products.php">Summer Store</a></li>

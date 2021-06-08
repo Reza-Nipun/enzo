@@ -8,17 +8,17 @@
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        {{--<li data-target="#myCarousel" data-slide-to="2"></li>--}}
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="Los Angeles" style="width:100%;">
+            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="Cover Image-1" style="width:100%; height: 500px;">
         </div>
 
         <div class="item">
-            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="Chicago" style="width:100%;">
+            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="Cover Image-2" style="width:100%; height: 500px;">
         </div>
     </div>
 
@@ -90,7 +90,7 @@
                             <div role="tabpanel" class="tab-pane fade @if($k == 0) active in @endif" id="{{ $k }}" aria-labelledby="{{ $k }}-tab">
 
                                 <div class="text-right">
-                                    <a href="">View All</a>
+                                    <a href="{{ route('product_list', $sub_category->id) }}">View All</a>
                                 </div>
 
                                 <div class="agile_ecommerce_tabs">
@@ -120,7 +120,7 @@
 													<i class="item_price">
 														৳ {{ $sub_cat_lastest_prod->price_in_bdt }}
 													</i></p>
-                                                <p><a class="item_add" href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">View Detail</a></p>
+                                                <p><a class="" href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">View Detail</a></p>
                                             </div>
                                         </div>
                                     @endforeach
@@ -137,7 +137,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -148,11 +148,11 @@
 										<h4 id="product_name">a good look women's shirt</h4>
 										<span id="product_code">Product Code: Style 1</span>
 										<p id="short_description">Ut enim ad minim veniam, quis nostrud
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 
 										{{--<div class="rating">--}}
@@ -201,7 +201,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -210,12 +210,12 @@
 									</div>
 									<div class="col-md-7 modal_body_right">
 										<h4>a good look black women's jeans</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+										<p>Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										<div class="rating">
 											<div class="rating-left">
@@ -259,7 +259,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -268,12 +268,12 @@
 									</div>
 									<div class="col-md-7 modal_body_right">
 										<h4>a good look women's Watch</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+										<p>Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										<div class="rating">
 											<div class="rating-left">
@@ -317,7 +317,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -326,12 +326,12 @@
 									</div>
 									<div class="col-md-7 modal_body_right">
 										<h4>a good look women's Sandal</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+										<p>Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										<div class="rating">
 											<div class="rating-left">
@@ -375,7 +375,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -384,12 +384,12 @@
 									</div>
 									<div class="col-md-7 modal_body_right">
 										<h4>a good look women's Necklace</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+										<p>Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										<div class="rating">
 											<div class="rating-left">
@@ -433,7 +433,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -442,12 +442,12 @@
 									</div>
 									<div class="col-md-7 modal_body_right">
 										<h4>a good look women's Jacket</h4>
-										<p>Ut enim ad minim veniam, quis nostrud 
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+										<p>Ut enim ad minim veniam, quis nostrud
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										<div class="rating">
 											<div class="rating-left">
@@ -491,7 +491,7 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							</div>
 							<section>
 								<div class="modal-body">
@@ -502,11 +502,11 @@
 										<h4 id="product_name_1">a good look women's Long Skirt</h4>
 										<span id="product_code_1">Product Code: Style 1</span>
 										<p id="short_description_1">Ut enim ad minim veniam, quis nostrud
-											exercitation ullamco laboris nisi ut aliquip ex ea 
-											commodo consequat.Duis aute irure dolor in 
-											reprehenderit in voluptate velit esse cillum dolore 
-											eu fugiat nulla pariatur. Excepteur sint occaecat 
-											cupidatat non proident, sunt in culpa qui officia 
+											exercitation ullamco laboris nisi ut aliquip ex ea
+											commodo consequat.Duis aute irure dolor in
+											reprehenderit in voluptate velit esse cillum dolore
+											eu fugiat nulla pariatur. Excepteur sint occaecat
+											cupidatat non proident, sunt in culpa qui officia
 											deserunt mollit anim id est laborum.</p>
 										{{--<div class="rating">--}}
 											{{--<div class="rating-left">--}}

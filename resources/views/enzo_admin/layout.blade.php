@@ -253,6 +253,23 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item {{ request()->is('company_info') ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link {{ request()->is('company_info') ? 'active' : ''}}">
+                            <i class="fas fa-landmark nav-icon"></i>
+                            <p>
+                                Company
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('company_info.index') }}" class="nav-link {{ request()->is('company_info') ? 'active' : ''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Company Info</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

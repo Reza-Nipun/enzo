@@ -18,6 +18,9 @@ Route::get('/')->uses('Website\HomeController@index')->name('index');
 Route::post('/get_products_by_id')->uses('Website\HomeController@getProductsById')->name('get_products_by_id');
 Route::post('/get_product_images')->uses('Website\HomeController@getProductImages')->name('get_product_images');
 Route::get('/view_single_product/{id}/{color_id?}')->uses('Website\HomeController@viewSingleProduct')->name('view_single_product');
+Route::get('/product_list/{sub_cat_id}')->uses('Website\HomeController@getSubCategoryWiseProductList')->name('product_list');
+Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
+Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
 
 
 // ADMIN Start From Here...
@@ -31,6 +34,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('category', 'CategoryController');
 Route::resource('sub_category', 'SubCategoryController');
 Route::resource('product', 'ProductController');
+Route::resource('company_info', 'CompanyInfoController');
 
 Route::post('/get_sub_category_list_by_cat_id', 'SubCategoryController@getSubCategoryListByCatId')->name('get_sub_category_list_by_cat_id');
 Route::post('/get_existing_images', 'ProductController@getExistingImages')->name('get_existing_images');

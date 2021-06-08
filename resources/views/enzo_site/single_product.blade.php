@@ -1,5 +1,3 @@
-<?php use App\Http\Controllers\Website\HomeController;?>
-
 @extends('enzo_site.layout')
 
 @section('content')
@@ -16,7 +14,7 @@
             <div class="container">
                 <div class="col-md-4 single-left">
                     <div class="flexslider">
-                        <ul class="slides" id="product_image">
+                        <ul class="slides">
                             @foreach($product_images as $product_image)
                                 <li data-thumb="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}">
                                     <div class="thumb-image"> <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" data-imagezoom="true" class="img-responsive"> </div>
@@ -103,7 +101,7 @@
                         @foreach($product_sizes as $product_size)
                             <div class="colr ert">
                                 <div class="check">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
+                                    <label class=""><input type="radio" name="checkbox" class="" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
                                 </div>
                             </div>
                         @endforeach
@@ -275,110 +273,34 @@
         <div class="container">
             <h3>Related Products</h3>
             <ul id="flexiselDemo2">
-                <li>
-                    <div class="w3l_related_products_grid">
-                        <div class="agile_ecommerce_tab_left dresses_grid">
-                            <div class="hs-wrapper hs-wrapper3">
-                                <img src="images/ss1.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss2.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss3.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss4.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss5.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss6.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss7.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss8.jpg" alt=" " class="img-responsive">
-                                <div class="w3_hs_bottom">
-                                    <div class="flex_ecommerce">
-                                        <a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                @foreach($related_products as $related_product)
+                    <li>
+                        <div class="w3l_related_products_grid">
+                            <div class="agile_ecommerce_tab_left dresses_grid">
+                                <div class="hs-wrapper hs-wrapper3">
+
+                                    @foreach($related_product->productimages as $product_image)
+                                        <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
+                                    @endforeach
+
+                                    <div class="w3_hs_bottom">
+                                        <div class="flex_ecommerce">
+                                            <a href="#" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <h5><a href="single.php">Pink Flared Skirt</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p class="flexisel_ecommerce_cart"><span>$312</span> <i class="item_price">$212</i></p>
-                                <p><a class="item_add" href="#">Add to cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_related_products_grid">
-                        <div class="agile_ecommerce_tab_left dresses_grid">
-                            <div class="hs-wrapper hs-wrapper3">
-                                <img src="images/ss2.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss3.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss4.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss5.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss6.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss9.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss7.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss8.jpg" alt=" " class="img-responsive">
-                                <div class="w3_hs_bottom">
-                                    <div class="flex_ecommerce">
-                                        <a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                    </div>
+                                <h5><a href="single.php">{{ $related_product->product_name }}</a></h5>
+                                <div class="simpleCart_shelfItem">
+                                    <p class="flexisel_ecommerce_cart">
+                                        {{--<span>৳ {{ $related_product->price_in_bdt }}</span>--}}
+                                        <i class="item_price">{{ $related_product->price_in_bdt }}</i>
+                                    </p>
+                                    <p><a class="item_add" href="{{ route('view_single_product', $related_product->id) }}">View Detail</a></p>
                                 </div>
                             </div>
-                            <h5><a href="single.php">Red Pencil Skirt</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p class="flexisel_ecommerce_cart"><span>$432</span> <i class="item_price">$323</i></p>
-                                <p><a class="item_add" href="#">Add to cart</a></p>
-                            </div>
                         </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_related_products_grid">
-                        <div class="agile_ecommerce_tab_left dresses_grid">
-                            <div class="hs-wrapper hs-wrapper3">
-                                <img src="images/ss3.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss4.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss5.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss6.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss7.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss8.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss9.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss1.jpg" alt=" " class="img-responsive">
-                                <div class="w3_hs_bottom">
-                                    <div class="flex_ecommerce">
-                                        <a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <h5><a href="single.php">Yellow Cotton Skirt</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p class="flexisel_ecommerce_cart"><span>$323</span> <i class="item_price">$310</i></p>
-                                <p><a class="item_add" href="#">Add to cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w3l_related_products_grid">
-                        <div class="agile_ecommerce_tab_left dresses_grid">
-                            <div class="hs-wrapper hs-wrapper3">
-                                <img src="images/ss4.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss5.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss6.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss7.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss8.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss9.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss1.jpg" alt=" " class="img-responsive">
-                                <img src="images/ss2.jpg" alt=" " class="img-responsive">
-                                <div class="w3_hs_bottom">
-                                    <div class="flex_ecommerce">
-                                        <a href="#" data-toggle="modal" data-target="#myModal6"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <h5><a href="single.php">Black Short</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p class="flexisel_ecommerce_cart"><span>$256</span> <i class="item_price">$200</i></p>
-                                <p><a class="item_add" href="#">Add to cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                    </li>
+                @endforeach
             </ul>
             <script type="text/javascript">
                 $(window).load(function() {
@@ -407,8 +329,109 @@
 
                 });
             </script>
-            <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+            <script type="text/javascript" src="{{ asset('enzo_website_assets/js/jquery.flexisel.js') }}"></script>
         </div>
     </div>
 
+        <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <section>
+                        <div class="modal-body">
+                            <div class="col-md-5 modal_body_left" id="product_image">
+                                <img src="{{ asset('enzo_website_assets/images/20.jpg') }}" alt=" " class="img-responsive" />
+                            </div>
+                            <div class="col-md-7 modal_body_right">
+                                <h4 id="product_name">a good look women's shirt</h4>
+                                <span id="product_code">Product Code: Style 1</span>
+                                <p id="short_description">Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea
+                                    commodo consequat.Duis aute irure dolor in
+                                    reprehenderit in voluptate velit esse cillum dolore
+                                    eu fugiat nulla pariatur. Excepteur sint occaecat
+                                    cupidatat non proident, sunt in culpa qui officia
+                                    deserunt mollit anim id est laborum.</p>
+
+                                <div class="modal_body_right_cart simpleCart_shelfItem">
+                                    <p>
+                                        {{--<span>$320</span> --}}
+                                        <i class="item_price" id="product_price_in_bdt">$ 250</i>
+                                    </p>
+                                    <p><a class="" href="#" id="view_detail_product">View Detail</a></p>
+                                </div>
+                                <h5>Color</h5>
+                                <div class="color-quality">
+                                    <ul id="colors">
+                                        <li><a href="#"><span></span>Red</a></li>
+                                        <li><a href="#" class="brown"><span></span>Yellow</a></li>
+                                        <li><a href="#" class="purple"><span></span>Purple</a></li>
+                                        <li><a href="#" class="gray"><span></span>Violet</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            function viewProductShortDetail(product_id){
+
+                $('#product_name').empty();
+                $('#product_code').empty();
+                $('#short_description').empty();
+                $('#colors').empty();
+                $('#product_price_in_bdt').empty();
+                $('#product_image').empty();
+
+                $.ajax({
+                    url: "{{ route("get_products_by_id") }}",
+                    type:'POST',
+                    data: {_token:"{{csrf_token()}}", product_id: product_id},
+                    dataType: "json",
+                    success: function (data) {
+                        $('#product_name').append(data[0].product_name);
+                        $('#product_code').append('Product Code: '+data[0].product_code);
+                        $('#short_description').append(data[0].product_short_description);
+                        $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
+                        $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+
+                        var a = document.getElementById('view_detail_product');
+                        a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
+
+                        for(var i=0; i < data.length; i++ ){
+                            $("#colors").append('<li><a href="javaScript:void(0)" onclick="getSelectedColorImage('+product_id+', '+data[i].color_id+')"><span style="border: solid; background-color: '+data[i].color_code+';"></span>'+data[i].color+'</a></li>');
+                        }
+
+                        $('#myModal').modal('show');
+                    }
+                });
+            }
+
+            function getSelectedColorImage(product_id, color_id) {
+
+                alert(product_id+' '+color_id);
+                $('#product_image').empty();
+
+                $.ajax({
+                    url: "{{ route("get_product_images") }}",
+                    type:'POST',
+                    data: {_token:"{{csrf_token()}}", product_id: product_id, color_id: color_id},
+                    dataType: "json",
+                    success: function (data) {
+
+                        $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+
+                        $('#myModal').modal('show');
+                    }
+                });
+            }
+
+        </script>
 @endsection
