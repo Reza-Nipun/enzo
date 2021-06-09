@@ -45,6 +45,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //end-smooth-scrolling -->
 
     <link href="{{ asset('enzo_website_assets/fontawesome-free-5.15.3-web/css/all.css') }}" rel="stylesheet">
+
+    <!-- favicon start -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('enzo_website_assets/images/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('enzo_website_assets/images/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('enzo_website_assets/images/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('enzo_website_assets/images/favicon/site.webmanifest') }}">
+    <!-- favicon end -->
 </head>
 
 <body>
@@ -142,7 +149,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         </div>
         <div class="w3l_logo">
-            <a href="{{ route('index') }}"><img src="{{ asset('storage/app/public/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive" width="250" height="100"></a>
+            <a href="{{ route('index') }}"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive" width="250" height="100"></a>
         </div>
         <!--			<div class="search">-->
         <!--				<input class="search_box" type="checkbox" id="search_box">-->
@@ -216,9 +223,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </ul>
                     </li>
-                    <li><a href="{{ route('about_us') }}">About</a></li>
-                    {{--<li><a href="short-codes.php">Short Codes</a></li>--}}
-                    <li><a href="{{ route('contact_us') }}">Contact Us</a></li>
+                    <li><a href="{{ route('track_order') }}">Track-Order</a></li>
+                    <li><a href="{{ route('about_us') }}">About-Us</a></li>
+                    <li><a href="{{ route('contact_us') }}">Contact</a></li>
                 </ul>
             </div>
         </nav>

@@ -105,7 +105,7 @@
                                             <label for="inputLogo">Logo</label>
                                             <input type="file" id="inputLogo" class="form-control" name="file">
                                             @if($company->company_logo != '')
-                                                <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/app/public/uploads/'.$company->company_logo) }}" target="_blank">
+                                                <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/uploads/'.$company->company_logo) }}" target="_blank">
                                                     View Images: <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
                                             @endif

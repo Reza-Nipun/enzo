@@ -48,7 +48,7 @@
                             <div class="agile_ecommerce_tab_left dresses_grid">
                                 <div class="hs-wrapper hs-wrapper2">
                                     @foreach($product->productimages as $product_image)
-                                        <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+                                        <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
                                     @endforeach
                                     <div class="w3_hs_bottom w3_hs_bottom_sub1">
                                         <ul>
@@ -292,7 +292,7 @@
                     $('#product_code').append('Product Code: '+data[0].product_code);
                     $('#short_description').append(data[0].product_short_description);
                     $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
-                    $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                    $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                     var a = document.getElementById('view_detail_product');
                     a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
@@ -317,7 +317,7 @@
                 dataType: "json",
                 success: function (data) {
 
-                    $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                    $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                     $('#myModal').modal('show');
                 }

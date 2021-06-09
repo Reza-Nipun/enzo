@@ -16,8 +16,8 @@
                     <div class="flexslider">
                         <ul class="slides">
                             @foreach($product_images as $product_image)
-                                <li data-thumb="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}">
-                                    <div class="thumb-image"> <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" data-imagezoom="true" class="img-responsive"> </div>
+                                <li data-thumb="{{ asset('storage/uploads/'.$product_image->image_url) }}">
+                                    <div class="thumb-image"> <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" data-imagezoom="true" class="img-responsive"> </div>
                                 </li>
                             @endforeach
                         </ul>
@@ -58,7 +58,7 @@
                     {{--</div>--}}
                     <div class="description">
                         <h5><i>Short Description</i></h5>
-                        <p>{{ $product_info->product_short_description }}</p>
+                        <p>{!! $product_info->product_short_description !!}</p>
                     </div>
                     <div class="color-quality">
                         <div class="color-quality-left">
@@ -280,7 +280,7 @@
                                 <div class="hs-wrapper hs-wrapper3">
 
                                     @foreach($related_product->productimages as $product_image)
-                                        <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
+                                        <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
                                     @endforeach
 
                                     <div class="w3_hs_bottom">
@@ -400,7 +400,7 @@
                         $('#product_code').append('Product Code: '+data[0].product_code);
                         $('#short_description').append(data[0].product_short_description);
                         $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
-                        $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                        $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                         var a = document.getElementById('view_detail_product');
                         a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
@@ -416,7 +416,6 @@
 
             function getSelectedColorImage(product_id, color_id) {
 
-                alert(product_id+' '+color_id);
                 $('#product_image').empty();
 
                 $.ajax({
@@ -426,7 +425,7 @@
                     dataType: "json",
                     success: function (data) {
 
-                        $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                        $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                         $('#myModal').modal('show');
                     }

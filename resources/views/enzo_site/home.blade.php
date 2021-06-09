@@ -8,17 +8,22 @@
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
         {{--<li data-target="#myCarousel" data-slide-to="2"></li>--}}
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="Cover Image-1" style="width:100%; height: 500px;">
+            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="Cover Image-1" style="width:100%;">
         </div>
 
         <div class="item">
-            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="Cover Image-2" style="width:100%; height: 500px;">
+            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="Cover Image-2" style="width:100%;">
+        </div>
+
+        <div class="item">
+            <img src="{{ asset('enzo_website_assets/images/cover_polo_3.jpg') }}" alt="Cover Image-3" style="width:100%;">
         </div>
     </div>
 
@@ -102,7 +107,7 @@
                                         <div class="col-md-4 agile_ecommerce_tab_left">
                                             <div class="hs-wrapper">
                                                 @foreach($sub_cat_lastest_prod->productimages as $product_image)
-                                                    <img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+                                                    <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
                                                 @endforeach
 
                                                 <div class="w3_hs_bottom">
@@ -714,7 +719,7 @@
 						<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
 							<div class="hs-wrapper hs-wrapper1">
 								@foreach($new_product->productimages as $product_image)
-									<img src="{{ asset('storage/app/public/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+									<img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
 								@endforeach
 
 								<div class="w3_hs_bottom w3_hs_bottom_sub">
@@ -837,7 +842,7 @@
 				$('#product_code').append('Product Code: '+data[0].product_code);
                 $('#short_description').append(data[0].product_short_description);
                 $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
-                $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                 var a = document.getElementById('view_detail_product');
                 a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
@@ -862,7 +867,7 @@
             dataType: "json",
             success: function (data) {
 
-                $('#product_image').append('<img src="{{ asset('storage/app/public/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+                $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
                 $('#myModal').modal('show');
             }

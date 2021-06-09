@@ -105,14 +105,14 @@ class CompanyInfoController extends Controller
 
         if(isset($file_post)){
 
-            File::delete('storage/app/public/uploads/'.$previous_logo_url);
+            File::delete('storage/uploads/'.$previous_logo_url);
 
             $file_original_name = $file_post->getClientOriginalName();
             $file_original_extension = $file_post->getClientOriginalExtension();
             $modified_file_name_with_extension = $file_original_name.'.'.$file_original_extension;
 
             //Move Uploaded File
-            $destinationPath = 'storage/app/public/uploads';
+            $destinationPath = 'storage/uploads';
             $file_post->move($destinationPath,$file_original_name);
         }
 

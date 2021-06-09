@@ -19,6 +19,7 @@ Route::post('/get_products_by_id')->uses('Website\HomeController@getProductsById
 Route::post('/get_product_images')->uses('Website\HomeController@getProductImages')->name('get_product_images');
 Route::get('/view_single_product/{id}/{color_id?}')->uses('Website\HomeController@viewSingleProduct')->name('view_single_product');
 Route::get('/product_list/{sub_cat_id}')->uses('Website\HomeController@getSubCategoryWiseProductList')->name('product_list');
+Route::get('/track_order')->uses('Website\HomeController@trackOrder')->name('track_order');
 Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
 Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
 
@@ -43,3 +44,21 @@ Route::post('/delete_product_specification', 'ProductController@deleteProductSpe
 Route::get('/product_stock_management/{id}', 'ProductController@productStockManagement')->name('product_stock_management');
 Route::post('/save_new_color_size_combination', 'ProductController@saveNewColorSizeCombination')->name('save_new_color_size_combination');
 Route::post('/update_product_stock', 'ProductController@updateProductStock')->name('update_product_stock');
+
+
+// Artisan Commands
+Route::get('/cleareverything', function () {
+    $clearcache = Artisan::call('cache:clear');
+    echo "Cache cleared<br>";
+
+    $clearview = Artisan::call('view:clear');
+    echo "View cleared<br>";
+
+    $clearconfig = Artisan::call('config:cache');
+    echo "Config cleared<br>";
+});
+
+Route::get('/storage_link', function () {
+    $clearcache = Artisan::call('storage:link');
+    echo "Storage Link<br>";
+});

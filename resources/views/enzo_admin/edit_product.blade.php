@@ -109,7 +109,7 @@
                                     <div class="form-group">
                                         <label for="inputShortDescription">Short Description</label>
 
-                                        <textarea class="form-control" placeholder="Short Description Here..." name="product_short_description">{{ $product->product_short_description }}</textarea>
+                                        <textarea class="form-control" id="summernote" placeholder="Short Description Here..." name="product_short_description">{{ $product->product_short_description }}</textarea>
 
                                     </div>
                                 </div>
@@ -392,7 +392,7 @@
                     var image_id = data[i].id;
                     var image_url = data[i].image_url;
 
-                    $("#existing_images").append('<tr><td class="text-center"><div class="col-auto"><span class="preview"><img src="{{ asset('storage/app/public/uploads/') }}/'+image_url+'" alt="" data-dz-thumbnail width="100" height="100" /></span></div></td><td class="text-center"><span class="btn btn-sm btn-danger" id="DeleteImage" onclick="deleteImage('+image_id+', '+product_id+', '+color_id+')"><i class="fas fa-trash"></i></span></td></tr>');
+                    $("#existing_images").append('<tr><td class="text-center"><div class="col-auto"><span class="preview"><img src="{{ asset('storage/uploads/') }}/'+image_url+'" alt="" data-dz-thumbnail width="100" height="100" /></span></div></td><td class="text-center"><span class="btn btn-sm btn-danger" id="DeleteImage" onclick="deleteImage('+image_id+', '+product_id+', '+color_id+')"><i class="fas fa-trash"></i></span></td></tr>');
                 }
 
                 $('#modal-default').modal('show');

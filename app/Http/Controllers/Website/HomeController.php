@@ -23,7 +23,7 @@ class HomeController extends Controller
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        $new_products = Product::orderBy('id', 'desc')->take(8)->get();
+        $new_products = Product::where('status', 1)->orderBy('id', 'desc')->take(8)->get();
 
         return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info'));
     }
@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
 
     static function getProductsBySubcategoryId($sub_cat_id, $limit){
-        return $new_products = Product::where('sub_category_id', $sub_cat_id)->orderBy('id', 'desc')->take($limit)->get();
+        return $new_products = Product::where('status', 1)->where('sub_category_id', $sub_cat_id)->orderBy('id', 'desc')->take($limit)->get();
     }
 
     public function getProductsById(Request $request){
@@ -97,7 +97,7 @@ class HomeController extends Controller
         $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
         $product_specifications = ProductSpecification::where('product_id', $id)->where('status', 1)->get();
 
-        $related_products = Product::where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
+        $related_products = Product::where('status', 1)->where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
 
         return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info'));
     }
@@ -116,11 +116,27 @@ class HomeController extends Controller
         return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info'));
     }
 
+    public function trackOrder(){
+        return 'Track Order';
+    }
+
     public function aboutUs(){
-        return 'About Us';
+        $title = "ENZO | About Us";
+
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info'));
     }
 
     public function contactUs(){
-        return 'Contact Us';
+        $title = "ENZO | Contact";
+
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info'));
     }
 }

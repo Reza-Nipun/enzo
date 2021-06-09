@@ -143,7 +143,7 @@ class ProductController extends Controller
                     $modified_file_name_with_extension = $product_id.'_'.$k_c.'_'.$i.'_'.$datetime_for_file_name.'.'.$file_original_extension;
 
                     //Move Uploaded File
-                    $destinationPath = 'storage/app/public/uploads';
+                    $destinationPath = 'storage/uploads';
                     $file_post[$i]->move($destinationPath,$modified_file_name_with_extension);
 
                     $product_image = new ProductImage();
@@ -304,7 +304,7 @@ class ProductController extends Controller
                         $modified_file_name_with_extension_new_addition = $id.'_'.$k_cid.'_'.$i.'_'.$datetime_for_file_name.'.'.$file_original_extension_new_addition;
 
                         //Move Uploaded File
-                        $destinationPath_old = 'storage/app/public/uploads';
+                        $destinationPath_old = 'storage/uploads';
                         $file_old_post[$i]->move($destinationPath_old,$modified_file_name_with_extension_new_addition);
 
                         $product_image_old = new ProductImage();
@@ -347,7 +347,7 @@ class ProductController extends Controller
                         $modified_file_name_with_extension = $id.'_'.$k_c.'_'.$i.'_'.$datetime_for_file_name.'.'.$file_original_extension;
 
                         //Move Uploaded File
-                        $destinationPath = 'storage/app/public/uploads';
+                        $destinationPath = 'storage/uploads';
                         $file_post[$i]->move($destinationPath,$modified_file_name_with_extension);
 
                         $product_image = new ProductImage();
@@ -482,7 +482,7 @@ class ProductController extends Controller
 
         ProductImage::destroy($image_id);
 
-        File::delete('storage/app/public/uploads/'.$product_image_url);
+        File::delete('storage/uploads/'.$product_image_url);
 
         return response()->json('success', 200);
     }
