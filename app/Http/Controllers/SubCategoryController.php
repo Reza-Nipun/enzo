@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\SubCategory;
+use App\CompanyInfo;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
@@ -22,10 +23,12 @@ class SubCategoryController extends Controller
     {
         $title = 'ENZO | Sub-Category List';
 
+        $company_info = CompanyInfo::all();
+
         $sub_category_list = SubCategory::join('categories', 'categories.id', '=', 'sub_categories.category_id')
                             ->get(['sub_categories.*', 'categories.name AS category_name']);
 
-        return view('enzo_admin.sub_category_list', compact('title', 'sub_category_list'));
+        return view('enzo_admin.sub_category_list', compact('title', 'company_info', 'sub_category_list'));
     }
 
     /**
@@ -37,9 +40,10 @@ class SubCategoryController extends Controller
     {
         $title = 'ENZO | Create Sub-Category';
 
+        $company_info = CompanyInfo::all();
         $category_list = Category::where('status', 1)->get();
 
-        return view('enzo_admin.create_sub_category', compact('title', 'category_list'));
+        return view('enzo_admin.create_sub_category', compact('title', 'company_info', 'category_list'));
     }
 
     /**
@@ -89,10 +93,11 @@ class SubCategoryController extends Controller
     {
         $title = 'ENZO | Edit Sub-Category';
 
+        $company_info = CompanyInfo::all();
         $category_list = Category::where('status', 1)->get();
         $sub_category = SubCategory::find($id);
 
-        return view('enzo_admin.edit_sub_category', compact('title', 'category_list', 'sub_category'));
+        return view('enzo_admin.edit_sub_category', compact('title', 'company_info', 'category_list', 'sub_category'));
     }
 
     /**

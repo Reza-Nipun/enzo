@@ -34,9 +34,7 @@ class CompanyInfoController extends Controller
      */
     public function create()
     {
-        $title = 'ENZO | Create Category';
-
-        return view('enzo_admin.create_category', compact('title'));
+        //
     }
 
     /**
@@ -47,20 +45,7 @@ class CompanyInfoController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(request(), [
-            'name' => 'required|unique:categories',
-            'status' => 'required',
-        ]);
-
-        $category = new Category();
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->status = $request->status;
-        $category->save();
-
-        \Session::flash('message', "Category Successfully Created!");
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -84,9 +69,9 @@ class CompanyInfoController extends Controller
     {
         $title = 'ENZO | Edit Company Info';
 
-        $company = CompanyInfo::find($id);
+        $company_info = CompanyInfo::all();
 
-        return view('enzo_admin.edit_company_info', compact('title', 'company'));
+        return view('enzo_admin.edit_company_info', compact('title', 'company_info'));
     }
 
     /**
@@ -129,6 +114,7 @@ class CompanyInfoController extends Controller
         $company->company_full_address = $request->company_full_address;
         $company->latitude = $request->latitude;
         $company->longitude = $request->longitude;
+        $company->iframe_location = $request->iframe_location;
         $company->save();
 
         \Session::flash('message', "Company Info Successfully Updated!");

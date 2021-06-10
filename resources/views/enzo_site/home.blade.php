@@ -15,15 +15,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="Cover Image-1" style="width:100%;">
+            <img src="{{ asset('enzo_website_assets/images/cover_polo_2.jpg') }}" alt="ENZO">
         </div>
 
         <div class="item">
-            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="Cover Image-2" style="width:100%;">
+            <img src="{{ asset('enzo_website_assets/images/enzo_cover.jpg') }}" alt="ENZO">
         </div>
 
         <div class="item">
-            <img src="{{ asset('enzo_website_assets/images/cover_polo_3.jpg') }}" alt="Cover Image-3" style="width:100%;">
+            <img src="{{ asset('enzo_website_assets/images/cover_polo_3.jpg') }}" alt="ENZO">
         </div>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CompanyInfo;
 use App\ProductColor;
 use App\ProductImage;
 use App\ProductSize;
@@ -31,6 +32,7 @@ class ProductController extends Controller
     public function index()
     {
         $title = 'ENZO | Product List';
+        $company_info = CompanyInfo::all();
 
         $product_list = DB::select("SELECT t1.*, t2.name AS category_name, t3.sub_category_name, t4.total_stock_qty
                     FROM 
@@ -52,7 +54,7 @@ class ProductController extends Controller
                     GROUP BY product_id) AS t4
                     ON t4.product_id=t1.id");
 
-        return view('enzo_admin.product_list', compact('title', 'product_list'));
+        return view('enzo_admin.product_list', compact('title', 'company_info', 'product_list'));
     }
 
     /**
@@ -64,10 +66,11 @@ class ProductController extends Controller
     {
         $title = 'ENZO | Create Product';
 
+        $company_info = CompanyInfo::all();
         $category_list = Category::where('status', 1)->get();
         $sub_category_list = SubCategory::where('status', 1)->get();
 
-        return view('enzo_admin.create_product', compact('title', 'category_list', 'sub_category_list'));
+        return view('enzo_admin.create_product', compact('title', 'company_info', 'category_list', 'sub_category_list'));
     }
 
     /**
@@ -220,6 +223,7 @@ class ProductController extends Controller
     {
         $title = 'ENZO | Edit Product';
 
+        $company_info = CompanyInfo::all();
         $category_list = Category::where('status', 1)->get();
         $sub_category_list = SubCategory::where('status', 1)->get();
 
@@ -228,7 +232,7 @@ class ProductController extends Controller
         $product_sizes = ProductSize::where('product_id', $id)->get();
         $product_specifications = ProductSpecification::where('product_id', $id)->get();
 
-        return view('enzo_admin.edit_product', compact('title', 'category_list', 'sub_category_list', 'product', 'product_colors', 'product_sizes', 'product_specifications'));
+        return view('enzo_admin.edit_product', compact('title', 'company_info', 'category_list', 'sub_category_list', 'product', 'product_colors', 'product_sizes', 'product_specifications'));
     }
 
     /**
@@ -490,6 +494,7 @@ class ProductController extends Controller
     public function productStockManagement($id){
         $title = 'ENZO | Product Stock';
 
+        $company_info = CompanyInfo::all();
         $product = Product::find($id);
         $product_colors = ProductColor::where('product_id', $id)->where('status', 1)->get();
         $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
@@ -501,7 +506,7 @@ class ProductController extends Controller
                             ->get(['product_stocks.*', 'product_colors.color', 'product_colors.status as color_status',
                                 'product_sizes.size', 'product_sizes.status as size_status', 'product_sizes.size_description']);
 
-        return view('enzo_admin.product_stock_list', compact('title', 'product', 'product_colors', 'product_sizes', 'product_stocks'));
+        return view('enzo_admin.product_stock_list', compact('title', 'company_info', 'product', 'product_colors', 'product_sizes', 'product_stocks'));
     }
 
     public function saveNewColorSizeCombination(Request $request){
@@ -529,12 +534,14 @@ class ProductController extends Controller
         $product_stock_ids = $request->product_stock_id;
         $product_stock_quantitys = $request->product_stock_quantity;
 
-        foreach($product_stock_ids as $k => $product_stock_id){
+        if(isset($product_stock_ids) > 0){
+            foreach($product_stock_ids as $k => $product_stock_id){
 
-            $product_stock = ProductStock::find($product_stock_id);
-            $product_stock->quantity = $product_stock_quantitys[$k];
-            $product_stock->save();
+                $product_stock = ProductStock::find($product_stock_id);
+                $product_stock->quantity = $product_stock_quantitys[$k];
+                $product_stock->save();
 
+            }
         }
 
         \Session::flash('message', "Product Stock Successfully Updated!");

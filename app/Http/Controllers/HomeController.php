@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CompanyInfo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +26,8 @@ class HomeController extends Controller
     {
         $title = 'ENZO | Home';
 
-        return view('enzo_admin.dashboard', compact('title'));
+        $company_info = CompanyInfo::all();
+
+        return view('enzo_admin.dashboard', compact('title', 'company_info'));
     }
 }

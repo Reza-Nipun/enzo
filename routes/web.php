@@ -58,6 +58,11 @@ Route::get('/cleareverything', function () {
     echo "Config cleared<br>";
 });
 
+Route::get('/optimize', function () {
+    $clearcache = Artisan::call('optimize:clear');
+    echo "Cache cleared<br>";
+});
+
 Route::get('/storage_link', function () {
     $clearcache = Artisan::call('storage:link');
     echo "Storage Link<br>";

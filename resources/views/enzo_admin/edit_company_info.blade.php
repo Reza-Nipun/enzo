@@ -22,7 +22,7 @@
         </section>
 
         <!-- Main content -->
-        <form action="{{ route('company_info.update', $company->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('company_info.update', $company_info[0]->id) }}" method="post" enctype="multipart/form-data">
 
             @method('PATCH')
 
@@ -63,13 +63,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputName">Company Name </label>
-                                            <input type="text" id="inputName" class="form-control" name="company_name" value="{{ $company->company_name }}">
+                                            <input type="text" id="inputName" class="form-control" name="company_name" value="{{ $company_info[0]->company_name }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputDescription">Company Description </label>
-                                            <textarea id="inputDescription" class="form-control" name="company_description">{{ $company->company_description }}</textarea>
+                                            <textarea id="inputDescription" class="form-control" name="company_description">{{ $company_info[0]->company_description }}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -77,13 +77,13 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputEmail">Email</label>
-                                            <input type="email" id="inputEmail" class="form-control" name="company_email" value="{{ $company->company_email }}">
+                                            <input type="email" id="inputEmail" class="form-control" name="company_email" value="{{ $company_info[0]->company_email }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputPhone">Phone</label>
-                                            <input type="text" id="inputPhone" class="form-control" name="company_phone" value="{{ $company->company_phone }}">
+                                            <input type="text" id="inputPhone" class="form-control" name="company_phone" value="{{ $company_info[0]->company_phone }}">
                                         </div>
                                     </div>
                                 </div>
@@ -91,42 +91,50 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputFax">Fax</label>
-                                            <input type="text" id="inputFax" class="form-control" name="company_fax" value="{{ $company->company_fax }}">
+                                            <input type="text" id="inputFax" class="form-control" name="company_fax" value="{{ $company_info[0]->company_fax }}">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="inputAddress">Address</label>
-                                            <input type="text" id="inputAddress" class="form-control" name="company_full_address" value="{{ $company->company_full_address }}">
+                                            <input type="text" id="inputAddress" class="form-control" name="company_full_address" value="{{ $company_info[0]->company_full_address }}">
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="inputLogo">Logo</label>
-                                            <input type="file" id="inputLogo" class="form-control" name="file">
-                                            @if($company->company_logo != '')
-                                                <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/uploads/'.$company->company_logo) }}" target="_blank">
-                                                    View Images: <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </a>
-                                            @endif
-                                            <input type="hidden" class="form-control" name="previous_logo" readonly="readonly" value="{{ $company->company_logo }}">
-                                        </div>
-                                    </div>
-
                                 </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputLogo">Logo</label>
+                                                <input type="file" id="inputLogo" class="form-control" name="file">
+                                                @if($company_info[0]->company_logo != '')
+                                                    <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" target="_blank">
+                                                        View Images: <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </a>
+                                                @endif
+                                                <input type="hidden" class="form-control" name="previous_logo" readonly="readonly" value="{{ $company_info[0]->company_logo }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="inputMap">Google Map Embedded iFrame</label>
+                                                <textarea class="form-control" name="iframe_location">{{ $company_info[0]->iframe_location }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="inputLatitude">Latitude</label>
-                                                <input type="text" id="inputLatitude" class="form-control" name="latitude" value="{{ $company->latitude }}">
+                                                <input type="text" id="inputLatitude" class="form-control" name="latitude" value="{{ $company_info[0]->latitude }}">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label for="inputLongitude">Longitude</label>
-                                                <input type="text" id="inputLongitude" class="form-control" name="longitude" value="{{ $company->longitude }}">
+                                                <input type="text" id="inputLongitude" class="form-control" name="longitude" value="{{ $company_info[0]->longitude }}">
                                             </div>
                                         </div>
+
                                     </div>
                             </div>
                             <!-- /.card-body -->

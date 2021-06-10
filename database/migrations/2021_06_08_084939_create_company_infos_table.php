@@ -24,6 +24,7 @@ class CreateCompanyInfosTable extends Migration
             $table->text('company_full_address')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->text('iframe_location')->nullable();
             $table->timestamps();
         });
     }

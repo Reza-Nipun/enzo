@@ -285,7 +285,7 @@
 
                                     <div class="w3_hs_bottom">
                                         <div class="flex_ecommerce">
-                                            <a href="#" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                                         </div>
                                     </div>
                                 </div>

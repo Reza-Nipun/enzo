@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CompanyInfo;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,9 +22,10 @@ class CategoryController extends Controller
     {
         $title = 'ENZO | Category List';
 
+        $company_info = CompanyInfo::all();
         $category_list = Category::all();
 
-        return view('enzo_admin.category_list', compact('title', 'category_list'));
+        return view('enzo_admin.category_list', compact('title', 'company_info', 'category_list'));
     }
 
     /**
@@ -35,7 +37,9 @@ class CategoryController extends Controller
     {
         $title = 'ENZO | Create Category';
 
-        return view('enzo_admin.create_category', compact('title'));
+        $company_info = CompanyInfo::all();
+
+        return view('enzo_admin.create_category', compact('title', 'company_info'));
     }
 
     /**
@@ -83,9 +87,10 @@ class CategoryController extends Controller
     {
         $title = 'ENZO | Edit Category';
 
+        $company_info = CompanyInfo::all();
         $category = Category::find($id);
 
-        return view('enzo_admin.edit_category', compact('title', 'category'));
+        return view('enzo_admin.edit_category', compact('title', 'company_info', 'category'));
     }
 
     /**

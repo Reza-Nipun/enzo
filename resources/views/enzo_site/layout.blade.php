@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="modal-body modal-body-sub">
                 <div class="row">
-                    <div class="col-md-8 modal_body_left modal_body_left1" style="border-right: 1px dotted #C2C2C2;padding-right:3em;">
+                    <div class="col-md-8 modal_body_left modal_body_left1">
                         <div class="sap_tabs">
                             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
                                 <ul>
@@ -116,25 +116,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 });
                             });
                         </script>
-                        <div id="OR" class="hidden-xs">
-                            OR</div>
+                        {{--<div id="OR" class="hidden-xs">--}}
+                            {{--OR--}}
+                        {{--</div>--}}
                     </div>
-                    <div class="col-md-4 modal_body_right modal_body_right1">
-                        <div class="row text-center sign-with">
-                            <div class="col-md-12">
-                                <h3 class="other-nw">
-                                    Sign in with</h3>
-                            </div>
-                            <div class="col-md-12">
-                                <ul class="social">
-                                    <li class="social_facebook"><a href="#" class="entypo-facebook"></a></li>
-                                    <li class="social_dribbble"><a href="#" class="entypo-dribbble"></a></li>
-                                    <li class="social_twitter"><a href="#" class="entypo-twitter"></a></li>
-                                    <li class="social_behance"><a href="#" class="entypo-behance"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    {{--<div class="col-md-4 modal_body_right modal_body_right1">--}}
+                        {{--<div class="row text-center sign-with">--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<h3 class="other-nw">--}}
+                                    {{--Sign in with</h3>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-12">--}}
+                                {{--<ul class="social">--}}
+                                    {{--<li class="social_facebook"><a href="#" class="entypo-facebook"></a></li>--}}
+                                    {{--<li class="social_dribbble"><a href="#" class="entypo-dribbble"></a></li>--}}
+                                    {{--<li class="social_twitter"><a href="#" class="entypo-twitter"></a></li>--}}
+                                    {{--<li class="social_behance"><a href="#" class="entypo-behance"></a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -144,12 +145,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     //		$('#myModal88').modal('show');
 </script>
 <div class="header" id="">
+    {{--<div class="w3l_login">--}}
+        {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> Sign In</a--}}
+    {{--</div>--}}
     <div class="container">
-        <div class="w3l_login">
-            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-        </div>
-        <div class="w3l_logo">
-            <a href="{{ route('index') }}"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive" width="250" height="100"></a>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <a href="{{ route('index') }}"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive center-block" width="200" height="100"></a>
+            </div>
+            <div class="col-sm-4"></div>
         </div>
         <!--			<div class="search">-->
         <!--				<input class="search_box" type="checkbox" id="search_box">-->
@@ -161,15 +167,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--					</form>-->
         <!--				</div>-->
         <!--			</div>-->
-        <div class="cart box_1">
-            <a href="checkout.php">
-                <div class="total">
-                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
-                <img src="{{ asset('enzo_website_assets/images/bag.png') }}" alt="" />
-            </a>
-            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-            <div class="clearfix"> </div>
-        </div>
+
+        {{--<div class="cart box_1">--}}
+            {{--<a href="checkout.php">--}}
+                {{--<div class="total">--}}
+                    {{--<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>--}}
+                {{--<img src="{{ asset('enzo_website_assets/images/bag.png') }}" alt="" />--}}
+            {{--</a>--}}
+            {{--<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>--}}
+            {{--<div class="clearfix"> </div>--}}
+        {{--</div>--}}
         <div class="clearfix"> </div>
     </div>
 </div>
@@ -226,6 +233,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="{{ route('track_order') }}">Track-Order</a></li>
                     <li><a href="{{ route('about_us') }}">About-Us</a></li>
                     <li><a href="{{ route('contact_us') }}">Contact</a></li>
+                    <li>
+                        <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> Sign In</a>
+                    </li>
+                    <li>
+                        <div class="cart box_1">
+                            <a href="checkout.php">
+                                <div class="total">
+                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+                                <img src="{{ asset('enzo_website_assets/images/bag.png') }}" alt="" />
+                            </a>
+                            {{--<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>--}}
+                            <div class="clearfix"> </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

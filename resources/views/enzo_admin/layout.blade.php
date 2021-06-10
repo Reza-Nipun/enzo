@@ -38,7 +38,7 @@
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="{{ asset('img/enzo_logo.jpeg') }}" alt="AdminLTELogo" height="80" width="80">
+        <img class="animation__shake" src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" height="80" width="80">
     </div>
 
     <!-- Navbar -->

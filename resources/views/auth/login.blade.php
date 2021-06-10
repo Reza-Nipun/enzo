@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     {{--{{ __('Login') }}--}}
-                    <img class="rounded mx-auto d-block" src="{{ asset('storage/uploads/enzo_logo.jpeg') }}" alt="LOGO" width="150" height="">
+                    <img class="rounded mx-auto d-block" src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="LOGO" width="150" height="">
                 </div>
 
                 <div class="card-body">
