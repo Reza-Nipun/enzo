@@ -13,11 +13,19 @@ use App\ProductSpecification;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
 {
     public function index(){
         $title = "ENZO | Home";
+
+        $session = new Session();
+
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
 
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
@@ -25,7 +33,7 @@ class HomeController extends Controller
 
         $new_products = Product::where('status', 1)->orderBy('id', 'desc')->take(8)->get();
 
-        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info'));
+        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info', 'customer_data'));
     }
 
     public function menuCategoryItems(){
@@ -76,6 +84,13 @@ class HomeController extends Controller
 
         $title = "ENZO | ".$product_info->product_name;
 
+        $session = new Session();
+
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
@@ -99,7 +114,7 @@ class HomeController extends Controller
 
         $related_products = Product::where('status', 1)->where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
 
-        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info'));
+        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data'));
     }
 
     public function getSubCategoryWiseProductList($sub_cat_id=null){
@@ -107,13 +122,19 @@ class HomeController extends Controller
 
         $title = "ENZO | ".$sub_cat_info->sub_category_name;
 
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
         $products = Product::where('sub_category_id', $sub_cat_id)->where('status', 1)->orderBy('id', 'desc')->get();
 
-        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info'));
+        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data'));
     }
 
     public function trackOrder(){
@@ -123,20 +144,32 @@ class HomeController extends Controller
     public function aboutUs(){
         $title = "ENZO | About Us";
 
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info'));
+        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
     }
 
     public function contactUs(){
         $title = "ENZO | Contact";
 
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info'));
+        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
     }
 }

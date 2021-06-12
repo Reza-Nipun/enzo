@@ -23,6 +23,14 @@ Route::get('/track_order')->uses('Website\HomeController@trackOrder')->name('tra
 Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
 Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
 
+Route::resource('customer', 'Website\CustomerController');
+Route::post('/customer_login')->uses('Website\CustomerController@customerLogin')->name('customer_login');
+Route::get('/customer_logout')->uses('Website\CustomerController@customerLogout')->name('customer_logout');
+Route::get('/customer_forgot_password')->uses('Website\CustomerController@customerForgotPassword')->name('customer_forgot_password');
+Route::post('/send_customer_reset_password_link')->uses('Website\CustomerController@sendCustomerResetPasswordLink')->name('send_customer_reset_password_link');
+Route::get('/customer_reset_password_link/{email?}/{token?}')->uses('Website\CustomerController@customerResetPasswordLink')->name('customer_reset_password_link');
+Route::post('/change_customer_password')->uses('Website\CustomerController@changeCustomerPassword')->name('change_customer_password');
+
 
 // ADMIN Start From Here...
 Auth::routes(['login' => false, 'register' => false]);

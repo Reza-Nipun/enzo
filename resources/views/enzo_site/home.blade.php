@@ -54,7 +54,7 @@
 						<script src="{{ asset('enzo_website_assets/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
 					<!--//pop-up-box -->
 					<div id="small-dialog" class="mfp-hide">
-						<iframe src="https://player.vimeo.com/video/23259282?title=0&byline=0&portrait=0"></iframe>
+						<iframe src=""></iframe>
 					</div>
 					<script>
 						$(document).ready(function() {

@@ -71,37 +71,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="col-md-8 modal_body_left modal_body_left1">
                         <div class="sap_tabs">
                             <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-                                <ul>
-                                    <li class="resp-tab-item" aria-controls="tab_item-0"><span>Sign in</span></li>
-                                    <li class="resp-tab-item" aria-controls="tab_item-1"><span>Sign up</span></li>
-                                </ul>
-                                <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-                                    <div class="facts">
-                                        <div class="register">
-                                            <form action="#" method="post">
-                                                <input name="Email" placeholder="Email Address" type="text" required="">
-                                                <input name="Password" placeholder="Password" type="password" required="">
-                                                <div class="sign-up">
-                                                    <input type="submit" value="Sign in"/>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <div class="facts">
 
-                                <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
-                                    <div class="facts">
-                                        <div class="register">
-                                            <form action="#" method="post">
-                                                <input placeholder="Name" name="Name" type="text" required="">
-                                                <input placeholder="Email Address" name="Email" type="email" required="">
-                                                <input placeholder="Password" name="Password" type="password" required="">
-                                                <input placeholder="Confirm Password" name="Password" type="password" required="">
-                                                <div class="sign-up">
-                                                    <input type="submit" value="Create Account"/>
-                                                </div>
-                                            </form>
+                                    @if(Session::has('error_message'))
+                                        <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('error_message') }}</p>
+                                    @endif
+
+                                    @if(count($errors))
+                                        <div class="form-group">
+                                            <div class="alert alert-danger">
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                        <li>{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
                                         </div>
+                                    @endif
+
+                                    <div class="register">
+                                        <form action="{{ route('customer_login') }}" method="post">
+
+                                            {{ csrf_field() }}
+
+                                            <input type="text" name="email" placeholder="Email Address" required="required" value="{{ old('email') }}">
+                                            <input type="password" name="password" placeholder="Password" required="required">
+                                            <br />
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <button class="btn btn-success">SIGN IN</button>
+                                                    <a href="{{ route('customer.create') }}" class="btn btn-primary">CREATE ACCOUNT</a>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <a href="{{ route('customer_forgot_password') }}">Forgot Password?</a>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +242,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="{{ route('about_us') }}">About-Us</a></li>
                     <li><a href="{{ route('contact_us') }}">Contact</a></li>
                     <li>
-                        <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88"><i class="glyphicon glyphicon-user" aria-hidden="true"></i> Sign In</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <div class="row">
+
+                                <div class="col-sm-8">
+                                    <ul class="multi-column-dropdown">
+
+                                        @if(!empty($customer_data['customer_id']))
+                                            <li><a href="javaScript:void(0)" style="margin-left: 5px">My Profile</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('customer_logout') }}" style="margin-left: 5px">Logout</a></li>
+
+                                        @else
+                                            <li><a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88" style="margin-left: 5px">Sign In</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('customer.create') }}" style="margin-left: 5px">Register</a></li>
+                                        @endif
+                                    </ul>
+                                </div>
+
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </ul>
                     </li>
                     <li>
                         <div class="cart box_1">
@@ -335,10 +366,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="container">
             <p style="display: none;">&copy; 2016 Women's Fashion. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-            <p>&copy; 2021 <a href="https://enzo.fashion/">ENZO.FASHION</a> All rights reserved. <a href="http://w3layouts.com/" style="display: none;">Developed by M NIPUN SARKER</a></p>
+            <p>&copy; 2021 <a href="https://enzo.fashion/">ENZO.FASHION</a> All rights reserved. <a href="javaScript:void(0)" style="display: none;">Developed by M NIPUN SARKER</a></p>
         </div>
     </div>
 </div>
 <!-- //footer -->
 </body>
 </html>
+
+<script type="text/javascript">
+
+    $( document ).ready(function() {
+
+        if(('{{ Route::current()->getName() }}' != 'customer.create') && ('{{ Route::current()->getName() }}' != 'customer_forgot_password') && ('{{ Route::current()->getName() }}' != 'customer_reset_password_link') && ('{{ count($errors) }}' > 0)){
+            $('#myModal88').modal('show');
+        }
+
+        if('{{ Session::has('error_message') }}'){
+            $('#myModal88').modal('show');
+        }
+
+    });
+
+</script>

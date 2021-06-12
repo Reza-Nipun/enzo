@@ -1317,7 +1317,7 @@ h2.resp-accordion {
 	width:100%;
 	font-size:14px;
 }
-.register input[type="password"],.register input[type="email"]{
+.register input[name="contact_no"], .register input[name="full_name"], .register input[name="address"], .register input[type="password"],.register input[type="email"]{
 	margin:1em 0 0;
 }
 div#horizontalTab ul {
@@ -1332,13 +1332,27 @@ div#horizontalTab ul {
 	background:#212121;
 	padding:10px 0;
 	color:#fff;
-	width:40%;
+	width:30%;
 	font-size:1em;
 	text-transform:uppercase;
 	margin:2em 0 0;
 }
 .register input[type="submit"]:hover{
 	background:#ff9b05;
+}
+.register .registerBtn{
+    outline:none;
+    border:none;
+    background: #aec900;
+    padding:10px 0;
+    color:#fff;
+    width:30%;
+    font-size:1em;
+    text-transform:uppercase;
+    margin:2em 0 0;
+}
+.register .registerBtn:hover{
+    background:#ff9b05;
 }
 div#OR {
     height: 30px;
