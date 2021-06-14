@@ -22,6 +22,7 @@ Route::get('/product_list/{sub_cat_id}')->uses('Website\HomeController@getSubCat
 Route::get('/track_order')->uses('Website\HomeController@trackOrder')->name('track_order');
 Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
 Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
+Route::get('/add_to_cart')->uses('Website\HomeController@addToCart')->name('add_to_cart');
 
 Route::resource('customer', 'Website\CustomerController');
 Route::post('/customer_login')->uses('Website\CustomerController@customerLogin')->name('customer_login');
@@ -31,6 +32,11 @@ Route::post('/send_customer_reset_password_link')->uses('Website\CustomerControl
 Route::get('/customer_reset_password_link/{email?}/{token?}')->uses('Website\CustomerController@customerResetPasswordLink')->name('customer_reset_password_link');
 Route::post('/change_customer_password')->uses('Website\CustomerController@changeCustomerPassword')->name('change_customer_password');
 
+Route::resource('order', 'Website\OrderController');
+Route::post('/add_to_cart')->uses('Website\OrderController@addToCart')->name('add_to_cart');
+Route::get('/remove_from_cart/{cart_id}')->uses('Website\OrderController@removeFromCart')->name('remove_from_cart');
+Route::get('/get_cart_list')->uses('Website\OrderController@getCartList')->name('get_cart_list');
+Route::get('/get_single_product_image/{product_id}/{color_id}')->uses('Website\OrderController@getSingleProductImageByColor')->name('get_single_product_image');
 
 // ADMIN Start From Here...
 Auth::routes(['login' => false, 'register' => false]);

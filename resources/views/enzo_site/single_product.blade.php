@@ -42,6 +42,15 @@
                 <div class="col-md-8 single-right">
                     <h3>{{ $product_info->product_name }}</h3>
                     <h5>Product Code: {{ $product_info->product_code }}</h5>
+                    <input type="hidden" value="{{ $product_info->id }}" readonly="readonly" name="product_id" id="product_id">
+                    <input type="hidden" value="{{ $product_info->product_name }}" readonly="readonly" name="product_name" id="product_name">
+                    <input type="hidden" value="{{ $product_info->product_code }}" readonly="readonly" name="product_code" id="product_code">
+                    <input type="hidden" value="{{ $product_images[0]->color_id }}" readonly="readonly" name="color_id" id="color_id">
+                    <input type="hidden" value="{{ $product_colors[0]->color }}" readonly="readonly" name="color" id="color">
+                    <input type="hidden" readonly="readonly" name="size_id" id="size_id">
+                    <input type="hidden" readonly="readonly" name="size_name" id="size_name">
+                    <input type="hidden" readonly="readonly" name="size_description" id="size_description">
+                    <input type="hidden" value="{{ $product_info->price_in_bdt }}" readonly="readonly" name="price_in_bdt" id="price_in_bdt">
                     {{--<div class="rating1">--}}
 					{{--<span class="starRating">--}}
 						{{--<input id="rating5" type="radio" name="rating" value="5">--}}
@@ -65,7 +74,7 @@
                             <h5>Color: </h5>
                             <ul>
                                 @foreach($product_colors as $product_color)
-                                    <li><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 20px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
+                                    <li @if($product_images[0]->color_id == $product_color->id) style="border: dotted; border-color: #69d88a" @endif><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 20px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -74,20 +83,20 @@
                             <div class="quantity">
                                 <div class="quantity-select">
                                     <div class="entry value-minus1">&nbsp;</div>
-                                    <div class="entry value1"><span>1</span></div>
+                                    <input type="text" class="entry value1" id="order_qty" value="1" readonly="readonly">
                                     <div class="entry value-plus1 active">&nbsp;</div>
                                 </div>
                             </div>
                             <!--quantity-->
                             <script>
                                 $('.value-plus1').on('click', function(){
-                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
-                                    divUpd.text(newVal);
+                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)+1;
+                                    divUpd.val(newVal);
                                 });
 
                                 $('.value-minus1').on('click', function(){
-                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
-                                    if(newVal>=1) divUpd.text(newVal);
+                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)-1;
+                                    if(newVal>=1) divUpd.val(newVal);
                                 });
                             </script>
                             <!--quantity-->
@@ -101,7 +110,7 @@
                         @foreach($product_sizes as $product_size)
                             <div class="colr ert">
                                 <div class="check">
-                                    <label class=""><input type="radio" name="checkbox" class="" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
+                                    <label class=""><input type="radio" name="size" id="size" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
                                 </div>
                             </div>
                         @endforeach
@@ -113,7 +122,7 @@
                             {{--<span>$320</span> --}}
                             <i class="item_price">৳ {{ $product_info->price_in_bdt }}</i>
                         </p>
-                        <p><a class="" href="javaScript:void(0)">Add to cart</a></p>
+                        <p><a class="" href="javaScript:void(0)" onclick="addToCart()">Add to cart</a></p>
                     </div>
                     <div class="occasional">
                         <h5><i>Product Detail</i></h5>
@@ -432,5 +441,49 @@
                 });
             }
 
+            function getAndSetSizeId(size_id, size_name, size_description) {
+                $("#size_id").val(size_id);
+                $("#size_name").val(size_name);
+                $("#size_description").val(size_description);
+            }
+
+            function addToCart() {
+                var product_id = $("#product_id").val();
+                var product_name = $("#product_name").val();
+                var product_code = $("#product_code").val();
+                var color_id = $("#color_id").val();
+                var color = $("#color").val();
+                var size_id = $("#size_id").val();
+                var size_name = $("#size_name").val();
+                var size_description = $("#size_description").val();
+                var order_qty = $("#order_qty").val();
+                var price_in_bdt = $("#price_in_bdt").val();
+
+                if(product_id != '' && color_id != '' && size_id != ''){
+
+                    if('{{ $customer_data['customer_id'] }}' == ""){
+                        $('#myModal88').modal('show');
+                    }else{
+
+                        $.ajax({
+                            url: "{{ route("add_to_cart") }}",
+                            type:'POST',
+                            data: {_token:"{{csrf_token()}}", product_id: product_id, product_name: product_name, product_code: product_code, color_id: color_id, color: color, size_id: size_id, size_name: size_name, size_description: size_description, order_qty: order_qty, price_in_bdt: price_in_bdt},
+                            dataType: "json",
+                            success: function (data) {
+
+                                $("#simpleCart_quantity").text(data);
+
+                            }
+                        });
+
+                    }
+
+                }else{
+                    alert("Please Select Product/Color/Size!");
+                }
+
+
+            }
         </script>
 @endsection

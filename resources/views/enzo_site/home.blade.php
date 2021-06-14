@@ -113,7 +113,8 @@
                                                 <div class="w3_hs_bottom">
                                                     <ul>
                                                         <li>
-                                                            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                                            {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
+                                                            <a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -184,15 +185,15 @@
 												{{--<span>$320</span> --}}
 												<i class="item_price" id="product_price_in_bdt">$ 250</i>
 											</p>
-											<p><a class="" href="#" id="view_detail_product">View Detail</a></p>
+											<p><a class="" href="javaScript:void(0)" id="view_detail_product">View Detail</a></p>
 										</div>
 										<h5>Color</h5>
 										<div class="color-quality">
 											<ul id="colors">
-												<li><a href="#"><span></span>Red</a></li>
-												<li><a href="#" class="brown"><span></span>Yellow</a></li>
-												<li><a href="#" class="purple"><span></span>Purple</a></li>
-												<li><a href="#" class="gray"><span></span>Violet</a></li>
+												<li><a href="javaScript:void(0)"><span></span>Red</a></li>
+												<li><a href="javaScript:void(0)" class="brown"><span></span>Yellow</a></li>
+												<li><a href="javaScript:void(0)" class="purple"><span></span>Purple</a></li>
+												<li><a href="javaScript:void(0)" class="gray"><span></span>Violet</a></li>
 											</ul>
 										</div>
 									</div>
@@ -725,7 +726,7 @@
 								<div class="w3_hs_bottom w3_hs_bottom_sub">
 									<ul>
 										<li>
-											<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+											<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
 										</li>
 									</ul>
 								</div>
@@ -738,7 +739,7 @@
 										৳ {{ $new_product->price_in_bdt }}
 									</i>
 								</p>
-								<p><a class="item_add" href="{{ route('view_single_product', $new_product->id) }}">View Detail</a></p>
+								<p><a class="" href="{{ route('view_single_product', $new_product->id) }}">View Detail</a></p>
 							</div>
 						</div>
 					</div>

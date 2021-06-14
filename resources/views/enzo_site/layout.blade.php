@@ -269,9 +269,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                     <li>
                         <div class="cart box_1">
-                            <a href="checkout.php">
+                            <a href="{{ route('get_cart_list') }}">
                                 <div class="total">
-                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+                                    {{--<span class="simpleCart_total"></span> --}}
+                                    <span id="simpleCart_quantity" class="">{{ $count_cart_items }}</span> items</div>
                                 <img src="{{ asset('enzo_website_assets/images/bag.png') }}" alt="" />
                             </a>
                             {{--<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>--}}

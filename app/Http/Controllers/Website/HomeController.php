@@ -33,7 +33,13 @@ class HomeController extends Controller
 
         $new_products = Product::where('status', 1)->orderBy('id', 'desc')->take(8)->get();
 
-        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info', 'customer_data'));
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info', 'customer_data', 'count_cart_items'));
     }
 
     public function menuCategoryItems(){
@@ -114,7 +120,13 @@ class HomeController extends Controller
 
         $related_products = Product::where('status', 1)->where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
 
-        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data'));
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data', 'count_cart_items'));
     }
 
     public function getSubCategoryWiseProductList($sub_cat_id=null){
@@ -134,7 +146,13 @@ class HomeController extends Controller
 
         $products = Product::where('sub_category_id', $sub_cat_id)->where('status', 1)->orderBy('id', 'desc')->get();
 
-        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data'));
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data', 'count_cart_items'));
     }
 
     public function trackOrder(){
@@ -154,7 +172,13 @@ class HomeController extends Controller
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
     }
 
     public function contactUs(){
@@ -170,6 +194,12 @@ class HomeController extends Controller
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
     }
 }
