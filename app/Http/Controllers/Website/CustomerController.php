@@ -43,6 +43,11 @@ class CustomerController extends Controller
         $customer_data['nick_name'] = $session->get('nick_name');
         $customer_data['email'] = $session->get('email');
 
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
 
         if(!empty($customer_data['customer_id'])){
             return redirect('/');
@@ -53,7 +58,7 @@ class CustomerController extends Controller
             $category_list = $this->menuCategoryItems();
             $sub_category_list = $this->menuSubCategoryItems();
 
-            return view('enzo_site.register', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
+            return view('enzo_site.register', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
         }
 
     }
@@ -207,11 +212,16 @@ class CustomerController extends Controller
         $customer_data['nick_name'] = $session->get('nick_name');
         $customer_data['email'] = $session->get('email');
 
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
 
         if(!empty($customer_data['customer_id'])){
             return redirect('/');
         }else {
-            return view('enzo_site.forgot_password', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data'));
+            return view('enzo_site.forgot_password', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
         }
     }
 
@@ -297,9 +307,14 @@ class CustomerController extends Controller
         $customer_data['nick_name'] = $session->get('nick_name');
         $customer_data['email'] = $session->get('email');
 
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
         $mytime = Carbon::now();
         $now_date_time = $mytime->toDateTimeString();
-
 
         $token = DB::table('password_resets')
                 ->where('email',$email)
@@ -314,7 +329,7 @@ class CustomerController extends Controller
 
             return redirect('customer_forgot_password');
         }else{
-            return view('enzo_site.reset_password', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'token'));
+            return view('enzo_site.reset_password', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'token', 'count_cart_items'));
         }
     }
 
@@ -343,6 +358,8 @@ class CustomerController extends Controller
         $session->remove('nick_name');
         $session->remove('email');
 
-        return redirect()->back();
+        session()->forget('cart');
+
+        return redirect('/');
     }
 }

@@ -316,7 +316,6 @@ class ProductController extends Controller
                         $product_image_old->color_id = $color_id;
                         $product_image_old->image_url = $modified_file_name_with_extension_new_addition;
                         $product_image_old->save();
-
                     }
                 }
             }

@@ -387,6 +387,26 @@
                 </div>
             </div>
         </div>
+        <div class="modal video-modal fade" id="myModalCartCriteria" tabindex="-1" role="dialog" aria-labelledby="myModalCartCriteria">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <section>
+                        <div class="modal-body">
+                            <div class="col-md-12">
+                                <h4 id="product_name">Please Select Product/Color/Size!</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
 
         <script type="text/javascript">
 
@@ -459,11 +479,10 @@
                 var order_qty = $("#order_qty").val();
                 var price_in_bdt = $("#price_in_bdt").val();
 
-                if(product_id != '' && color_id != '' && size_id != ''){
-
-                    if('{{ $customer_data['customer_id'] }}' == ""){
-                        $('#myModal88').modal('show');
-                    }else{
+                if('{{ $customer_data['customer_id'] }}' == "") {
+                    $('#myModal88').modal('show');
+                }else{
+                    if(product_id != '' && color_id != '' && size_id != ''){
 
                         $.ajax({
                             url: "{{ route("add_to_cart") }}",
@@ -477,10 +496,10 @@
                             }
                         });
 
+                    }else{
+                        $('#myModalCartCriteria').modal('show')
                     }
 
-                }else{
-                    alert("Please Select Product/Color/Size!");
                 }
 
 
