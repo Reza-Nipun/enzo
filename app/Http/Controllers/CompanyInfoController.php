@@ -101,9 +101,6 @@ class CompanyInfoController extends Controller
             $file_post->move($destinationPath,$file_original_name);
         }
 
-
-
-
         $company = CompanyInfo::find($id);
         $company->company_name = $request->company_name;
         $company->company_description = $request->company_description;
@@ -115,6 +112,8 @@ class CompanyInfoController extends Controller
         $company->latitude = $request->latitude;
         $company->longitude = $request->longitude;
         $company->iframe_location = $request->iframe_location;
+        $company->shipment_charge = $request->shipment_charge;
+        $company->vat_percentage = $request->vat_percentage;
         $company->save();
 
         \Session::flash('message', "Company Info Successfully Updated!");

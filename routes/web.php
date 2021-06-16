@@ -37,6 +37,8 @@ Route::post('/add_to_cart')->uses('Website\OrderController@addToCart')->name('ad
 Route::get('/remove_from_cart/{cart_id}')->uses('Website\OrderController@removeFromCart')->name('remove_from_cart');
 Route::get('/get_cart_list')->uses('Website\OrderController@getCartList')->name('get_cart_list');
 Route::get('/get_single_product_image/{product_id}/{color_id}')->uses('Website\OrderController@getSingleProductImageByColor')->name('get_single_product_image');
+Route::post('/place_order')->uses('Website\OrderController@placeOrder')->name('place_order');
+Route::get('/invoice/{id}')->uses('Website\OrderController@invoice')->name('invoice');
 
 // ADMIN Start From Here...
 Auth::routes(['login' => false, 'register' => false]);

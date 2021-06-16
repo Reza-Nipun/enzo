@@ -93,7 +93,6 @@
                             <td class="project-actions text-center">
                                 <a class="btn btn-info btn-sm" href="{{ route('company_info.edit', $company->id) }}">
                                     <i class="fas fa-pencil-alt"></i>
-                                    Edit
                                 </a>
                             </td>
                         </tr>

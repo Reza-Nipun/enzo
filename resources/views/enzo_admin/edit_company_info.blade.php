@@ -134,7 +134,18 @@
                                                 <input type="text" id="inputLongitude" class="form-control" name="longitude" value="{{ $company_info[0]->longitude }}">
                                             </div>
                                         </div>
-
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="shipment_charge">Shipment Charge</label>
+                                                <input type="number" id="shipment_charge" class="form-control" name="shipment_charge" value="{{ $company_info[0]->shipment_charge }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="vat_percentage">Order VAT percentage</label>
+                                                <input type="number" id="vat_percentage" class="form-control" name="vat_percentage" value="{{ $company_info[0]->vat_percentage }}">
+                                            </div>
+                                        </div>
                                     </div>
                             </div>
                             <!-- /.card-body -->

@@ -11,135 +11,153 @@
     </div>
     <!-- //banner -->
 
-    <div class="checkout">
-        <div class="container">
-            <h3>Your shopping cart contains: <span>{{ $count_cart_items }} Products</span></h3>
+    <form action="{{ route('place_order') }}" method="post">
 
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="text-center">SL</th>
-                        {{--<th>Image</th>--}}
-                        <th class="text-center">Product Name</th>
-                        <th class="text-center">Color</th>
-                        <th class="text-center">Size</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                    </thead>
+        {{ csrf_field() }}
 
-                    @php
-                        $sl = 1;
-                        $total_amount = 0;
-                        $shipment_charge = 100;
-                        $vat_percentage = 15;
-                    @endphp
+        <div class="checkout">
+            <div class="container">
+                @if(Session::has('invalid_order_msg'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('invalid_order_msg') }}</p>
+                @endif
 
-                    @foreach($cart_items as $k => $cart_item)
+                <h3>Your shopping cart contains: <span>{{ $count_cart_items }} Products</span></h3>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <td class="text-center">{{ $sl }}</td>
-                            {{--<td class="invert-image">--}}
-                                {{--@php--}}
-                                    {{--$get_single_product_image = OrderController::getSingleProductImageByColor($cart_item['product_id'], $cart_item['color_id']);--}}
-                                {{--@endphp--}}
-
-                                {{--<a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">--}}
-                                    {{--<img src="{{ asset('storage/uploads/'.$get_single_product_image[0]->image_url) }}" alt="{{ $cart_item['product_name'] }}" class="img-responsive" />--}}
-                                {{--</a>--}}
-                            {{--</td>--}}
-                            <td>
-                                <a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">
-                                    {{ $cart_item['product_name'] }}
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                {{ $cart_item['color'] }}
-                            </td>
-                            <td class="text-center">{{ $cart_item['size_name'].' - '.$cart_item['size_description'] }}</td>
-                            <td class="text-center">
-                                {{ $cart_item['qty'] }}
-
-                                {{--<div class="quantity">--}}
-                                {{--<div class="quantity-select">--}}
-                                {{--<div class="entry value-minus">&nbsp;</div>--}}
-                                {{--<div class="entry value"><span>{{ $cart_item['qty'] }}</span></div>--}}
-                                {{--<div class="entry value-plus active">&nbsp;</div>--}}
-                                {{--</div>--}}
-                                {{--</div>--}}
-                            </td>
-                            <td class="text-center">৳ {{ $cart_item['price_in_bdt'] }}</td>
-                            <td class="text-center">
-                                {{--<a class="btn btn-sm btn-danger" onclick="productRemovingConfirmation('{{ $k }}');" href="{{ route('remove_from_cart', $k) }}">--}}
-                                <span class="btn btn-sm btn-danger" onclick="productRemovingConfirmation('{{ $k }}');">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                            </td>
+                            <th class="text-center">SL</th>
+                            {{--<th>Image</th>--}}
+                            <th class="text-center">Product Name</th>
+                            <th class="text-center">Color</th>
+                            <th class="text-center">Size</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Action</th>
                         </tr>
+                        </thead>
 
                         @php
-                            $sl++;
-                            $total_amount += $cart_item['price_in_bdt'];
+                            $sl = 1;
+                            $amount = 0;
+                            $total_amount = 0;
+                            $shipment_charge = ($company_info[0]->shipment_charge <> "" ? $company_info[0]->shipment_charge : 0);
+                            $vat_percentage = ($company_info[0]->vat_percentage <> "" ? $company_info[0]->vat_percentage : 0);
                         @endphp
 
-                    @endforeach
+                        @foreach($cart_items as $k => $cart_item)
+                            <tr>
+                                <td class="text-center">{{ $sl }}</td>
+                                {{--<td class="invert-image">--}}
+                                    {{--@php--}}
+                                        {{--$get_single_product_image = OrderController::getSingleProductImageByColor($cart_item['product_id'], $cart_item['color_id']);--}}
+                                    {{--@endphp--}}
 
-                    <!--quantity-->
-                    <script>
-                        $('.value-plus').on('click', function(){
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
-                            divUpd.text(newVal);
-                        });
+                                    {{--<a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">--}}
+                                        {{--<img src="{{ asset('storage/uploads/'.$get_single_product_image[0]->image_url) }}" alt="{{ $cart_item['product_name'] }}" class="img-responsive" />--}}
+                                    {{--</a>--}}
+                                {{--</td>--}}
+                                <td>
+                                    <a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">
+                                        {{ $cart_item['product_name'] }}
+                                    </a>
+                                    <input type="hidden" name="product_id[]" value="{{ $cart_item['product_id'] }}">
+                                </td>
+                                <td class="text-center">
+                                    {{ $cart_item['color'] }}
+                                    <input type="hidden" name="color_id[]" value="{{ $cart_item['color_id'] }}">
+                                </td>
+                                <td class="text-center">
+                                    {{ $cart_item['size_name'].' - '.$cart_item['size_description'] }}
+                                    <input type="hidden" name="size_id[]" value="{{ $cart_item['size_id'] }}">
+                                </td>
+                                <td class="text-center">
+                                    {{ $cart_item['qty'] }}
+                                    <input type="hidden" name="quantity[]" value="{{ $cart_item['qty'] }}" readonly="readonly">
+                                </td>
+                                <td class="text-center">
+                                    ৳ {{ $cart_item['price_in_bdt'] }}
 
-                        $('.value-minus').on('click', function(){
-                            var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-                            if(newVal>=1) divUpd.text(newVal);
-                        });
-                    </script>
-                    <!--quantity-->
-                </table>
-            </div>
+                                    @php
+                                        $amount = $cart_item['qty'] * $cart_item['price_in_bdt'];
+                                        $total_amount += $amount;
+                                    @endphp
 
-            @if($count_cart_items > 0)
-
-                <div class="checkout-left">
-                    <div class="checkout-left-basket">
-                        <h4>Summary</h4>
-                        <ul>
-                            <li>Total Amount <i>-</i> <span>৳ {{ $total_amount }} </span></li>
-                            <li>Shipment Charge <i>-</i> <span>৳ {{ $shipment_charge }} </span></li>
+                                    <input type="hidden" name="price[]" value="{{ $amount }}">
+                                </td>
+                                <td class="text-center">
+                                    {{--<a class="btn btn-sm btn-danger" onclick="productRemovingConfirmation('{{ $k }}');" href="{{ route('remove_from_cart', $k) }}">--}}
+                                    <span class="btn btn-sm btn-danger" onclick="productRemovingConfirmation('{{ $k }}');">
+                                        <i class="fas fa-trash"></i>
+                                    </span>
+                                </td>
+                            </tr>
 
                             @php
-
-                                $vat_amount = 0;
-                                if($total_amount > 0){
-                                    $vat_amount = (($vat_percentage/100) / $total_amount);
-                                }
-
+                                $sl++;
                             @endphp
 
-                            <li>VAT(15%) <i>-</i> <span>৳ {{ $vat_amount }} </span></li>
+                        @endforeach
 
-                            @php
+                        <!--quantity-->
+                        <script>
+                            $('.value-plus').on('click', function(){
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+                                divUpd.text(newVal);
+                            });
 
-                                $net_amount =0;
-                                $net_amount = ($total_amount + $vat_amount + $shipment_charge);
-
-                            @endphp
-
-                            <li>Net Amount <i>-</i> <span>৳ {{ $net_amount }}</span></li>
-                            <li><select class="form-control"><option value="">Payment Type</option><option>e-Payment</option><option>Cash on Delivery</option></select></li>
-                        </ul>
-                        <br />
-                        <button class="btn btn-lg btn-success">PLACE ORDER</button>
-                    </div>
+                            $('.value-minus').on('click', function(){
+                                var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+                                if(newVal>=1) divUpd.text(newVal);
+                            });
+                        </script>
+                        <!--quantity-->
+                    </table>
                 </div>
 
-            @endif
+                @if($count_cart_items > 0)
 
+                    <input type="hidden" name="invoice_no" value="{{ $invoice_no }}">
+
+                    <div class="checkout-left">
+                        <div class="checkout-left-basket">
+                            <h4>Summary</h4>
+                            <ul>
+                                <li>Total Amount <i>-</i> <span>৳ {{ $total_amount }} </span><input type="hidden" name="total_amount" value="{{ $total_amount }}" readonly="readonly"></li>
+                                <li>Shipment Charge <i>-</i> <span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></li>
+
+                                @php
+
+                                    $vat_amount = 0;
+                                    if($total_amount > 0){
+                                        $vat_amount = ($total_amount * ($vat_percentage/100));
+                                    }
+
+                                @endphp
+
+                                <li>VAT(15%) <i>-</i> <span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></li>
+
+                                @php
+
+                                    $net_amount =0;
+                                    $net_amount = ($total_amount + $vat_amount + $shipment_charge);
+
+                                @endphp
+
+                                <li>Net Amount <i>-</i> <span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></li>
+                                {{--<li><select class="form-control"><option value="">Payment Type</option><option>e-Payment</option><option>Cash on Delivery</option></select></li>--}}
+                            </ul>
+                            <br />
+                            <button class="btn btn-lg btn-success">PLACE ORDER</button>
+                        </div>
+                    </div>
+
+                @endif
+
+            </div>
         </div>
-    </div>
+    </form>
 
     {{--Modal--}}
     <div class="modal video-modal fade" id="modalProductRemoveConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalProductRemoveConfirmation">
@@ -164,6 +182,10 @@
     </div>
 
     <script type="text/javascript">
+
+        $( document ).ready(function() {
+
+        });
 
         function productRemovingConfirmation(cart_item){
 

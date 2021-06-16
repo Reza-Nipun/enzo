@@ -92,7 +92,6 @@
                             <td class="project-actions text-center">
                                 <a class="btn btn-info btn-sm" href="{{ route('sub_category.edit', $sub_cat->id) }}">
                                     <i class="fas fa-pencil-alt"></i>
-                                    Edit
                                 </a>
                             </td>
                         </tr>

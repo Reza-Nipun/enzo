@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Website;
 use App\Category;
 use App\CompanyInfo;
 use App\Http\Controllers\Controller;
+use App\Order;
+use App\OrderDetail;
 use App\SubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -71,7 +74,15 @@ class OrderController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.cart_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'cart_items'));
+        $mytime = Carbon::now();
+        $now_dt_time = $mytime->toDateTimeString();
+        $invoice_part_nowdatetime = Carbon::parse($now_dt_time)->format('YmdHis');
+
+        $customer_id = $session->get('customer_id');
+
+        $invoice_no = $customer_id.$invoice_part_nowdatetime;
+
+        return view('enzo_site.cart_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'cart_items', 'invoice_no'));
     }
 
     public function menuCategoryItems(){
@@ -101,5 +112,67 @@ class OrderController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function placeOrder(Request $request){
+        $session = new Session();
+        $customer_id = $session->get('customer_id');
+
+        $product_ids = $request->product_id;
+        $color_ids = $request->color_id;
+        $size_ids = $request->size_id;
+        $quantitys = $request->quantity;
+        $prices = $request->price;
+
+        $invoice_no = $request->invoice_no;
+        $total_amount = $request->total_amount;
+        $shipment_charge = $request->shipment_charge;
+        $vat_amount = $request->vat_amount;
+        $net_amount = $request->net_amount;
+
+        $is_invoice_no_exist = Order::where('invoice_no', $invoice_no)->get();
+
+        if(sizeof($is_invoice_no_exist) == 0){
+            $order = new Order();
+            $order->invoice_no = $invoice_no;
+            $order->customer_id = $customer_id;
+            $order->total_amount = $total_amount;
+            $order->shipment_charge = $shipment_charge;
+            $order->vat_amount = $vat_amount;
+            $order->net_amount = $net_amount;
+            $order->payment_type = 2;
+            $order->payment_status = 1;
+            $order->status = 1;
+            $order->save();
+
+            $order_id = $order->id;
+
+            foreach ($product_ids as $k => $product_id){
+
+                $order_detail = new OrderDetail();
+
+                $order_detail->order_id = $order_id;
+                $order_detail->customer_id = $customer_id;
+                $order_detail->product_id = $product_id;
+                $order_detail->color_id = $color_ids[$k];
+                $order_detail->size_id = $size_ids[$k];
+                $order_detail->quantity = $quantitys[$k];
+                $order_detail->price = $prices[$k];
+                $order_detail->status = 0;
+                $order_detail->save();
+            }
+
+            session()->forget('cart');
+
+            return redirect()->route('invoice', ['id' => $order_id]);
+        }else{
+            \Session::flash('invalid_order_msg', "Invalid Order Request!");
+
+            return redirect()->back();
+        }
+    }
+
+    public function invoice($order_id){
+        return '<h1>Invoice will be generated here...</h1>';
     }
 }

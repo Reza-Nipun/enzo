@@ -497,7 +497,7 @@
                         });
 
                     }else{
-                        $('#myModalCartCriteria').modal('show')
+                        $('#myModalCartCriteria').modal('show');
                     }
 
                 }
