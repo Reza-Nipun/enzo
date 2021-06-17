@@ -21,21 +21,25 @@
                     <p class="alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('invalid_order_msg') }}</p>
                 @endif
 
+                @if(Session::has('message'))
+                    <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
+                @endif
+
                 <h3>Your shopping cart contains: <span>{{ $count_cart_items }} Products</span></h3>
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th class="text-center">SL</th>
-                            {{--<th>Image</th>--}}
-                            <th class="text-center">Product Name</th>
-                            <th class="text-center">Color</th>
-                            <th class="text-center">Size</th>
-                            <th class="text-center">Quantity</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Action</th>
-                        </tr>
+                            <tr>
+                                <th class="text-center">SL</th>
+                                {{--<th>Image</th>--}}
+                                <th class="text-center">Product Name</th>
+                                <th class="text-center">Color</th>
+                                <th class="text-center">Size</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Action</th>
+                            </tr>
                         </thead>
 
                         @php
@@ -118,38 +122,106 @@
 
                 @if($count_cart_items > 0)
 
-                    <input type="hidden" name="invoice_no" value="{{ $invoice_no }}">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
 
-                    <div class="checkout-left">
-                        <div class="checkout-left-basket">
-                            <h4>Summary</h4>
-                            <ul>
-                                <li>Total Amount <i>-</i> <span>৳ {{ $total_amount }} </span><input type="hidden" name="total_amount" value="{{ $total_amount }}" readonly="readonly"></li>
-                                <li>Shipment Charge <i>-</i> <span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></li>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" colspan="2" style="background-color: #ff9b05; color: #ffffff;">
+                                                    <h4>Summary</h4>
+                                                    <input type="hidden" name="invoice_no" value="{{ $invoice_no }}">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Total Amount</b></th>
+                                                <td class="text-left" width="50%"><span>৳ {{ $total_amount }} </span><input type="hidden" name="total_amount" value="{{ $total_amount }}" readonly="readonly"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Shipment Charge</b></th>
+                                                <td class="text-right" width="50%"><span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></td>
+                                            </tr>
 
-                                @php
+                                            @php
 
-                                    $vat_amount = 0;
-                                    if($total_amount > 0){
-                                        $vat_amount = ($total_amount * ($vat_percentage/100));
-                                    }
+                                                $vat_amount = 0;
+                                                if($total_amount > 0){
+                                                    $vat_amount = ($total_amount * ($vat_percentage/100));
+                                                }
 
-                                @endphp
+                                            @endphp
 
-                                <li>VAT(15%) <i>-</i> <span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></li>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>VAT(15%)</b></th>
+                                                <td class="text-right" width="50%"><span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></td>
+                                            </tr>
 
-                                @php
+                                            @php
 
-                                    $net_amount =0;
-                                    $net_amount = ($total_amount + $vat_amount + $shipment_charge);
+                                                $net_amount =0;
+                                                $net_amount = ($total_amount + $vat_amount + $shipment_charge);
 
-                                @endphp
+                                            @endphp
 
-                                <li>Net Amount <i>-</i> <span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></li>
-                                {{--<li><select class="form-control"><option value="">Payment Type</option><option>e-Payment</option><option>Cash on Delivery</option></select></li>--}}
-                            </ul>
-                            <br />
-                            <button class="btn btn-lg btn-success">PLACE ORDER</button>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Net Amount</b></th>
+                                                <td class="text-right" width="50%"><span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center" style="background-color: #669dff; color: #ffffff;">
+                                                    <h4>Shipping Information</h4>
+                                                </th>
+                                                <th class="text-center" style="background-color: #669dff; color: #ffffff;">
+                                                    Same As Profile <input type="checkbox" name="same_as_profile" id="same_as_profile" onclick="getCustomerProfileInfo();">
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Contact Person Name <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="50%">
+                                                    <input type="text" class="form-control" name="contact_person_name" id="contact_person_name" required="required">
+                                                    <span id="customer_name" style="display: none;">{{ $customer_info->full_name }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Contact No. <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="50%">
+                                                    <input type="text" class="form-control" name="contact_person_contact_no" id="contact_person_contact_no" required="required">
+                                                    <span id="customer_contact_no" style="display: none;">{{ $customer_info->contact_no }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="50%"><b>Email</b></th>
+                                                <td class="text-left" width="50%">
+                                                    <input type="text" class="form-control" name="contact_person_email" id="contact_person_email" required="required">
+                                                    <span id="customer_email" style="display: none;">{{ $customer_info->email }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right text-top" width="50%"><b>Shipping Address <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="50%">
+                                                    <textarea type="text" class="form-control" name="contact_person_shipping_address" id="contact_person_shipping_address" required="required"></textarea>
+                                                    <span id="customer_shipping_address" style="display: none;">{{ $customer_info->address }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" colspan="2"><button class="btn btn-lg btn-success">PLACE ORDER</button></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -201,6 +273,28 @@
             url = url.replace(':cart_item', cart_item);
 
             document.location.href=url;
+        }
+        
+        function getCustomerProfileInfo() {
+            var same_as_profile = $("#same_as_profile").val();
+
+            var customer_name = $("#customer_name").text();
+            var customer_contact_no = $("#customer_contact_no").text();
+            var customer_email = $("#customer_email").text();
+            var customer_shipping_address = $("#customer_shipping_address").text();
+
+            if($("#same_as_profile").prop("checked") == true){
+                $("#contact_person_name").val(customer_name);
+                $("#contact_person_contact_no").val(customer_contact_no);
+                $("#contact_person_email").val(customer_email);
+                $("#contact_person_shipping_address").val(customer_shipping_address);
+            }
+            else if($("#same_as_profile").prop("checked") == false){
+                $("#contact_person_name").val('');
+                $("#contact_person_contact_no").val('');
+                $("#contact_person_email").val('');
+                $("#contact_person_shipping_address").val('');
+            }
         }
 
     </script>

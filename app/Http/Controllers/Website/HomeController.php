@@ -155,10 +155,6 @@ class HomeController extends Controller
         return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data', 'count_cart_items'));
     }
 
-    public function trackOrder(){
-        return 'Track Order';
-    }
-
     public function aboutUs(){
         $title = "ENZO | About Us";
 

@@ -19,7 +19,6 @@ Route::post('/get_products_by_id')->uses('Website\HomeController@getProductsById
 Route::post('/get_product_images')->uses('Website\HomeController@getProductImages')->name('get_product_images');
 Route::get('/view_single_product/{id}/{color_id?}')->uses('Website\HomeController@viewSingleProduct')->name('view_single_product');
 Route::get('/product_list/{sub_cat_id}')->uses('Website\HomeController@getSubCategoryWiseProductList')->name('product_list');
-Route::get('/track_order')->uses('Website\HomeController@trackOrder')->name('track_order');
 Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
 Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
 Route::get('/add_to_cart')->uses('Website\HomeController@addToCart')->name('add_to_cart');
@@ -38,7 +37,8 @@ Route::get('/remove_from_cart/{cart_id}')->uses('Website\OrderController@removeF
 Route::get('/get_cart_list')->uses('Website\OrderController@getCartList')->name('get_cart_list');
 Route::get('/get_single_product_image/{product_id}/{color_id}')->uses('Website\OrderController@getSingleProductImageByColor')->name('get_single_product_image');
 Route::post('/place_order')->uses('Website\OrderController@placeOrder')->name('place_order');
-Route::get('/invoice/{id}')->uses('Website\OrderController@invoice')->name('invoice');
+Route::get('/my_orders')->uses('Website\OrderController@myOrders')->name('my_orders');
+Route::get('/order_detail/{invoice_no}')->uses('Website\OrderController@orderDetail')->name('order_detail');
 
 // ADMIN Start From Here...
 Auth::routes(['login' => false, 'register' => false]);

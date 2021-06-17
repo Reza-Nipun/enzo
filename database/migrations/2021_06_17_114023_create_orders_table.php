@@ -23,8 +23,12 @@ class CreateOrdersTable extends Migration
             $table->float('net_amount')->nullable();
             $table->integer('payment_type')->comment('1=Cash on delivery, 2=e-Payment');
             $table->integer('payment_status')->comment('0=Pending, 1=Paid')->default(0);
-            $table->integer('shipment_by')->comment('0=Enzo, 1=Pathao, 2=Redex')->nullable();
+            $table->string('shipment_by')->nullable();
             $table->text('shipment_remarks')->nullable();
+            $table->string('contact_person_name')->nullable();
+            $table->string('contact_person_contact_no')->nullable();
+            $table->string('contact_person_email')->nullable();
+            $table->text('contact_person_shipping_address')->nullable();
             $table->integer('status')->comment('0=Cancel, 1=Received, 2=Processing, 3=On Shipment, 4=Delivered');
             $table->timestamps();
         });

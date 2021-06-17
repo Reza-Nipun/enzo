@@ -238,7 +238,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                         </ul>
                     </li>
-                    <li><a href="{{ route('track_order') }}">Track-Order</a></li>
                     <li><a href="{{ route('about_us') }}">About-Us</a></li>
                     <li><a href="{{ route('contact_us') }}">Contact</a></li>
                     <li>
@@ -251,6 +250,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                         @if(!empty($customer_data['customer_id']))
                                             <li><a href="javaScript:void(0)" style="margin-left: 5px">My Profile</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('my_orders') }}" style="margin-left: 5px">Order History</a></li>
                                             <div class="clearfix"></div>
                                             <li><a href="{{ route('customer_logout') }}" style="margin-left: 5px">Logout</a></li>
 

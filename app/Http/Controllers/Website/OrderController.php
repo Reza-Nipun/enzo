@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Category;
 use App\CompanyInfo;
+use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderDetail;
@@ -11,6 +12,7 @@ use App\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
@@ -57,11 +59,16 @@ class OrderController extends Controller
     }
 
     public function getCartList(){
+        $title = "ENZO | Cart List";
+
         $session = new Session();
         $customer_data = array();
         $customer_data['customer_id'] = $session->get('customer_id');
         $customer_data['nick_name'] = $session->get('nick_name');
         $customer_data['email'] = $session->get('email');
+
+        $customer_id = $session->get('customer_id');
+        $customer_info = Customer::find($customer_id);
 
         $company_info = $this->companyInfo();
         $category_list = $this->menuCategoryItems();
@@ -78,11 +85,9 @@ class OrderController extends Controller
         $now_dt_time = $mytime->toDateTimeString();
         $invoice_part_nowdatetime = Carbon::parse($now_dt_time)->format('YmdHis');
 
-        $customer_id = $session->get('customer_id');
-
         $invoice_no = $customer_id.$invoice_part_nowdatetime;
 
-        return view('enzo_site.cart_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'cart_items', 'invoice_no'));
+        return view('enzo_site.cart_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'cart_items', 'invoice_no', 'customer_info'));
     }
 
     public function menuCategoryItems(){
@@ -130,6 +135,11 @@ class OrderController extends Controller
         $vat_amount = $request->vat_amount;
         $net_amount = $request->net_amount;
 
+        $contact_person_name = $request->contact_person_name;
+        $contact_person_contact_no = $request->contact_person_contact_no;
+        $contact_person_email = $request->contact_person_email;
+        $contact_person_shipping_address = $request->contact_person_shipping_address;
+
         $is_invoice_no_exist = Order::where('invoice_no', $invoice_no)->get();
 
         if(sizeof($is_invoice_no_exist) == 0){
@@ -143,6 +153,10 @@ class OrderController extends Controller
             $order->payment_type = 2;
             $order->payment_status = 1;
             $order->status = 1;
+            $order->contact_person_name = $contact_person_name;
+            $order->contact_person_contact_no = $contact_person_contact_no;
+            $order->contact_person_email = $contact_person_email;
+            $order->contact_person_shipping_address = $contact_person_shipping_address;
             $order->save();
 
             $order_id = $order->id;
@@ -162,17 +176,107 @@ class OrderController extends Controller
                 $order_detail->save();
             }
 
+            $email = $session->get('email');
+
+            $data = array(
+                'name' => $session->get('nick_name'),
+                'invoice_no' => $invoice_no
+            );
+
+            Mail::send('emails.order_confirmation_email', $data, function($message) use($email, $invoice_no)
+            {
+                $message
+                    ->to($email)
+                    ->subject("Your Order#$invoice_no is placed successful!");
+            });
+
             session()->forget('cart');
 
-            return redirect()->route('invoice', ['id' => $order_id]);
+            \Session::flash('message', "Your order is successfully placed! Order No: $invoice_no");
         }else{
             \Session::flash('invalid_order_msg', "Invalid Order Request!");
-
-            return redirect()->back();
         }
+
+        return redirect()->back();
     }
 
-    public function invoice($order_id){
-        return '<h1>Invoice will be generated here...</h1>';
+    public function myOrders(){
+        $title = "ENZO | Order History";
+
+        $session = new Session();
+        $customer_id = $session->get('customer_id');
+
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        $orders = Order::where('customer_id', $customer_id)->orderBy('id', 'DESC')->get();
+
+        return view('enzo_site.order_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'orders'));
+    }
+
+    public function orderDetail($invoice_no){
+        $title = "ENZO | Order Detail";
+
+        $session = new Session();
+        $customer_id = $session->get('customer_id');
+
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        $orders = Order::where('invoice_no', $invoice_no)->get();
+        $order_id = $orders[0]->id;
+
+        $order_detail = DB::select("SELECT t1.*, t2.*, t3.product_name, t3.product_code, t4.color, 
+                                    t5.size, t5.size_description, t6.image_url
+                                    FROM 
+                                    (SELECT * FROM `orders` WHERE id=$order_id) AS t1
+                                    
+                                    JOIN
+                                    order_details AS t2
+                                    ON t1.id=t2.order_id
+                                    
+                                    JOIN
+                                    products AS t3
+                                    ON t2.product_id = t3.id
+                                    
+                                    JOIN
+                                    product_colors AS t4
+                                    ON t2.color_id = t4.id
+                                    
+                                    JOIN
+                                    product_sizes AS t5
+                                    ON t2.size_id = t5.id
+                                    
+                                    JOIN
+                                    (SELECT * FROM product_images GROUP BY product_id, color_id) AS t6
+                                    ON t2.product_id=t6.product_id AND t2.color_id = t6.color_id");
+
+        return view('enzo_site.order_detail', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'orders', 'order_detail', 'invoice_no'));
     }
 }
