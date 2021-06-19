@@ -141,7 +141,7 @@
                                             </tr>
                                             <tr>
                                                 <th class="text-right" width="50%"><b>Shipment Charge</b></th>
-                                                <td class="text-right" width="50%"><span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></td>
+                                                <td class="text-left" width="50%"><span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></td>
                                             </tr>
 
                                             @php
@@ -155,7 +155,7 @@
 
                                             <tr>
                                                 <th class="text-right" width="50%"><b>VAT(15%)</b></th>
-                                                <td class="text-right" width="50%"><span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></td>
+                                                <td class="text-left" width="50%"><span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></td>
                                             </tr>
 
                                             @php
@@ -167,7 +167,7 @@
 
                                             <tr>
                                                 <th class="text-right" width="50%"><b>Net Amount</b></th>
-                                                <td class="text-right" width="50%"><span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></td>
+                                                <td class="text-left" width="50%"><span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></td>
                                             </tr>
                                         </thead>
                                     </table>

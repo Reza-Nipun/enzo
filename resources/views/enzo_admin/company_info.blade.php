@@ -55,12 +55,12 @@
                             <th class="text-center">
                                 Address
                             </th>
-                            <th class="text-center">
-                                Latitude
-                            </th>
-                            <th class="text-center">
-                                Longitude
-                            </th>
+                            {{--<th class="text-center">--}}
+                                {{--Latitude--}}
+                            {{--</th>--}}
+                            {{--<th class="text-center">--}}
+                                {{--Longitude--}}
+                            {{--</th>--}}
                             <th class="text-center">
                                 Action
                             </th>
@@ -84,12 +84,12 @@
                             <td class="text-center">
                                 {{ $company->company_full_address }}
                             </td>
-                            <td class="text-center">
-                                {{ $company->latitude }}
-                            </td>
-                            <td class="text-center">
-                                {{ $company->longitude }}
-                            </td>
+                            {{--<td class="text-center">--}}
+                                {{--{{ $company->latitude }}--}}
+                            {{--</td>--}}
+                            {{--<td class="text-center">--}}
+                                {{--{{ $company->longitude }}--}}
+                            {{--</td>--}}
                             <td class="project-actions text-center">
                                 <a class="btn btn-info btn-sm" href="{{ route('company_info.edit', $company->id) }}">
                                     <i class="fas fa-pencil-alt"></i>

@@ -136,7 +136,26 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = "ENZO | My Profile";
+
+        $session = new Session();
+        $customer_data = array();
+        $customer_data['customer_id'] = $session->get('customer_id');
+        $customer_data['nick_name'] = $session->get('nick_name');
+        $customer_data['email'] = $session->get('email');
+
+        $customer_info = Customer::find($id);
+        $company_info = $this->companyInfo();
+        $category_list = $this->menuCategoryItems();
+        $sub_category_list = $this->menuSubCategoryItems();
+
+        $count_cart_items = 0;
+        if(session()->has('cart')){
+            $cart_items = session()->get('cart');
+            $count_cart_items = sizeof($cart_items);
+        }
+
+        return view('enzo_site.customer_info', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'customer_info'));
     }
 
     /**
@@ -159,7 +178,23 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'nick_name' => 'required',
+            'full_name' => 'required',
+            'contact_no' => 'required',
+            'address' => 'required',
+        ]);
+
+        $customer = Customer::find($id);
+        $customer->nick_name = $request->nick_name;
+        $customer->full_name = $request->full_name;
+        $customer->contact_no = $request->contact_no;
+        $customer->address = $request->address;
+        $customer->save();
+
+        \Session::flash('message', "Profile Updated Successfully!");
+
+        return redirect()->back();
     }
 
     /**

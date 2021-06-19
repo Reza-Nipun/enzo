@@ -20,61 +20,65 @@
     <!-- //breadcrumbs -->
 
     {{--<div class="dresses">--}}
-        {{--<div class="container">--}}
-        <div class="w3ls_dresses_grids">
+        <div class="container">
+            <div class="w3ls_dresses_grids">
 
-            <div class="col-md-12 w3ls_dresses_grid_right">
+                <div class="col-md-12 w3ls_dresses_grid_right">
 
-                <div class="w3ls_dresses_grid_right_grid2">
-                    {{--<div class="w3ls_dresses_grid_right_grid2_left">--}}
-                        {{--<h3>Showing Results: 0-1</h3>--}}
-                    {{--</div>--}}
-                    {{--<div class="w3ls_dresses_grid_right_grid2_right">--}}
-                        {{--<select name="select_item" class="select_item">--}}
-                            {{--<option selected="selected">Default sorting</option>--}}
-                            {{--<option>Sort by popularity</option>--}}
-                            {{--<option>Sort by average rating</option>--}}
-                            {{--<option>Sort by newness</option>--}}
-                            {{--<option>Sort by price: low to high</option>--}}
-                            {{--<option>Sort by price: high to low</option>--}}
-                        {{--</select>--}}
-                    {{--</div>--}}
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="w3ls_dresses_grid_right_grid3">
+                    <div class="w3ls_dresses_grid_right_grid2">
+                        {{--<div class="w3ls_dresses_grid_right_grid2_left">--}}
+                            {{--<h3>Showing Results: 0-1</h3>--}}
+                        {{--</div>--}}
+                        {{--<div class="w3ls_dresses_grid_right_grid2_right">--}}
+                            {{--<select name="select_item" class="select_item">--}}
+                                {{--<option selected="selected">Default sorting</option>--}}
+                                {{--<option>Sort by popularity</option>--}}
+                                {{--<option>Sort by average rating</option>--}}
+                                {{--<option>Sort by newness</option>--}}
+                                {{--<option>Sort by price: low to high</option>--}}
+                                {{--<option>Sort by price: high to low</option>--}}
+                            {{--</select>--}}
+                        {{--</div>--}}
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="w3ls_dresses_grid_right_grid3">
 
-                    @foreach($products as $product)
-                        <div class="col-md-3 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
-                            <div class="agile_ecommerce_tab_left dresses_grid">
-                                <div class="hs-wrapper hs-wrapper2">
-                                    @foreach($product->productimages as $product_image)
-                                        <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
-                                    @endforeach
-                                    <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                        <ul>
-                                            <li>
-                                                <a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                            </li>
-                                        </ul>
+                        @foreach($products as $product)
+                            <div class="col-md-3 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
+                                <div class="agile_ecommerce_tab_left dresses_grid">
+                                    <div class="hs-wrapper hs-wrapper2">
+                                        @foreach($product->productimages as $product_image)
+                                            <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+                                        @endforeach
+                                        <div class="w3_hs_bottom w3_hs_bottom_sub1">
+                                            <ul>
+                                                <li>
+                                                    <a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                    <h5><a href="{{ route('view_single_product', $product->id) }}">{{ $product->product_name }}</a></h5>
+                                    <div class="simpleCart_shelfItem">
+                                        <p>
+                                            {{--<span>$420</span> --}}
+                                            <i class="item_price">৳ {{ $product->price_in_bdt }}</i>
+                                        </p>
+                                        <p><a class="" href="{{ route('view_single_product', $product->id) }}">View Detail</a></p>
+                                    </div>
+                                    {{--<div class="dresses_grid_pos">--}}
+                                        {{--<h6>New</h6>--}}
+                                    {{--</div>--}}
+                                    <div class="clearfix"> </div>
                                 </div>
-                                <h5><a href="{{ route('view_single_product', $product->id) }}">{{ $product->product_name }}</a></h5>
-                                <div class="simpleCart_shelfItem">
-                                    <p>
-                                        {{--<span>$420</span> --}}
-                                        <i class="item_price">৳ {{ $product->price_in_bdt }}</i>
-                                    </p>
-                                    <p><a class="" href="{{ route('view_single_product', $product->id) }}">View Detail</a></p>
-                                </div>
-                                {{--<div class="dresses_grid_pos">--}}
-                                    {{--<h6>New</h6>--}}
-                                {{--</div>--}}
-                                <div class="clearfix"> </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
+                    </div>
                 </div>
+            </div>
+            <div class="row text-center">
+                {{ $products->links() }}
             </div>
         </div>
     <div class="clearfix"> </div>

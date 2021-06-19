@@ -249,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <ul class="multi-column-dropdown">
 
                                         @if(!empty($customer_data['customer_id']))
-                                            <li><a href="javaScript:void(0)" style="margin-left: 5px">My Profile</a></li>
+                                            <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}" style="margin-left: 5px">My Profile</a></li>
                                             <div class="clearfix"></div>
                                             <li><a href="{{ route('my_orders') }}" style="margin-left: 5px">Order History</a></li>
                                             <div class="clearfix"></div>
@@ -344,8 +344,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-4 w3_footer_grid">
                 <h3>Profile</h3>
                 <ul class="info">
-                    <li><a href="products.php">Summer Store</a></li>
-                    <li><a href="checkout.php">My Cart</a></li>
+
+                    @if(!empty($customer_data['customer_id']))
+                        <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}">My Profile</a></li>
+                        <li><a href="{{ route('my_orders') }}">Order History</a></li>
+                    @endif
+
+                    <li><a href="{{ route('get_cart_list') }}">My Cart</a></li>
                 </ul>
                 <h4>Follow Us</h4>
                 <div class="agileits_social_button">

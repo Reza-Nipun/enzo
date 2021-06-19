@@ -101,52 +101,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputLogo">Logo</label>
-                                                <input type="file" id="inputLogo" class="form-control" name="file">
-                                                @if($company_info[0]->company_logo != '')
-                                                    <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" target="_blank">
-                                                        View Images: <i class="fa fa-eye" aria-hidden="true"></i>
-                                                    </a>
-                                                @endif
-                                                <input type="hidden" class="form-control" name="previous_logo" readonly="readonly" value="{{ $company_info[0]->company_logo }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="inputMap">Google Map Embedded iFrame</label>
-                                                <textarea class="form-control" name="iframe_location">{{ $company_info[0]->iframe_location }}</textarea>
-                                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputLogo">Logo</label>
+                                            <input type="file" id="inputLogo" class="form-control" name="file">
+                                            @if($company_info[0]->company_logo != '')
+                                                <a class="btn btn-xs btn-warning" title="View Images" href="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" target="_blank">
+                                                    View Images: <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
+                                            @endif
+                                            <input type="hidden" class="form-control" name="previous_logo" readonly="readonly" value="{{ $company_info[0]->company_logo }}">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="inputLatitude">Latitude</label>
-                                                <input type="text" id="inputLatitude" class="form-control" name="latitude" value="{{ $company_info[0]->latitude }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="inputLongitude">Longitude</label>
-                                                <input type="text" id="inputLongitude" class="form-control" name="longitude" value="{{ $company_info[0]->longitude }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="shipment_charge">Shipment Charge</label>
-                                                <input type="number" id="shipment_charge" class="form-control" name="shipment_charge" value="{{ $company_info[0]->shipment_charge }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label for="vat_percentage">Order VAT percentage</label>
-                                                <input type="number" id="vat_percentage" class="form-control" name="vat_percentage" value="{{ $company_info[0]->vat_percentage }}">
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="inputMap">Google Map Embedded iFrame</label>
+                                            <textarea class="form-control" name="iframe_location">{{ $company_info[0]->iframe_location }}</textarea>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="inputLatitude">Latitude</label>
+                                            <input type="text" id="inputLatitude" class="form-control" name="latitude" value="{{ $company_info[0]->latitude }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="inputLongitude">Longitude</label>
+                                            <input type="text" id="inputLongitude" class="form-control" name="longitude" value="{{ $company_info[0]->longitude }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="shipment_charge">Shipment Charge</label>
+                                            <input type="number" id="shipment_charge" class="form-control" name="shipment_charge" value="{{ $company_info[0]->shipment_charge }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="vat_percentage">Order VAT percentage</label>
+                                            <input type="number" id="vat_percentage" class="form-control" name="vat_percentage" value="{{ $company_info[0]->vat_percentage }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="about_us">About Us</label>
+                                            <textarea class="form-control" id="summernote" placeholder="About Us..." name="about_us">{{ $company_info[0]->about_us }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>

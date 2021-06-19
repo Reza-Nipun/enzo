@@ -1,174 +1,172 @@
 @extends('enzo_site.layout')
 
 @section('content')
-        {{--<div class="breadcrumb_dress">--}}
-            {{--<div class="container">--}}
-                {{--<ul>--}}
-                    {{--<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>--}}
-                    {{--<li>Single Page</li>--}}
-                {{--</ul>--}}
-            {{--</div>--}}
+    {{--<div class="breadcrumb_dress">--}}
+        {{--<div class="container">--}}
+            {{--<ul>--}}
+                {{--<li><a href="index.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>--}}
+                {{--<li>Single Page</li>--}}
+            {{--</ul>--}}
         {{--</div>--}}
+    {{--</div>--}}
 
-        <div class="single">
-            <div class="container">
-                <div class="col-md-4 single-left">
-                    <div class="flexslider">
-                        <ul class="slides">
-                            @foreach($product_images as $product_image)
-                                <li data-thumb="{{ asset('storage/uploads/'.$product_image->image_url) }}">
-                                    <div class="thumb-image"> <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" data-imagezoom="true" class="img-responsive"> </div>
-                                </li>
+    <div class="single">
+        <div class="container">
+            <div class="col-md-4 single-left">
+                <div class="flexslider">
+                    <ul class="slides">
+                        @foreach($product_images as $product_image)
+                            <li data-thumb="{{ asset('storage/uploads/'.$product_image->image_url) }}">
+                                <div class="thumb-image"> <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" data-imagezoom="true" class="img-responsive"> </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <!-- flixslider -->
+                <script defer src="{{ asset('enzo_website_assets/js/jquery.flexslider.js') }}"></script>
+                <link rel="stylesheet" href="{{ asset('enzo_website_assets/css/flexslider.css') }}" type="text/css" media="screen" />
+                <script>
+                    // Can also be used with $(document).ready()
+                    $(window).load(function() {
+                        $('.flexslider').flexslider({
+                            animation: "slide",
+                            controlNav: "thumbnails"
+                        });
+                    });
+                </script>
+                <!-- flixslider -->
+                <!-- zooming-effect -->
+                <script src="{{ asset('enzo_website_assets/js/imagezoom.js') }}"></script>
+                <!-- //zooming-effect -->
+            </div>
+            <div class="col-md-8 single-right">
+                <h3>{{ $product_info->product_name }}</h3>
+                <h5>Product Code: {{ $product_info->product_code }}</h5>
+                <input type="hidden" value="{{ $product_info->id }}" readonly="readonly" name="product_id" id="product_id">
+                <input type="hidden" value="{{ $product_info->product_name }}" readonly="readonly" name="product_name" id="product_name">
+                <input type="hidden" value="{{ $product_info->product_code }}" readonly="readonly" name="product_code" id="product_code">
+                <input type="hidden" value="{{ $product_images[0]->color_id }}" readonly="readonly" name="color_id" id="color_id">
+                <input type="hidden" value="{{ $product_colors[0]->color }}" readonly="readonly" name="color" id="color">
+                <input type="hidden" readonly="readonly" name="size_id" id="size_id">
+                <input type="hidden" readonly="readonly" name="size_name" id="size_name">
+                <input type="hidden" readonly="readonly" name="size_description" id="size_description">
+                <input type="hidden" value="{{ $product_info->price_in_bdt }}" readonly="readonly" name="price_in_bdt" id="price_in_bdt">
+                {{--<div class="rating1">--}}
+                {{--<span class="starRating">--}}
+                    {{--<input id="rating5" type="radio" name="rating" value="5">--}}
+                    {{--<label for="rating5">5</label>--}}
+                    {{--<input id="rating4" type="radio" name="rating" value="4">--}}
+                    {{--<label for="rating4">4</label>--}}
+                    {{--<input id="rating3" type="radio" name="rating" value="3" checked>--}}
+                    {{--<label for="rating3">3</label>--}}
+                    {{--<input id="rating2" type="radio" name="rating" value="2">--}}
+                    {{--<label for="rating2">2</label>--}}
+                    {{--<input id="rating1" type="radio" name="rating" value="1">--}}
+                    {{--<label for="rating1">1</label>--}}
+                {{--</span>--}}
+                {{--</div>--}}
+                <div class="description">
+                    <h5><i>Short Description</i></h5>
+                    <p>{!! $product_info->product_short_description !!}</p>
+                </div>
+                <div class="color-quality">
+                    <div class="color-quality-left">
+                        <h5>Color: </h5>
+                        <ul>
+                            @foreach($product_colors as $product_color)
+                                <li @if($product_images[0]->color_id == $product_color->id) style="border: dotted; border-color: #69d88a" @endif><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 20px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
                             @endforeach
                         </ul>
                     </div>
-                    <!-- flixslider -->
-                    <script defer src="{{ asset('enzo_website_assets/js/jquery.flexslider.js') }}"></script>
-                    <link rel="stylesheet" href="{{ asset('enzo_website_assets/css/flexslider.css') }}" type="text/css" media="screen" />
-                    <script>
-                        // Can also be used with $(document).ready()
-                        $(window).load(function() {
-                            $('.flexslider').flexslider({
-                                animation: "slide",
-                                controlNav: "thumbnails"
-                            });
-                        });
-                    </script>
-                    <!-- flixslider -->
-                    <!-- zooming-effect -->
-                    <script src="{{ asset('enzo_website_assets/js/imagezoom.js') }}"></script>
-                    <!-- //zooming-effect -->
-                </div>
-                <div class="col-md-8 single-right">
-                    <h3>{{ $product_info->product_name }}</h3>
-                    <h5>Product Code: {{ $product_info->product_code }}</h5>
-                    <input type="hidden" value="{{ $product_info->id }}" readonly="readonly" name="product_id" id="product_id">
-                    <input type="hidden" value="{{ $product_info->product_name }}" readonly="readonly" name="product_name" id="product_name">
-                    <input type="hidden" value="{{ $product_info->product_code }}" readonly="readonly" name="product_code" id="product_code">
-                    <input type="hidden" value="{{ $product_images[0]->color_id }}" readonly="readonly" name="color_id" id="color_id">
-                    <input type="hidden" value="{{ $product_colors[0]->color }}" readonly="readonly" name="color" id="color">
-                    <input type="hidden" readonly="readonly" name="size_id" id="size_id">
-                    <input type="hidden" readonly="readonly" name="size_name" id="size_name">
-                    <input type="hidden" readonly="readonly" name="size_description" id="size_description">
-                    <input type="hidden" value="{{ $product_info->price_in_bdt }}" readonly="readonly" name="price_in_bdt" id="price_in_bdt">
-                    {{--<div class="rating1">--}}
-					{{--<span class="starRating">--}}
-						{{--<input id="rating5" type="radio" name="rating" value="5">--}}
-						{{--<label for="rating5">5</label>--}}
-						{{--<input id="rating4" type="radio" name="rating" value="4">--}}
-						{{--<label for="rating4">4</label>--}}
-						{{--<input id="rating3" type="radio" name="rating" value="3" checked>--}}
-						{{--<label for="rating3">3</label>--}}
-						{{--<input id="rating2" type="radio" name="rating" value="2">--}}
-						{{--<label for="rating2">2</label>--}}
-						{{--<input id="rating1" type="radio" name="rating" value="1">--}}
-						{{--<label for="rating1">1</label>--}}
-					{{--</span>--}}
-                    {{--</div>--}}
-                    <div class="description">
-                        <h5><i>Short Description</i></h5>
-                        <p>{!! $product_info->product_short_description !!}</p>
-                    </div>
-                    <div class="color-quality">
-                        <div class="color-quality-left">
-                            <h5>Color: </h5>
-                            <ul>
-                                @foreach($product_colors as $product_color)
-                                    <li @if($product_images[0]->color_id == $product_color->id) style="border: dotted; border-color: #69d88a" @endif><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 20px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        <div class="color-quality-right">
-                            <h5>Quantity :</h5>
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus1">&nbsp;</div>
-                                    <input type="text" class="entry value1" id="order_qty" value="1" readonly="readonly">
-                                    <div class="entry value-plus1 active">&nbsp;</div>
-                                </div>
+                    <div class="color-quality-right">
+                        <h5>Quantity :</h5>
+                        <div class="quantity">
+                            <div class="quantity-select">
+                                <div class="entry value-minus1">&nbsp;</div>
+                                <input type="text" class="entry value1" id="order_qty" value="1" readonly="readonly">
+                                <div class="entry value-plus1 active">&nbsp;</div>
                             </div>
-                            <!--quantity-->
-                            <script>
-                                $('.value-plus1').on('click', function(){
-                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)+1;
-                                    divUpd.val(newVal);
-                                });
-
-                                $('.value-minus1').on('click', function(){
-                                    var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)-1;
-                                    if(newVal>=1) divUpd.val(newVal);
-                                });
-                            </script>
-                            <!--quantity-->
-
                         </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="occasional">
-                        <h5>Size :</h5>
+                        <!--quantity-->
+                        <script>
+                            $('.value-plus1').on('click', function(){
+                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)+1;
+                                divUpd.val(newVal);
+                            });
 
-                        @foreach($product_sizes as $product_size)
-                            <div class="colr ert">
-                                <div class="check">
-                                    <label class=""><input type="radio" name="size" id="size" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
+                            $('.value-minus1').on('click', function(){
+                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)-1;
+                                if(newVal>=1) divUpd.val(newVal);
+                            });
+                        </script>
+                        <!--quantity-->
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="occasional">
+                    <h5>Size :</h5>
+
+                    @foreach($product_sizes as $product_size)
+                        <div class="colr ert">
+                            <div class="check">
+                                <label class=""><input type="radio" name="size" id="size" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="simpleCart_shelfItem">
+                    <p>
+                        {{--<span>$320</span> --}}
+                        <i class="item_price">৳ {{ $product_info->price_in_bdt }}</i>
+                    </p>
+                    <p><a class="" href="javaScript:void(0)" onclick="addToCart()">Add to cart</a></p>
+                </div>
+                <div class="occasional">
+                    <h5><i>Product Detail</i></h5>
+
+                    <div class="panel-group" id="accordion">
+
+                        @foreach($product_specifications as $k => $product_specification)
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <h4><a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">{{ $product_specification->specification_name }}</a> <i class="fas fa-angle-down"></i></h4>
+                                    </h4>
+                                </div>
+                                <div id="collapse{{ $k }}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        @php
+
+                                            $product_specification_tags_array = explode (",", $product_specification->specification_description);
+
+                                        @endphp
+
+                                        @foreach($product_specification_tags_array as $product_specification_tag)
+
+                                            @if(!empty($product_specification_tag))
+
+                                                    <span class="" style="font-size: 13px; background-color: rgba(89,106,29,0.1); color: #000000;">
+                                                    {{ $product_specification_tag }}
+                                                    </span><br />
+
+                                            @endif
+
+                                        @endforeach
+
+                                    </div>
                                 </div>
                             </div>
                         @endforeach
 
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="simpleCart_shelfItem">
-                        <p>
-                            {{--<span>$320</span> --}}
-                            <i class="item_price">৳ {{ $product_info->price_in_bdt }}</i>
-                        </p>
-                        <p><a class="" href="javaScript:void(0)" onclick="addToCart()">Add to cart</a></p>
-                    </div>
-                    <div class="occasional">
-                        <h5><i>Product Detail</i></h5>
-
-                        <div class="panel-group" id="accordion">
-
-                            @foreach($product_specifications as $k => $product_specification)
-                                <div class="panel panel-warning">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <h4><a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">{{ $product_specification->specification_name }}</a> <i class="fas fa-angle-down"></i></h4>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse{{ $k }}" class="panel-collapse collapse">
-                                        <div class="panel-body">
-                                            @php
-
-                                                $product_specification_tags_array = explode (",", $product_specification->specification_description);
-
-                                            @endphp
-
-                                            @foreach($product_specification_tags_array as $product_specification_tag)
-
-                                                @if(!empty($product_specification_tag))
-
-                                                        <span class="" style="font-size: 13px; background-color: rgba(89,106,29,0.1); color: #000000;">
-                                                        {{ $product_specification_tag }}
-                                                        </span><br />
-
-                                                @endif
-
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-
-                        </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
-
-
+    </div>
 
 
     <div class="">
@@ -298,7 +296,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <h5><a href="single.php">{{ $related_product->product_name }}</a></h5>
+                                <h5><a href="{{ route('view_single_product', $related_product->id) }}">{{ $related_product->product_name }}</a></h5>
                                 <div class="simpleCart_shelfItem">
                                     <p class="flexisel_ecommerce_cart">
                                         {{--<span>৳ {{ $related_product->price_in_bdt }}</span>--}}
@@ -387,16 +385,16 @@
                 </div>
             </div>
         </div>
-        <div class="modal video-modal fade" id="myModalCartCriteria" tabindex="-1" role="dialog" aria-labelledby="myModalCartCriteria">
+        <div class="modal fade" id="myModalCartCriteria" tabindex="-1" role="dialog" aria-labelledby="myModalCartCriteria">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <section>
-                        <div class="modal-body">
+                        <div class="modal-body modal-body-sub">
                             <div class="col-md-12">
-                                <h4 id="product_name">Please Select Product/Color/Size!</h4>
+                                <h4><span class="btn btn-sm btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span> Please Select Product/Color/Size!</h4>
                             </div>
                             <div class="clearfix"> </div>
                         </div>
@@ -407,6 +405,48 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="myModalStockOut" tabindex="-1" role="dialog" aria-labelledby="myModalStockOut">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <section>
+                        <div class="modal-body modal-body-sub">
+                            <div class="col-md-12">
+                                <h4><span class="btn btn-sm btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span> Sorry, This Product is Out of Stock!</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalCart" tabindex="-1" role="dialog" aria-labelledby="myModalCart">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <section>
+                        <div class="modal-body modal-body-sub">
+                            <div class="col-md-12">
+                                <h4><span class="btn btn-sm btn-success"><i class="fa fa-check" aria-hidden="true"></i></span> Product is Added to Your Cart List!</h4>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ route('get_cart_list') }}" class="btn btn-warning">CART LIST</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
 
         <script type="text/javascript">
 
@@ -491,7 +531,14 @@
                             dataType: "json",
                             success: function (data) {
 
-                                $("#simpleCart_quantity").text(data);
+                                if(data == 'failed'){
+                                    $('#myModal88').modal('show');
+                                } else if(data == 'na'){
+                                    $('#myModalStockOut').modal('show');
+                                }else{
+                                    $("#simpleCart_quantity").text(data);
+                                    $('#myModalCart').modal('show');
+                                }
 
                             }
                         });

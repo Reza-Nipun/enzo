@@ -21,7 +21,7 @@ Route::get('/view_single_product/{id}/{color_id?}')->uses('Website\HomeControlle
 Route::get('/product_list/{sub_cat_id}')->uses('Website\HomeController@getSubCategoryWiseProductList')->name('product_list');
 Route::get('/about_us')->uses('Website\HomeController@aboutUs')->name('about_us');
 Route::get('/contact_us')->uses('Website\HomeController@contactUs')->name('contact_us');
-Route::get('/add_to_cart')->uses('Website\HomeController@addToCart')->name('add_to_cart');
+Route::post('/contact_message')->uses('Website\HomeController@contactMessage')->name('contact_message');
 
 Route::resource('customer', 'Website\CustomerController');
 Route::post('/customer_login')->uses('Website\CustomerController@customerLogin')->name('customer_login');

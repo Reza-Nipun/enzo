@@ -82,7 +82,9 @@
                     <!--quantity-->
                 </table>
             </div>
-
+            <div class="row text-center">
+                {{ $orders->links() }}
+            </div>
         </div>
     </div>
 

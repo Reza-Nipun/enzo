@@ -30,21 +30,21 @@
 
             @endphp
 
-            <div class="progress">
+            <div class="progress" style="height: auto;">
                 <div class="progress-bar progress-bar-striped @if($order_status == 1) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                     aria-valuenow="Order Received" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     Order Received
                 </div>
                 <div class="progress-bar progress-bar-striped @if($order_status == 2) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                     aria-valuenow="Processing" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     Processing
                 </div>
                 <div class="progress-bar progress-bar-striped @if($order_status == 3) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                     aria-valuenow="On Shipment" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     On Shipment
                 </div>
                 <div class="progress-bar progress-bar-striped @if($order_status == 4) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:25%">
+                     aria-valuenow="Delivered" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     Delivered
                 </div>
             </div>
@@ -151,15 +151,15 @@
                                     </tr>
                                     <tr>
                                         <th class="text-right" width="50%"><b>Shipment Charge</b></th>
-                                        <td class="text-right" width="50%"><span>৳ {{ $orders[0]->shipment_charge }} </span></td>
+                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->shipment_charge }} </span></td>
                                     </tr>
                                     <tr>
                                         <th class="text-right" width="50%"><b>VAT(15%)</b></th>
-                                        <td class="text-right" width="50%"><span>৳ {{ $orders[0]->vat_amount }} </span></td>
+                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->vat_amount }} </span></td>
                                     </tr>
                                     <tr>
                                         <th class="text-right" width="50%"><b>Net Amount</b></th>
-                                        <td class="text-right" width="50%"><span>৳ {{ $orders[0]->net_amount }}</span></td>
+                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->net_amount }}</span></td>
                                     </tr>
                                     </thead>
                                 </table>
@@ -175,13 +175,13 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-right" width="50%"><b>Contact Person Name <span style="color: red">*</span></b></th>
+                                            <th class="text-right" width="50%"><b>Contact Person Name</b></th>
                                             <td class="text-left" width="50%">
                                                 <span id="customer_name">{{ $orders[0]->contact_person_name }}</span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-right" width="50%"><b>Contact No. <span style="color: red">*</span></b></th>
+                                            <th class="text-right" width="50%"><b>Contact No.</b></th>
                                             <td class="text-left" width="50%">
                                                 <span id="customer_contact_no">{{ $orders[0]->contact_person_contact_no }}</span>
                                             </td>
@@ -193,11 +193,19 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-right text-top" width="50%"><b>Shipping Address <span style="color: red">*</span></b></th>
+                                            <th class="text-right text-top" width="50%"><b>Shipping Address</b></th>
                                             <td class="text-left" width="50%">
                                                 <span id="customer_shipping_address">{{ $orders[0]->contact_person_shipping_address }}</span>
                                             </td>
                                         </tr>
+                                        @if($orders[0]->shipment_by != '')
+                                            <tr>
+                                                <th class="text-right text-top" width="50%"><b>Shipping By <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="50%">
+                                                    <span id="customer_shipping_address">{{ $orders[0]->shipment_by.($orders[0]->shipment_remarks != '' ? ' ('.$orders[0]->shipment_remarks.')' : '') }}</span>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </thead>
                                 </table>
                             </div>

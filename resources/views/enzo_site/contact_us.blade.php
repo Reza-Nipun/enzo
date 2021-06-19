@@ -24,16 +24,25 @@
                     <li><a href="mailto:{{ $company_info[0]->company_email }}">{{ $company_info[0]->company_email }}</a></li>
                 </ul>
             </div>
-            <div class="col-md-7 contact-left">
-                <h4>Contact Form</h4>
-                <form action="#" method="post">
-                    <input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                    <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-                    <input type="text" name="Telephone" value="Telephone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone';}" required="">
-                    <textarea name="message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
-                    <input type="submit" value="Submit" >
-                </form>
-            </div>
+            <form action="{{ route('contact_message') }}" method="post">
+
+                {{ csrf_field() }}
+
+                <div class="col-md-7 contact-left">
+                    <h4>Contact Form</h4>
+
+                    @if(Session::has('message'))
+                        <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
+                    @endif
+
+                    <input type="text" name="name" value="" placeholder="Your Name" required="required">
+                    <input type="email" name="email_address" value="" placeholder="Your Email Address" required="required">
+                    <input type="text" name="contact_no" value="" placeholder="Your Contact No">
+                    <textarea name="query_message" placeholder="Your Message" required="required"></textarea>
+                    <input type="submit" value="SUBMIT" >
+
+                </div>
+            </form>
             <div class="clearfix"> </div>
         </div>
 

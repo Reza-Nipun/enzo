@@ -114,6 +114,7 @@ class CompanyInfoController extends Controller
         $company->iframe_location = $request->iframe_location;
         $company->shipment_charge = $request->shipment_charge;
         $company->vat_percentage = $request->vat_percentage;
+        $company->about_us = $request->about_us;
         $company->save();
 
         \Session::flash('message', "Company Info Successfully Updated!");

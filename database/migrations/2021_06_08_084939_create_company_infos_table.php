@@ -25,6 +25,9 @@ class CreateCompanyInfosTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->text('iframe_location')->nullable();
+            $table->float('shipment_charge')->nullable();
+            $table->float('vat_percentage')->nullable();
+            $table->text('about_us')->nullable();
             $table->timestamps();
         });
     }

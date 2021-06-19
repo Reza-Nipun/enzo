@@ -8,6 +8,7 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderDetail;
+use App\ProductStock;
 use App\SubCategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,43 +20,61 @@ class OrderController extends Controller
 {
     public function addToCart(Request $request)
     {
-        $product_id = $request->product_id;
-        $product_name = $request->product_name;
-        $color_id = $request->color_id;
-        $color = $request->color;
-        $size_id = $request->size_id;
-        $size_name = $request->size_name;
-        $size_description = $request->size_description;
-        $order_qty = $request->order_qty;
-        $price_in_bdt = $request->price_in_bdt;
+        $session = new Session();
+        $customer_id = $session->get('customer_id');
 
-        $cart_id = $product_id.'_'.$color_id.'_'.$size_id;
+        if($customer_id != ''){
+            $product_id = $request->product_id;
+            $product_name = $request->product_name;
+            $color_id = $request->color_id;
+            $color = $request->color;
+            $size_id = $request->size_id;
+            $size_name = $request->size_name;
+            $size_description = $request->size_description;
+            $order_qty = $request->order_qty;
+            $price_in_bdt = $request->price_in_bdt;
 
-        $cartData = (session()->get('cart')) ? session()->get('cart') : array();
-        if (array_key_exists($cart_id, $cartData)) {
-            $cartData[$cart_id]['qty'] = $order_qty;
-        } else {
-            $cartData[$cart_id] = array(
-                'product_id' => $product_id,
-                'product_name' => $product_name,
-                'color_id' => $color_id,
-                'color' => $color,
-                'size_id' => $size_id,
-                'size_name' => $size_name,
-                'size_description' => $size_description,
-                'qty' => $order_qty,
-                'price_in_bdt' => $price_in_bdt,
-            );
+            $product_stock = ProductStock::where('product_id', $product_id)->where('color_id', $color_id)->where('size_id', $size_id)->get();
+
+            if((sizeof($product_stock) > 0) && $product_stock[0]->quantity > 0){
+
+                $cart_id = $product_id.'_'.$color_id.'_'.$size_id;
+
+                $cartData = (session()->get('cart')) ? session()->get('cart') : array();
+                if (array_key_exists($cart_id, $cartData)) {
+                    $cartData[$cart_id]['qty'] = $order_qty;
+                } else {
+                    $cartData[$cart_id] = array(
+                        'product_id' => $product_id,
+                        'product_name' => $product_name,
+                        'color_id' => $color_id,
+                        'color' => $color,
+                        'size_id' => $size_id,
+                        'size_name' => $size_name,
+                        'size_description' => $size_description,
+                        'qty' => $order_qty,
+                        'price_in_bdt' => $price_in_bdt,
+                    );
+                }
+                $request->session()->put('cart', $cartData);
+
+                $count_cart_items = 0;
+                if(session()->has('cart')){
+                    $cart_items = session()->get('cart');
+                    $count_cart_items = sizeof($cart_items);
+                }
+
+                return response()->json($count_cart_items, 200);
+            }else{
+                return response()->json('na', 200);
+            }
+
+        }else{
+
+            return response()->json('failed', 200);
+
         }
-        $request->session()->put('cart', $cartData);
 
-        $count_cart_items = 0;
-        if(session()->has('cart')){
-            $cart_items = session()->get('cart');
-            $count_cart_items = sizeof($cart_items);
-        }
-
-        return response()->json($count_cart_items, 200);
     }
 
     public function getCartList(){
@@ -222,7 +241,7 @@ class OrderController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        $orders = Order::where('customer_id', $customer_id)->orderBy('id', 'DESC')->get();
+        $orders = Order::where('customer_id', $customer_id)->orderBy('id', 'DESC')->paginate(15);
 
         return view('enzo_site.order_list', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'orders'));
     }

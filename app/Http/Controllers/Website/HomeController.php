@@ -13,6 +13,7 @@ use App\ProductSpecification;
 use App\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class HomeController extends Controller
@@ -144,7 +145,7 @@ class HomeController extends Controller
         $category_list = $this->menuCategoryItems();
         $sub_category_list = $this->menuSubCategoryItems();
 
-        $products = Product::where('sub_category_id', $sub_cat_id)->where('status', 1)->orderBy('id', 'desc')->get();
+        $products = Product::where('sub_category_id', $sub_cat_id)->where('status', 1)->orderBy('id', 'desc')->paginate(24);
 
         $count_cart_items = 0;
         if(session()->has('cart')){
@@ -197,5 +198,35 @@ class HomeController extends Controller
         }
 
         return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
+    }
+
+    public function contactMessage(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email_address' => 'required|email',
+            'query_message' => 'required',
+        ]);
+
+        $email = 'info@enzo.fashion';
+        $cc_email = $request->email_address;
+
+        $data = array(
+            'name' => $request->name,
+            'contact_no' => $request->contact_no,
+            'email_address' => $request->email_address,
+            'query_message' => nl2br(htmlspecialchars($request->query_message)),
+        );
+
+        Mail::send('emails.message_contact_form', $data, function($message) use($email, $cc_email)
+        {
+            $message
+                ->to($email)
+                ->cc($cc_email)
+                ->subject("Message From Contact Form!");
+        });
+
+        \Session::flash('message', "Your message is successfully sent to ENZO. Thank you for your query.");
+
+        return redirect()->back();
     }
 }
