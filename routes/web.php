@@ -52,6 +52,7 @@ Route::resource('category', 'CategoryController');
 Route::resource('sub_category', 'SubCategoryController');
 Route::resource('product', 'ProductController');
 Route::resource('company_info', 'CompanyInfoController');
+Route::resource('admin_order', 'OrderController');
 
 Route::post('/get_sub_category_list_by_cat_id', 'SubCategoryController@getSubCategoryListByCatId')->name('get_sub_category_list_by_cat_id');
 Route::post('/get_existing_images', 'ProductController@getExistingImages')->name('get_existing_images');
@@ -60,6 +61,11 @@ Route::post('/delete_product_specification', 'ProductController@deleteProductSpe
 Route::get('/product_stock_management/{id}', 'ProductController@productStockManagement')->name('product_stock_management');
 Route::post('/save_new_color_size_combination', 'ProductController@saveNewColorSizeCombination')->name('save_new_color_size_combination');
 Route::post('/update_product_stock', 'ProductController@updateProductStock')->name('update_product_stock');
+Route::get('/new_orders', 'OrderController@newOrders')->name('new_orders');
+Route::get('/new_order_detail/{id}', 'OrderController@newOrderDetail')->name('new_order_detail');
+Route::get('/order_confirm/{id}', 'OrderController@orderConfirm')->name('order_confirm');
+Route::put('/shipment_confirm/{id}', 'OrderController@shipmentConfirm')->name('shipment_confirm');
+Route::get('/order_deliver/{id}', 'OrderController@orderDeliver')->name('order_deliver');
 
 
 // Artisan Commands

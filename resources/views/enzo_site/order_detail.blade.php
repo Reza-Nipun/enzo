@@ -31,15 +31,15 @@
             @endphp
 
             <div class="progress" style="height: auto;">
-                <div class="progress-bar progress-bar-striped @if($order_status == 1) progress-bar-success @else active @endif" role="progressbar"
+                <div class="progress-bar progress-bar-striped @if($order_status == 1 || $order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
                      aria-valuenow="Order Received" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     Order Received
                 </div>
-                <div class="progress-bar progress-bar-striped @if($order_status == 2) progress-bar-success @else active @endif" role="progressbar"
+                <div class="progress-bar progress-bar-striped @if($order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
                      aria-valuenow="Processing" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     Processing
                 </div>
-                <div class="progress-bar progress-bar-striped @if($order_status == 3) progress-bar-success @else active @endif" role="progressbar"
+                <div class="progress-bar progress-bar-striped @if($order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
                      aria-valuenow="On Shipment" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
                     On Shipment
                 </div>
@@ -161,6 +161,23 @@
                                         <th class="text-right" width="50%"><b>Net Amount</b></th>
                                         <td class="text-left" width="50%"><span>৳ {{ $orders[0]->net_amount }}</span></td>
                                     </tr>
+
+                                    @if(!empty($orders[0]->shipment_by))
+                                        <tr>
+                                            <th class="text-center" colspan="2" style="background-color: #5cd817; color: #ffffff;">
+                                                <h4>Shipment Info</h4>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">
+                                                {{ $orders[0]->shipment_by }}
+                                            </th>
+                                            <td class="text-center">
+                                                {{ $orders[0]->shipment_remarks }}
+                                            </td>
+                                        </tr>
+                                    @endif
+
                                     </thead>
                                 </table>
                             </div>
@@ -212,18 +229,6 @@
                         </div>
                     </div>
                 </div>
-
-
-            @if(!empty($orders[0]->shipment_by))
-                <div class="checkout-left">
-                    <div class="checkout-left-basket">
-                        <h4 style="background-color: #5cd817">Shipment Info</h4>
-                        <ul>
-                            <li>{{ $orders[0]->shipment_by }} <i>-</i> <span>{{ $orders[0]->shipment_remarks }} </span></li>
-                        </ul>
-                    </div>
-                </div>
-            @endif
 
         </div>
     </div>

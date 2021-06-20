@@ -270,6 +270,23 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item {{ request()->is('new_orders') ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link {{ request()->is('new_orders') ? 'active' : ''}}">
+                            <i class="fas fa-shopping-cart nav-icon"></i>
+                            <p>
+                                Order Management
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('new_orders') }}" class="nav-link {{ request()->is('new_orders') ? 'active' : ''}}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Orders</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

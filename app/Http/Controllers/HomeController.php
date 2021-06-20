@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CompanyInfo;
+use App\Order;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,7 +28,8 @@ class HomeController extends Controller
         $title = 'ENZO | Home';
 
         $company_info = CompanyInfo::all();
+        $new_orders = Order::where('status', 1)->count();
 
-        return view('enzo_admin.dashboard', compact('title', 'company_info'));
+        return view('enzo_admin.dashboard', compact('title', 'company_info', 'new_orders'));
     }
 }
