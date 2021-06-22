@@ -32,6 +32,10 @@
 
     <!-- Bootstrap Color Picker -->
     <link rel="stylesheet" href="{{ asset('admin_assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -324,6 +328,13 @@
             height: 100,
         })
 
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
         //Colorpicker
         $('.my-colorpicker1').colorpicker()
 
@@ -340,6 +351,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('admin_assets/plugins/select2/js/select2.full.min.js') }}"></script>
 <!-- ChartJS -->
 <script src="{{ asset('admin_assets/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->

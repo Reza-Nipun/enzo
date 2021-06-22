@@ -34,6 +34,8 @@ class ProductController extends Controller
         $title = 'ENZO | Product List';
         $company_info = CompanyInfo::all();
 
+        $category_list = Category::all();
+        $sub_category_list = SubCategory::all();
         $product_list = DB::select("SELECT t1.*, t2.name AS category_name, t3.sub_category_name, t4.total_stock_qty
                     FROM 
                     products AS t1
@@ -54,7 +56,7 @@ class ProductController extends Controller
                     GROUP BY product_id) AS t4
                     ON t4.product_id=t1.id");
 
-        return view('enzo_admin.product_list', compact('title', 'company_info', 'product_list'));
+        return view('enzo_admin.product_list', compact('title', 'company_info', 'product_list', 'category_list', 'sub_category_list'));
     }
 
     /**
@@ -546,5 +548,65 @@ class ProductController extends Controller
         \Session::flash('message', "Product Stock Successfully Updated!");
 
         return redirect()->back();
+    }
+
+    public function filterProduct(Request $request){
+        $product = $request->product;
+        $category = $request->category;
+        $sub_category = $request->sub_category;
+
+        $where = '';
+
+        if(!empty($product)){
+            $where .= " AND t1.id=$product";
+        }
+
+        if(!empty($category)){
+            $where .= " AND t1.category_id=$category";
+        }
+
+        if(!empty($sub_category)){
+            $where .= " AND t1.sub_category_id=$sub_category";
+        }
+
+        $product_list = DB::select("SELECT t1.*, t2.name AS category_name, t3.sub_category_name, t4.total_stock_qty
+                    FROM 
+                    products AS t1
+                    
+                    INNER JOIN
+                    categories AS t2
+                    ON t2.id=t1.category_id
+                    
+                    INNER JOIN
+                    sub_categories AS t3
+                    ON t3.id=t1.sub_category_id
+                    
+                    LEFT JOIN
+                    (SELECT product_id, SUM(quantity) AS total_stock_qty 
+                    FROM `product_stocks` 
+                    WHERE color_id IN (SELECT id FROM product_colors WHERE status=1) 
+                    AND size_id IN (SELECT id FROM product_sizes WHERE status=1) 
+                    GROUP BY product_id) AS t4
+                    ON t4.product_id=t1.id
+                    
+                    WHERE 1 $where");
+
+        $new_line = '';
+
+        foreach($product_list as $product){
+            $new_line .= "<tr>";
+            $new_line .= '<td class="text-center">'.$product->id.'</td>';
+            $new_line .= '<td class="text-center">'.$product->category_name.'</td>';
+            $new_line .= '<td class="text-center">'.$product->sub_category_name.'</td>';
+            $new_line .= '<td class="text-center">'.$product->product_name.'</td>';
+            $new_line .= '<td class="text-center">'.$product->price_in_bdt.'</td>';
+            $new_line .= '<td class="text-center">'.$product->price_in_usd.'</td>';
+            $new_line .= '<td class="text-center">'.($product->total_stock_qty != '' ? $product->total_stock_qty : 0).'</td>';
+            $new_line .= '<td class="text-center">'.($product->status == 1 ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-danger">Inactive</span>').'</td>';
+            $new_line .= '<td class="text-center"><a class="btn btn-info btn-xs" href="'.route('product.edit', $product->id).'" title="Edit" data-toggle="tooltip" data-placement="top"><i class="fas fa-pencil-alt"></i></a><a class="btn btn-secondary btn-xs ml-1" href="'.route('product_stock_management', $product->id).'" title="Stock" data-toggle="tooltip" data-placement="top"><i class="fas fa-warehouse"></i></a></td>';
+            $new_line .= "</tr>";
+        }
+
+        return $new_line;
     }
 }

@@ -66,6 +66,7 @@ Route::get('/new_order_detail/{id}', 'OrderController@newOrderDetail')->name('ne
 Route::get('/order_confirm/{id}', 'OrderController@orderConfirm')->name('order_confirm');
 Route::put('/shipment_confirm/{id}', 'OrderController@shipmentConfirm')->name('shipment_confirm');
 Route::get('/order_deliver/{id}', 'OrderController@orderDeliver')->name('order_deliver');
+Route::post('/filter_product', 'ProductController@filterProduct')->name('filter_product');
 
 
 // Artisan Commands

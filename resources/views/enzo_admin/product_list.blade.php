@@ -23,6 +23,57 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Filter</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select class="form-control select2bs4" style="width: 100%;" id="product">
+                                <option value="">Product</option>
+
+                                @foreach($product_list as $product)
+                                    <option value="{{ $product->id }}">{{ $product->product_name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select class="form-control select2bs4" style="width: 100%;" id="category" onchange="getSubCategoryList()">
+                                <option value="">Category</option>
+                                @foreach($category_list as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <select class="form-control select2bs4" style="width: 100%;" id="sub_category">
+                                <option value="">Sub-Category</option>
+                            </select>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <span class="btn btn-primary" onclick="filterProduct()">SEARCH</span>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
@@ -75,7 +126,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="product_list">
                         @foreach($product_list as $prod)
                             <tr>
                                 <td class="text-center">
@@ -129,4 +180,50 @@
 </div>
 <!-- /.content-wrapper -->
 
+<script type="text/javascript">
+    
+    function filterProduct() {
+        var product = $("#product").val();
+        var category = $("#category").val();
+        var sub_category = $("#sub_category").val();
+
+        $.ajax({
+            url: "{{ url("filter_product") }}",
+            type:'POST',
+            data: {_token:"{{csrf_token()}}", product: product, category: category, sub_category: sub_category},
+            dataType: "html",
+            success: function (data) {
+
+                $("#product_list").empty();
+                $("#product_list").append(data);
+
+            }
+        });
+    }
+    
+    function getSubCategoryList() {
+        var category = $("#category").val();
+
+        $("#sub_category").empty();
+
+        $.ajax({
+            url: "{{ url("get_sub_category_list_by_cat_id") }}",
+            type:'POST',
+            data: {_token:"{{csrf_token()}}", category: category},
+            dataType: "json",
+            success: function (data) {
+
+                $("#sub_category").append('<option  value="">Sub-Category</option>');
+
+                for(var i=0; i < data.length; i++){
+                    $("#sub_category").append('<option  value="'+data[i].id+'">'+data[i].sub_category_name+'</option>');
+                }
+
+            }
+        });
+
+    }
+    
+</script>
+    
 @endsection
