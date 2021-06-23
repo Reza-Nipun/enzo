@@ -8,6 +8,7 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Order;
 use App\OrderDetail;
+use App\ProductReview;
 use App\ProductStock;
 use App\SubCategory;
 use Carbon\Carbon;
@@ -271,8 +272,8 @@ class OrderController extends Controller
         $orders = Order::where('invoice_no', $invoice_no)->get();
         $order_id = $orders[0]->id;
 
-        $order_detail = DB::select("SELECT t1.*, t2.*, t3.product_name, t3.product_code, t4.color, 
-                                    t5.size, t5.size_description, t6.image_url
+        $order_detail = DB::select("SELECT t1.*, t1.id as order_id, t2.*, t3.product_name, t3.product_code, t4.color, 
+                                    t5.size, t5.size_description, t6.image_url, t7.review_description, t7.rating
                                     FROM 
                                     (SELECT * FROM `orders` WHERE id=$order_id) AS t1
                                     
@@ -294,8 +295,36 @@ class OrderController extends Controller
                                     
                                     JOIN
                                     (SELECT * FROM product_images GROUP BY product_id, color_id) AS t6
-                                    ON t2.product_id=t6.product_id AND t2.color_id = t6.color_id");
+                                    ON t2.product_id=t6.product_id AND t2.color_id = t6.color_id
+                                    
+                                    LEFT JOIN 
+                                    product_reviews AS t7
+                                    ON t2.order_id=t7.order_id AND t2.product_id=t7.product_id AND t2.color_id=t7.color_id");
 
         return view('enzo_site.order_detail', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'orders', 'order_detail', 'invoice_no'));
+    }
+
+    public function productReview(Request $request){
+        $this->validate($request, [
+            'product_review' => 'required'
+        ]);
+
+        $session = new Session();
+        $customer_id = $session->get('customer_id');
+
+        $product_review = new ProductReview();
+        $product_review->order_id = $request->order_id;
+        $product_review->customer_id = $request->customer_id;
+        $product_review->product_id = $request->product_id;
+        $product_review->color_id = $request->color_id;
+        $product_review->review_description = $request->product_review;
+        $product_review->rating = $request->product_rating;
+        $product_review->rating = $request->product_rating;
+        $product_review->status = 1;
+        $product_review->save();
+
+        \Session::flash('message', "Product Review is Placed Successfully!");
+
+        return redirect()->back();
     }
 }

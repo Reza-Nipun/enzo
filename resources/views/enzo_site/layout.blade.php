@@ -52,6 +52,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('enzo_website_assets/images/favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('enzo_website_assets/images/favicon/site.webmanifest') }}">
     <!-- favicon end -->
+
+    <!-- Rating Pluging Start -->
+    <link href="{{ asset('rating_plugin_assets/css/star-rating.css') }}" media="all" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('rating_plugin_assets/themes/krajee-svg/theme.css') }}" media="all" rel="stylesheet" type="text/css"/>
+    <!--suppress JSUnresolvedLibraryURL -->
+    <script src="{{ asset('rating_plugin_assets/js/star-rating.js') }}" type="text/javascript"></script>
+    <!-- Rating Pluging End -->
 </head>
 
 <body>
@@ -385,7 +392,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     $( document ).ready(function() {
 
-        if(('{{ Route::current()->getName() }}' != 'customer.create') && ('{{ Route::current()->getName() }}' != 'customer_forgot_password') && ('{{ Route::current()->getName() }}' != 'customer_reset_password_link') && ('{{ count($errors) }}' > 0)){
+        if(('{{ Route::current()->getName() }}' != 'customer.create') && ('{{ Route::current()->getName() }}' != 'customer_forgot_password') && ('{{ Route::current()->getName() }}' != 'customer_reset_password_link') && ('{{ Route::current()->getName() }}' != 'order_detail') && ('{{ count($errors) }}' > 0)){
             $('#myModal88').modal('show');
         }
 

@@ -39,6 +39,8 @@ Route::get('/get_single_product_image/{product_id}/{color_id}')->uses('Website\O
 Route::post('/place_order')->uses('Website\OrderController@placeOrder')->name('place_order');
 Route::get('/my_orders')->uses('Website\OrderController@myOrders')->name('my_orders');
 Route::get('/order_detail/{invoice_no}')->uses('Website\OrderController@orderDetail')->name('order_detail');
+Route::post('/product_review')->uses('Website\OrderController@productReview')->name('product_review');
+
 
 // ADMIN Start From Here...
 Auth::routes(['login' => false, 'register' => false]);

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use App\ProductColor;
 use App\ProductImage;
+use App\ProductReview;
 use App\ProductSize;
 use App\ProductSpecification;
 use App\SubCategory;
@@ -115,6 +116,13 @@ class HomeController extends Controller
                             AND color_id = $color_id");
         }
 
+        $product_color_id = $product_images[0]->color_id;
+        $product_reviews = ProductReview::join('customers', 'customers.id', '=', 'product_reviews.customer_id')
+                                        ->select('product_reviews.*', 'customers.full_name')
+                                        ->where('product_reviews.product_id', $id)
+                                        ->where('product_reviews.color_id', $product_color_id)
+                                        ->orderBy('product_reviews.id', 'desc')
+                                        ->limit(5)->get();
 
         $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
         $product_specifications = ProductSpecification::where('product_id', $id)->where('status', 1)->get();
@@ -127,7 +135,7 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data', 'count_cart_items'));
+        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data', 'count_cart_items', 'product_reviews'));
     }
 
     public function getSubCategoryWiseProductList($sub_cat_id=null){

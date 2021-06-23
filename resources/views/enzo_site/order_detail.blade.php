@@ -24,6 +24,18 @@
                 <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
             @endif
 
+            @if(count($errors))
+                <div class="form-group">
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             @php
 
                 $order_status = $orders[0]->status;
@@ -70,6 +82,9 @@
                         <th class="text-center">Size</th>
                         <th class="text-center">Quantity</th>
                         <th class="text-center">Price</th>
+                        @if($order_status == 4)
+                            <th class="text-center">Review</th>
+                        @endif
                     </tr>
                     </thead>
 
@@ -85,7 +100,7 @@
                         <tr>
                             <td class="text-center">
                                 <a href="{{ route('view_single_product', [$order->product_id, $order->color_id]) }}" target="_blank">
-                                    {{ $order->product_name }}
+                                    {{ $order->product_name.' '.$order->order_id }}
                                 </a>
                             </td>
                             <td class="text-center">
@@ -100,6 +115,15 @@
                             <td class="text-center">
                                 ৳ {{ $order->price }}
                             </td>
+                            @if($order_status == 4)
+                                <td class="text-center">
+                                    @if(!empty($order->rating))
+                                        <input class="rating-input" type="text" title="" value="{{ $order->rating }}" disabled="disabled"/>
+                                    @else
+                                        <input class="rating-input" type="text" title="" onchange="getProductComment($(this).val(), '{{ $order->product_id }}', '{{ $order->color_id }}', '{{ $order->order_id }}', '{{ $order->customer_id }}')"/>
+                                    @endif
+                                </td>
+                            @endif
                         </tr>
 
                         @php
@@ -234,23 +258,32 @@
     </div>
 
     {{--Modal--}}
-    <div class="modal video-modal fade" id="modalProductRemoveConfirmation" tabindex="-1" role="dialog" aria-labelledby="modalProductRemoveConfirmation">
+    <div class="modal video-modal fade" id="product_review" tabindex="-1" role="dialog" aria-labelledby="product_review">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body">
-                    <h3>Are you sure to remove the product from cart?</h3>
-                    <input type="hidden" name="cart_item_to_remove" id="cart_item_to_remove">
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="btn btn-success" onclick="removeProductFromCart()">Yes</span>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                </div>
+                <form action="{{ route('product_review') }}" method="post">
 
+                    {{ csrf_field() }}
+
+                    <div class="modal-body">
+                        <input type="hidden" name="order_id" id="order_id" readonly="readonly">
+                        <input type="hidden" name="customer_id" id="customer_id" readonly="readonly">
+                        <input type="hidden" name="product_id" id="product_id" readonly="readonly">
+                        <input type="hidden" name="color_id" id="color_id" readonly="readonly">
+                        <input type="hidden" name="product_rating" id="product_rating" readonly="readonly">
+
+                        <h4>Product Review <span style="color: red;">*</span></h4>
+                        <textarea name="product_review" id="product_review" class="form-control" required="required"></textarea>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success">SAVE</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -278,5 +311,84 @@
         }
 
     </script>
+
+    {{--Rating Script Start--}}
+    <script>
+        jQuery(document).ready(function () {
+            $("#input-21f").rating({
+                starCaptions: function (val) {
+                    if (val < 3) {
+                        return val;
+                    } else {
+                        return 'high';
+                    }
+                },
+                starCaptionClasses: function (val) {
+                    if (val < 3) {
+                        return 'label label-danger';
+                    } else {
+                        return 'label label-success';
+                    }
+                },
+                hoverOnClear: false
+            });
+            var $inp = $('.rating-input');
+
+            $inp.rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'sm',
+                showClear: false
+            });
+
+            $('#btn-rating-input').on('click', function () {
+                $inp.rating('refresh', {
+                    showClear: true,
+                    disabled: !$inp.attr('disabled')
+                });
+            });
+
+
+            $('.btn-danger').on('click', function () {
+                $("#kartik").rating('destroy');
+            });
+
+            $('.btn-success').on('click', function () {
+                $("#kartik").rating('create');
+            });
+
+            $inp.on('rating.change', function () {
+                alert($('.rating-input').val());
+            });
+
+
+            $('.rb-rating').rating({
+                'showCaption': true,
+                'stars': '3',
+                'min': '0',
+                'max': '3',
+                'step': '1',
+                'size': 'xs',
+                'starCaptions': {0: 'status:nix', 1: 'status:wackelt', 2: 'status:geht', 3: 'status:laeuft'}
+            });
+            $("#input-21c").rating({
+                min: 0, max: 8, step: 0.5, size: "xl", stars: "8"
+            });
+
+
+        });
+
+        function getProductComment(rating, product_id, color_id, order_id, customer_id) {
+            $("#order_id").val(order_id);
+            $("#customer_id").val(customer_id);
+            $("#product_id").val(product_id);
+            $("#color_id").val(color_id);
+            $("#product_rating").val(rating);
+
+            $("#product_review").modal('show');
+        }
+    </script>
+    {{--Rating Script End--}}
 
 @endsection

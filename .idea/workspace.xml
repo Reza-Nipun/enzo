@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="018ae698-3bba-4023-81e3-e726b3825a7e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_admin/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_admin/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,54 +26,61 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="68" column="90" lean-forward="true" selection-start-line="68" selection-start-column="90" selection-end-line="68" selection-end-column="90" />
+            <state relative-caret-position="183">
+              <caret line="41" column="69" lean-forward="false" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/layout.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="37" column="99" lean-forward="false" selection-start-line="37" selection-start-column="99" selection-end-line="37" selection-end-column="99" />
+            <state relative-caret-position="183">
+              <caret line="163" column="39" lean-forward="false" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
+      <file leaf-file-name="order_detail.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="554" column="34" lean-forward="false" selection-start-line="554" selection-start-column="34" selection-end-line="554" selection-end-column="34" />
+            <state relative-caret-position="214">
+              <caret line="266" column="44" lean-forward="true" selection-start-line="266" selection-start-column="44" selection-end-line="266" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OrderController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="316" column="61" lean-forward="true" selection-start-line="316" selection-start-column="61" selection-end-line="316" selection-end-column="61" />
               <folding>
-                <marker date="1624339225848" expanded="true" signature="856:1696" ph="SELECT t1.*,... products" />
-                <marker date="1624339225848" expanded="true" signature="1343:1646" ph="SELECT produ... product_stocks" />
-                <marker date="1624339225848" expanded="true" signature="1478:1522" ph="SELECT id FR... product_colors" />
-                <marker date="1624339225848" expanded="true" signature="1561:1604" ph="SELECT id FR... product_sizes" />
-                <marker date="1624339225848" expanded="true" signature="21101:21991" ph="SELECT t1.*,... products" />
-                <marker date="1624339225848" expanded="true" signature="21588:21891" ph="SELECT produ... product_stocks" />
-                <marker date="1624339225848" expanded="true" signature="21723:21767" ph="SELECT id FR... product_colors" />
-                <marker date="1624339225848" expanded="true" signature="21806:21849" ph="SELECT id FR... product_sizes" />
-                <marker date="1624339225848" expanded="true" signature="22780:22783" ph="..." />
-                <marker date="1624339225848" expanded="true" signature="22780:22807" ph="..." />
-                <marker date="1624339225848" expanded="true" signature="22780:22917" ph="..." />
+                <marker date="1624442430256" expanded="true" signature="4387:4507" ph="SELECT * FRO... product_images" />
+                <marker date="1624442430256" expanded="true" signature="9927:11560" ph="SELECT t1.*,... *" />
+                <marker date="1624442430256" expanded="true" signature="10202:10234" ph="SELECT * FRO... orders" />
+                <marker date="1624442430256" expanded="true" signature="11133:11191" ph="SELECT * FRO... product_images" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product_list.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="316">
+              <caret line="158" column="35" lean-forward="true" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
               <folding>
-                <element signature="e#1233#1253#0#HTML" expanded="true" />
-                <element signature="e#1859#1879#0#HTML" expanded="true" />
-                <element signature="e#2513#2533#0#HTML" expanded="true" />
+                <marker date="1624439975622" expanded="true" signature="2116:2665" ph="SELECT t1.*,... *" />
+                <marker date="1624439975622" expanded="true" signature="2216:2250" ph="SELECT * FRO... products" />
+                <marker date="1624439975622" expanded="true" signature="2353:2398" ph="SELECT * FRO... product_colors" />
+                <marker date="1624439975622" expanded="true" signature="2544:2611" ph="SELECT * FRO... product_images" />
+                <marker date="1624439975622" expanded="true" signature="2909:2982" ph="SELECT * FRO... product_images" />
+                <marker date="1624439975622" expanded="true" signature="3883:4121" ph="SELECT * FRO... product_images" />
+                <marker date="1624439975622" expanded="true" signature="4182:4305" ph="SELECT * FRO... product_images" />
               </folding>
             </state>
           </provider>
@@ -81,24 +90,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>invoice(</find>
-      <find>order_detail</find>
-      <find>orderDetail</find>
-      <find>@media</find>
-      <find>.box_1</find>
-      <find>item</find>
-      <find>validate</find>
-      <find>myorders</find>
-      <find>product_list</find>
-      <find>getSubCategoryWiseProductList</find>
-      <find>myModalCart</find>
-      <find>my profile</find>
-      <find>contact</find>
-      <find>add_to_cart</find>
-      <find>product_name</find>
-      <find>addToCart</find>
-      <find>order</find>
-      <find>image</find>
       <find>productim</find>
       <find>orderde</find>
       <find>order_confirm</find>
@@ -111,6 +102,24 @@
       <find>getSubCategoryList</find>
       <find>getSubCategoryListByCatId</find>
       <find>select</find>
+      <find>rating-input</find>
+      <find>shipment info</find>
+      <find>click</find>
+      <find>start</find>
+      <find>star</find>
+      <find>validate</find>
+      <find>font-awesome</find>
+      <find>modal</find>
+      <find>single</find>
+      <find>myModal88</find>
+      <find>review</find>
+      <find>javascript</find>
+      <find>customer</find>
+      <find>order_detail</find>
+      <find>limit</find>
+      <find>customer_id</find>
+      <find>product_review</find>
+      <find>productReview</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/forgot_password.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/welcome_email.blade.php" />
@@ -146,30 +154,31 @@
         <option value="$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/cart_list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/product_list.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/message_contact_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/order_list.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/contact_us.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/customer_info.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/CustomerController.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/company_info.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php" />
         <option value="$PROJECT_DIR$/public/enzo_website_assets/css/style.css" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/dashboard.blade.php" />
         <option value="$PROJECT_DIR$/app/Customer.php" />
         <option value="$PROJECT_DIR$/app/Order.php" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/order_detail.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/order_progress_email.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/new_orders.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/layout.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2021_06_23_120533_create_product_reviews_table.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php" />
       </list>
     </option>
   </component>
@@ -207,6 +216,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -269,6 +280,28 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="enzo_site" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enzo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enzo" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="enzo_admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -298,6 +331,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enzo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="enzo" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,13 +434,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pts" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -518,12 +567,13 @@
       <workItem from="1624072735699" duration="23665000" />
       <workItem from="1624159869438" duration="18653000" />
       <workItem from="1624247108966" duration="628000" />
-      <workItem from="1624332751910" duration="9760000" />
+      <workItem from="1624332751910" duration="9762000" />
+      <workItem from="1624420556844" duration="15454000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="398903000" />
+    <option name="totallyTimeSpent" value="414359000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -560,21 +610,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/invoice.blade.php" />
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/ui/auth-backend/RegistersUsers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-525">
-          <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_17_114223_create_order_details_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -702,31 +737,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7922">
-          <caret line="466" column="20" lean-forward="false" selection-start-line="466" selection-start-column="20" selection-end-line="466" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57494">
           <caret line="3382" column="20" lean-forward="false" selection-start-line="3382" selection-start-column="20" selection-end-line="3382" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <caret line="310" column="20" lean-forward="false" selection-start-line="310" selection-start-column="20" selection-end-line="310" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="92" column="94" lean-forward="true" selection-start-line="92" selection-start-column="94" selection-end-line="92" selection-end-column="94" />
         </state>
       </provider>
     </entry>
@@ -744,24 +758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Customer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/ProductImage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="147" column="103" lean-forward="true" selection-start-line="147" selection-start-column="103" selection-end-line="147" selection-end-column="103" />
         </state>
       </provider>
     </entry>
@@ -797,7 +797,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4879">
           <caret line="287" column="75" lean-forward="false" selection-start-line="287" selection-start-column="75" selection-end-line="287" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -805,13 +804,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="24" column="124" lean-forward="true" selection-start-line="24" selection-start-column="124" selection-end-line="24" selection-end-column="124" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="197" column="12" lean-forward="false" selection-start-line="197" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -827,7 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
           <caret line="43" column="141" lean-forward="false" selection-start-line="43" selection-start-column="141" selection-end-line="43" selection-end-column="141" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,15 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1479">
           <caret line="87" column="42" lean-forward="false" selection-start-line="87" selection-start-column="42" selection-end-line="87" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1270">
-          <caret line="179" column="0" lean-forward="true" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -861,7 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-896">
           <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,7 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="431" column="8" lean-forward="false" selection-start-line="431" selection-start-column="8" selection-end-line="431" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
           <caret line="324" column="17" lean-forward="true" selection-start-line="324" selection-start-column="17" selection-end-line="324" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,26 +868,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_01_054549_create_product_sizes_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="68" column="90" lean-forward="true" selection-start-line="68" selection-start-column="90" selection-end-line="68" selection-end-column="90" />
+        <state relative-caret-position="306">
+          <caret line="20" column="73" lean-forward="true" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="17">
           <caret line="37" column="99" lean-forward="false" selection-start-line="37" selection-start-column="99" selection-end-line="37" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="162" column="73" lean-forward="false" selection-start-line="162" selection-start-column="73" selection-end-line="162" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_23_120533_create_product_reviews_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="117" column="34" lean-forward="true" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/create_sub_category.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="57" column="30" lean-forward="true" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Customer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="554" column="34" lean-forward="false" selection-start-line="554" selection-start-column="34" selection-end-line="554" selection-end-column="34" />
+        <state relative-caret-position="183">
+          <caret line="571" column="19" lean-forward="false" selection-start-line="571" selection-start-column="19" selection-end-line="571" selection-end-column="19" />
           <folding>
             <marker date="1624339225848" expanded="true" signature="856:1696" ph="SELECT t1.*,... products" />
             <marker date="1624339225848" expanded="true" signature="1343:1646" ph="SELECT produ... product_stocks" />
@@ -925,14 +944,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/product_list.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="195" column="0" lean-forward="true" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="183">
+          <caret line="163" column="39" lean-forward="false" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="476" column="28" lean-forward="false" selection-start-line="476" selection-start-column="20" selection-end-line="476" selection-end-column="28" />
           <folding>
-            <element signature="e#1233#1253#0#HTML" expanded="true" />
-            <element signature="e#1859#1879#0#HTML" expanded="true" />
-            <element signature="e#2513#2533#0#HTML" expanded="true" />
+            <marker date="1624440886117" expanded="true" signature="24760:24816" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/order_detail.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="266" column="44" lean-forward="true" selection-start-line="266" selection-start-column="44" selection-end-line="266" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="41" column="69" lean-forward="false" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/OrderController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="316" column="61" lean-forward="true" selection-start-line="316" selection-start-column="61" selection-end-line="316" selection-end-column="61" />
+          <folding>
+            <marker date="1624442430256" expanded="true" signature="4387:4507" ph="SELECT * FRO... product_images" />
+            <marker date="1624442430256" expanded="true" signature="9927:11560" ph="SELECT t1.*,... *" />
+            <marker date="1624442430256" expanded="true" signature="10202:10234" ph="SELECT * FRO... orders" />
+            <marker date="1624442430256" expanded="true" signature="11133:11191" ph="SELECT * FRO... product_images" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="158" column="35" lean-forward="true" selection-start-line="158" selection-start-column="35" selection-end-line="158" selection-end-column="35" />
+          <folding>
+            <marker date="1624439975622" expanded="true" signature="2116:2665" ph="SELECT t1.*,... *" />
+            <marker date="1624439975622" expanded="true" signature="2216:2250" ph="SELECT * FRO... products" />
+            <marker date="1624439975622" expanded="true" signature="2353:2398" ph="SELECT * FRO... product_colors" />
+            <marker date="1624439975622" expanded="true" signature="2544:2611" ph="SELECT * FRO... product_images" />
+            <marker date="1624439975622" expanded="true" signature="2909:2982" ph="SELECT * FRO... product_images" />
+            <marker date="1624439975622" expanded="true" signature="3883:4121" ph="SELECT * FRO... product_images" />
+            <marker date="1624439975622" expanded="true" signature="4182:4305" ph="SELECT * FRO... product_images" />
           </folding>
         </state>
       </provider>

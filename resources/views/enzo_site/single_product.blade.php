@@ -177,89 +177,44 @@
                         <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Reviews</span></li>
                     </ul>
                     <div class="tab-2 resp-tab-content additional_info_grid" aria-labelledby="tab_item-1">
-                        <h4>(2) Reviews</h4>
-                        <div class="additional_info_sub_grids">
-                            <div class="col-xs-2 additional_info_sub_grid_left">
-                                <img src="{{ asset('enzo_website_assets/images/1.png') }}" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="col-xs-10 additional_info_sub_grid_right">
-                                <div class="additional_info_sub_grid_rightl">
-                                    <a href="single.php">Laura</a>
-                                    <h5>April 03, 2016.</h5>
-                                    <p>Quis autem vel eum iure reprehenderit qui in ea voluptate
-                                        velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
-                                        quo voluptas nulla pariatur.</p>
-                                </div>
-                                <div class="additional_info_sub_grid_rightr">
-                                    <div class="rating">
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star-.png') }}" alt=" " class="img-responsive">
+
+                        @if(sizeof($product_reviews) > 0)
+                            @foreach($product_reviews AS $product_review)
+                                <div class="additional_info_sub_grids">
+                                    {{--<div class="col-xs-2 additional_info_sub_grid_left">--}}
+                                        {{--<img src="{{ asset('enzo_website_assets/images/1.png') }}" alt=" " class="img-responsive" />--}}
+                                    {{--</div>--}}
+                                    <div class="col-xs-12 additional_info_sub_grid_right">
+                                        <div class="additional_info_sub_grid_rightl">
+                                            <a href="javaScript:void(0)">{{ $product_review->full_name }}</a>
+                                            <h5>{{ date('Y-m-d', strtotime($product_review->created_at)) }}</h5>
+                                            <p>{{ $product_review->review_description }}</p>
                                         </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star-.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star-.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star.png') }}" alt=" " class="img-responsive">
+                                        <div class="additional_info_sub_grid_rightr">
+                                            <div class="rating">
+                                                <input class="rating-input" type="text" title="" value="{{ $product_review->rating }}" disabled="disabled"/>
+                                                <div class="clearfix"> </div>
+                                            </div>
                                         </div>
                                         <div class="clearfix"> </div>
                                     </div>
+                                    <div class="clearfix"> </div>
                                 </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="additional_info_sub_grids">
-                            <div class="col-xs-2 additional_info_sub_grid_left">
-                                <img src="{{ asset('enzo_website_assets/images/2.png') }}" alt=" " class="img-responsive" />
-                            </div>
-                            <div class="col-xs-10 additional_info_sub_grid_right">
-                                <div class="additional_info_sub_grid_rightl">
-                                    <a href="single.php">Michael</a>
-                                    <h5>April 04, 2016.</h5>
-                                    <p>Quis autem vel eum iure reprehenderit qui in ea voluptate
-                                        velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat
-                                        quo voluptas nulla pariatur.</p>
-                                </div>
-                                <div class="additional_info_sub_grid_rightr">
-                                    <div class="rating">
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star-.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star-.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="rating-left">
-                                            <img src="{{ asset('enzo_website_assets/images/star.png') }}" alt=" " class="img-responsive">
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <div class="review_grids">
-                            <h5>Add A Review</h5>
-                            <form action="#" method="post">
-                                <input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                                <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
-                                <input type="text" name="Telephone" value="Telephone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone';}" required="">
-                                <textarea name="Review" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Add Your Review';}" required="">Add Your Review</textarea>
-                                <input type="submit" value="Submit" >
-                            </form>
-                        </div>
+                            @endforeach
+                        @else
+                            <h4>({{ sizeof($product_reviews) }}) Reviews</h4>
+                        @endif
+
+                        {{--<div class="review_grids">--}}
+                            {{--<h5>Add A Review</h5>--}}
+                            {{--<form action="#" method="post">--}}
+                                {{--<input type="text" name="Name" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">--}}
+                                {{--<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">--}}
+                                {{--<input type="text" name="Telephone" value="Telephone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telephone';}" required="">--}}
+                                {{--<textarea name="Review" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Add Your Review';}" required="">Add Your Review</textarea>--}}
+                                {{--<input type="submit" value="Submit" >--}}
+                            {{--</form>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
@@ -448,108 +403,176 @@
         </div>
 
 
-        <script type="text/javascript">
+    <script type="text/javascript">
 
-            function viewProductShortDetail(product_id){
+        function viewProductShortDetail(product_id){
 
-                $('#product_name').empty();
-                $('#product_code').empty();
-                $('#short_description').empty();
-                $('#colors').empty();
-                $('#product_price_in_bdt').empty();
-                $('#product_image').empty();
+            $('#product_name').empty();
+            $('#product_code').empty();
+            $('#short_description').empty();
+            $('#colors').empty();
+            $('#product_price_in_bdt').empty();
+            $('#product_image').empty();
 
-                $.ajax({
-                    url: "{{ route("get_products_by_id") }}",
-                    type:'POST',
-                    data: {_token:"{{csrf_token()}}", product_id: product_id},
-                    dataType: "json",
-                    success: function (data) {
-                        $('#product_name').append(data[0].product_name);
-                        $('#product_code').append('Product Code: '+data[0].product_code);
-                        $('#short_description').append(data[0].product_short_description);
-                        $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
-                        $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+            $.ajax({
+                url: "{{ route("get_products_by_id") }}",
+                type:'POST',
+                data: {_token:"{{csrf_token()}}", product_id: product_id},
+                dataType: "json",
+                success: function (data) {
+                    $('#product_name').append(data[0].product_name);
+                    $('#product_code').append('Product Code: '+data[0].product_code);
+                    $('#short_description').append(data[0].product_short_description);
+                    $('#product_price_in_bdt').append('৳ '+data[0].price_in_bdt);
+                    $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
-                        var a = document.getElementById('view_detail_product');
-                        a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
+                    var a = document.getElementById('view_detail_product');
+                    a.href = '{{ url('/view_single_product') }}'+"/"+product_id;
 
-                        for(var i=0; i < data.length; i++ ){
-                            $("#colors").append('<li><a href="javaScript:void(0)" onclick="getSelectedColorImage('+product_id+', '+data[i].color_id+')"><span style="border: solid; background-color: '+data[i].color_code+';"></span>'+data[i].color+'</a></li>');
-                        }
-
-                        $('#myModal').modal('show');
+                    for(var i=0; i < data.length; i++ ){
+                        $("#colors").append('<li><a href="javaScript:void(0)" onclick="getSelectedColorImage('+product_id+', '+data[i].color_id+')"><span style="border: solid; background-color: '+data[i].color_code+';"></span>'+data[i].color+'</a></li>');
                     }
-                });
-            }
 
-            function getSelectedColorImage(product_id, color_id) {
+                    $('#myModal').modal('show');
+                }
+            });
+        }
 
-                $('#product_image').empty();
+        function getSelectedColorImage(product_id, color_id) {
 
-                $.ajax({
-                    url: "{{ route("get_product_images") }}",
-                    type:'POST',
-                    data: {_token:"{{csrf_token()}}", product_id: product_id, color_id: color_id},
-                    dataType: "json",
-                    success: function (data) {
+            $('#product_image').empty();
 
-                        $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
+            $.ajax({
+                url: "{{ route("get_product_images") }}",
+                type:'POST',
+                data: {_token:"{{csrf_token()}}", product_id: product_id, color_id: color_id},
+                dataType: "json",
+                success: function (data) {
 
-                        $('#myModal').modal('show');
-                    }
-                });
-            }
+                    $('#product_image').append('<img src="{{ asset('storage/uploads/') }}'+"/"+data[0].image_url+'" alt=" " class="img-responsive" />');
 
-            function getAndSetSizeId(size_id, size_name, size_description) {
-                $("#size_id").val(size_id);
-                $("#size_name").val(size_name);
-                $("#size_description").val(size_description);
-            }
+                    $('#myModal').modal('show');
+                }
+            });
+        }
 
-            function addToCart() {
-                var product_id = $("#product_id").val();
-                var product_name = $("#product_name").val();
-                var product_code = $("#product_code").val();
-                var color_id = $("#color_id").val();
-                var color = $("#color").val();
-                var size_id = $("#size_id").val();
-                var size_name = $("#size_name").val();
-                var size_description = $("#size_description").val();
-                var order_qty = $("#order_qty").val();
-                var price_in_bdt = $("#price_in_bdt").val();
+        function getAndSetSizeId(size_id, size_name, size_description) {
+            $("#size_id").val(size_id);
+            $("#size_name").val(size_name);
+            $("#size_description").val(size_description);
+        }
 
-                if('{{ $customer_data['customer_id'] }}' == "") {
-                    $('#myModal88').modal('show');
-                }else{
-                    if(product_id != '' && color_id != '' && size_id != ''){
+        function addToCart() {
+            var product_id = $("#product_id").val();
+            var product_name = $("#product_name").val();
+            var product_code = $("#product_code").val();
+            var color_id = $("#color_id").val();
+            var color = $("#color").val();
+            var size_id = $("#size_id").val();
+            var size_name = $("#size_name").val();
+            var size_description = $("#size_description").val();
+            var order_qty = $("#order_qty").val();
+            var price_in_bdt = $("#price_in_bdt").val();
 
-                        $.ajax({
-                            url: "{{ route("add_to_cart") }}",
-                            type:'POST',
-                            data: {_token:"{{csrf_token()}}", product_id: product_id, product_name: product_name, product_code: product_code, color_id: color_id, color: color, size_id: size_id, size_name: size_name, size_description: size_description, order_qty: order_qty, price_in_bdt: price_in_bdt},
-                            dataType: "json",
-                            success: function (data) {
+            if('{{ $customer_data['customer_id'] }}' == "") {
+                $('#myModal88').modal('show');
+            }else{
+                if(product_id != '' && color_id != '' && size_id != ''){
 
-                                if(data == 'failed'){
-                                    $('#myModal88').modal('show');
-                                } else if(data == 'na'){
-                                    $('#myModalStockOut').modal('show');
-                                }else{
-                                    $("#simpleCart_quantity").text(data);
-                                    $('#myModalCart').modal('show');
-                                }
+                    $.ajax({
+                        url: "{{ route("add_to_cart") }}",
+                        type:'POST',
+                        data: {_token:"{{csrf_token()}}", product_id: product_id, product_name: product_name, product_code: product_code, color_id: color_id, color: color, size_id: size_id, size_name: size_name, size_description: size_description, order_qty: order_qty, price_in_bdt: price_in_bdt},
+                        dataType: "json",
+                        success: function (data) {
 
+                            if(data == 'failed'){
+                                $('#myModal88').modal('show');
+                            } else if(data == 'na'){
+                                $('#myModalStockOut').modal('show');
+                            }else{
+                                $("#simpleCart_quantity").text(data);
+                                $('#myModalCart').modal('show');
                             }
-                        });
 
-                    }else{
-                        $('#myModalCartCriteria').modal('show');
-                    }
+                        }
+                    });
 
+                }else{
+                    $('#myModalCartCriteria').modal('show');
                 }
 
-
             }
-        </script>
+
+
+        }
+    </script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $("#input-21f").rating({
+                starCaptions: function (val) {
+                    if (val < 3) {
+                        return val;
+                    } else {
+                        return 'high';
+                    }
+                },
+                starCaptionClasses: function (val) {
+                    if (val < 3) {
+                        return 'label label-danger';
+                    } else {
+                        return 'label label-success';
+                    }
+                },
+                hoverOnClear: false
+            });
+            var $inp = $('.rating-input');
+
+            $inp.rating({
+                min: 0,
+                max: 5,
+                step: 1,
+                size: 'sm',
+                showClear: false
+            });
+
+            $('#btn-rating-input').on('click', function () {
+                $inp.rating('refresh', {
+                    showClear: true,
+                    disabled: !$inp.attr('disabled')
+                });
+            });
+
+
+            $('.btn-danger').on('click', function () {
+                $("#kartik").rating('destroy');
+            });
+
+            $('.btn-success').on('click', function () {
+                $("#kartik").rating('create');
+            });
+
+            $inp.on('rating.change', function () {
+                alert($('.rating-input').val());
+            });
+
+
+            $('.rb-rating').rating({
+                'showCaption': true,
+                'stars': '3',
+                'min': '0',
+                'max': '3',
+                'step': '1',
+                'size': 'xs',
+                'starCaptions': {0: 'status:nix', 1: 'status:wackelt', 2: 'status:geht', 3: 'status:laeuft'}
+            });
+            $("#input-21c").rating({
+                min: 0, max: 8, step: 0.5, size: "xl", stars: "8"
+            });
+
+            $(".caption").css('display', 'none');
+        });
+
+    </script>
 @endsection
