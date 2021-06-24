@@ -155,6 +155,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="meta_keywords">Meta Keywords</label>
+                                            <textarea class="form-control" name="meta_keywords" id="meta_keywords">{{ $company_info[0]->meta_keywords }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="meta_description">Meta Description</label>
+                                            <textarea class="form-control" name="meta_description" id="meta_description">{{ $company_info[0]->meta_description }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>

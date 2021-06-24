@@ -41,7 +41,10 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info', 'customer_data', 'count_cart_items'));
+        $meta_keywords = isset($company_info[0]->meta_keywords) ? $company_info[0]->meta_keywords : '';
+        $meta_description = isset($company_info[0]->meta_description) ? $company_info[0]->meta_description : '';
+
+        return view('enzo_site.home', compact('title', 'category_list', 'sub_category_list', 'new_products', 'company_info', 'customer_data', 'count_cart_items', 'meta_keywords', 'meta_description'));
     }
 
     public function menuCategoryItems(){
@@ -89,6 +92,8 @@ class HomeController extends Controller
     public function viewSingleProduct($id=null, $color_id=null){
         $product_info = Product::find($id);
         $product_sub_category_id = $product_info->sub_category_id;
+        $product_meta_keywords = ($product_info->meta_keywords <> '' ? $product_info->meta_keywords : '');
+        $product_meta_description = ($product_info->meta_description <> '' ? $product_info->meta_description : '');
 
         $title = "ENZO | ".$product_info->product_name;
 
@@ -135,7 +140,10 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data', 'count_cart_items', 'product_reviews'));
+        $meta_keywords = (isset($company_info[0]->meta_keywords) ? $company_info[0]->meta_keywords.', ' : '').$product_meta_keywords;
+        $meta_description = (isset($company_info[0]->meta_description) ? $company_info[0]->meta_description.' ' : '').$product_meta_description;
+
+        return view('enzo_site.single_product', compact('title', 'category_list', 'sub_category_list', 'product_info', 'product_colors', 'product_images', 'product_sizes', 'product_specifications', 'related_products', 'company_info', 'customer_data', 'count_cart_items', 'product_reviews', 'meta_keywords', 'meta_description'));
     }
 
     public function getSubCategoryWiseProductList($sub_cat_id=null){
@@ -161,7 +169,10 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data', 'count_cart_items'));
+        $meta_keywords = isset($company_info[0]->meta_keywords) ? $company_info[0]->meta_keywords : '';
+        $meta_description = isset($company_info[0]->meta_description) ? $company_info[0]->meta_description : '';
+
+        return view('enzo_site.product_list', compact('title', 'category_list', 'sub_category_list', 'sub_cat_info', 'products', 'company_info', 'customer_data', 'count_cart_items', 'meta_keywords', 'meta_description'));
     }
 
     public function aboutUs(){
@@ -183,7 +194,10 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
+        $meta_keywords = isset($company_info[0]->meta_keywords) ? $company_info[0]->meta_keywords : '';
+        $meta_description = isset($company_info[0]->meta_description) ? $company_info[0]->meta_description : '';
+
+        return view('enzo_site.about_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'meta_keywords', 'meta_description'));
     }
 
     public function contactUs(){
@@ -205,7 +219,10 @@ class HomeController extends Controller
             $count_cart_items = sizeof($cart_items);
         }
 
-        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items'));
+        $meta_keywords = isset($company_info[0]->meta_keywords) ? $company_info[0]->meta_keywords : '';
+        $meta_description = isset($company_info[0]->meta_description) ? $company_info[0]->meta_description : '';
+
+        return view('enzo_site.contact_us', compact('title', 'category_list', 'sub_category_list', 'company_info', 'customer_data', 'count_cart_items', 'meta_keywords', 'meta_description'));
     }
 
     public function contactMessage(Request $request){

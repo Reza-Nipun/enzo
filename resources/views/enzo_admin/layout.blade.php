@@ -52,20 +52,20 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('home') }}" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a class="nav-link" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+            {{--<li class="nav-item d-none d-sm-inline-block">--}}
+                {{--<a href="{{ route('home') }}" class="nav-link">Home</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item d-none d-sm-inline-block">--}}
+                {{--<a class="nav-link" href="{{ route('logout') }}"--}}
+                   {{--onclick="event.preventDefault();--}}
+                           {{--document.getElementById('logout-form').submit();">--}}
+                    {{--{{ __('Logout') }}--}}
+                {{--</a>--}}
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </li>
+                {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">--}}
+                    {{--@csrf--}}
+                {{--</form>--}}
+            {{--</li>--}}
         </ul>
 
         <!-- Right navbar links -->
@@ -288,6 +288,29 @@
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Orders</p>
                                 </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>
+                                Profile
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </li>

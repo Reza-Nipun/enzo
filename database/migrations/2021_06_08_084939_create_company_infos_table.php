@@ -28,6 +28,8 @@ class CreateCompanyInfosTable extends Migration
             $table->float('shipment_charge')->nullable();
             $table->float('vat_percentage')->nullable();
             $table->text('about_us')->nullable();
+            $table->text('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
             $table->timestamps();
         });
     }

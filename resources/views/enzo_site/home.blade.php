@@ -43,37 +43,37 @@
 <!-- banner-bottom -->
 	<div class="banner-bottom">
 		<div class="container">
-			<div class="col-md-4 wthree_banner_bottom_left">
-				<div class="video-img">
-					<a class="play-icon popup-with-zoom-anim" href="#small-dialog">
-						<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>
-					</a>
-				</div>
-				<!-- pop-up-box -->
-						<link href="{{ asset('enzo_website_assets/css/popuo-box.css') }}" rel="stylesheet" type="text/css" property="" media="all" />
-						<script src="{{ asset('enzo_website_assets/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
-					<!--//pop-up-box -->
-					<div id="small-dialog" class="mfp-hide">
-						<iframe src=""></iframe>
-					</div>
-					<script>
-						$(document).ready(function() {
-						$('.popup-with-zoom-anim').magnificPopup({
-							type: 'inline',
-							fixedContentPos: false,
-							fixedBgPos: true,
-							overflowY: 'auto',
-							closeBtnInside: true,
-							preloader: false,
-							midClick: true,
-							removalDelay: 300,
-							mainClass: 'my-mfp-zoom-in'
-						});
+			{{--<div class="col-md-4 wthree_banner_bottom_left">--}}
+				{{--<div class="video-img">--}}
+					{{--<a class="play-icon popup-with-zoom-anim" href="#small-dialog">--}}
+						{{--<span class="glyphicon glyphicon-expand" aria-hidden="true"></span>--}}
+					{{--</a>--}}
+				{{--</div>--}}
+				{{--<!-- pop-up-box -->--}}
+						{{--<link href="{{ asset('enzo_website_assets/css/popuo-box.css') }}" rel="stylesheet" type="text/css" property="" media="all" />--}}
+						{{--<script src="{{ asset('enzo_website_assets/js/jquery.magnific-popup.js') }}" type="text/javascript"></script>--}}
+					{{--<!--//pop-up-box -->--}}
+					{{--<div id="small-dialog" class="mfp-hide">--}}
+						{{--<iframe src=""></iframe>--}}
+					{{--</div>--}}
+					{{--<script>--}}
+						{{--$(document).ready(function() {--}}
+						{{--$('.popup-with-zoom-anim').magnificPopup({--}}
+							{{--type: 'inline',--}}
+							{{--fixedContentPos: false,--}}
+							{{--fixedBgPos: true,--}}
+							{{--overflowY: 'auto',--}}
+							{{--closeBtnInside: true,--}}
+							{{--preloader: false,--}}
+							{{--midClick: true,--}}
+							{{--removalDelay: 300,--}}
+							{{--mainClass: 'my-mfp-zoom-in'--}}
+						{{--});--}}
 
-						});
-					</script>
-			</div>
-			<div class="col-md-8 wthree_banner_bottom_right">
+						{{--});--}}
+					{{--</script>--}}
+			{{--</div>--}}
+			<div class="col-md-12 wthree_banner_bottom_right">
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs" role="tablist">
 
@@ -100,11 +100,11 @@
 
                                 <div class="agile_ecommerce_tabs">
                                     @php
-                                        $sub_cat_lastest_prods = HomeController::getProductsBySubcategoryId($sub_category->id, 3);
+                                        $sub_cat_lastest_prods = HomeController::getProductsBySubcategoryId($sub_category->id, 4);
                                     @endphp
 
                                     @foreach($sub_cat_lastest_prods as $sub_cat_lastest_prod)
-                                        <div class="col-md-4 agile_ecommerce_tab_left">
+                                        <div class="col-md-3 agile_ecommerce_tab_left">
                                             <div class="hs-wrapper">
                                                 @foreach($sub_cat_lastest_prod->productimages as $product_image)
                                                     <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />

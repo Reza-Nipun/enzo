@@ -161,7 +161,7 @@
                                             @php
 
                                                 $net_amount =0;
-                                                $net_amount = ($total_amount + $vat_amount + $shipment_charge);
+                                                $net_amount = round($total_amount + $vat_amount + $shipment_charge);
 
                                             @endphp
 

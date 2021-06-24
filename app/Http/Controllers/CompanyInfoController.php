@@ -115,6 +115,8 @@ class CompanyInfoController extends Controller
         $company->shipment_charge = $request->shipment_charge;
         $company->vat_percentage = $request->vat_percentage;
         $company->about_us = $request->about_us;
+        $company->meta_keywords = $request->meta_keywords;
+        $company->meta_description = $request->meta_description;
         $company->save();
 
         \Session::flash('message', "Company Info Successfully Updated!");
