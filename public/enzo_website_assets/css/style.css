@@ -32,7 +32,7 @@ input[type="submit"],.panel-body ul li a,.checkout-right-basket a,.additional_in
 	-o-transition:.5s ease-in-out;
 }
 .header {
-    padding: 2em 0 0;
+    padding: 0 0 0;
 }
 .w3l_login{
 	float:left;
@@ -270,7 +270,7 @@ ul.multi-column-dropdown h6 {
 	z-index: 100;
 }
 .navigation {
-    margin: 2em 0 0;
+    margin: 1em 0 0;
 	text-align:center;
 }
 .navbar-nav {
@@ -429,7 +429,7 @@ ul.multi-column-dropdown h6 {
 /*-- //banner --*/
 /*-- banner-bottom --*/
 .banner-bottom,.team,.checkout,.additional_info,.team-bottom,.single,.mail,.special-deals,.about,.faq,.typo,.new-products,.banner-bottom1,.top-brands,.dresses,.w3l_related_products{
-	padding:5em 0;
+	padding:2em 0;
 }
 .modal-body iframe {
     width: 100%;
@@ -2291,7 +2291,7 @@ h2.typoh2{
 	margin:0 0 1em;
 }
 .occasional {
-    margin:3em 0;
+    margin:1.5em 0;
 }
 .color-quality-right {
 	float: left;
@@ -2300,6 +2300,7 @@ h2.typoh2{
 .colr {
     float: left;
     margin-right: 1em;
+    margin-top: -30px;
 }
 .occasional label{
 	font-size:14px;
@@ -3410,7 +3411,7 @@ td.invert-image a img {
 		font-size: .9em;
 	}
 	.header {
-		padding: 1em 0 0;
+		padding: 0 0 0;
 	}
 	.dropdown-menu.columns-3 {
 		min-width: auto;
@@ -3778,7 +3779,7 @@ td.invert-image a img {
 		margin-left: 4em;
 	}
 	.occasional {
-		margin: 2em 0;
+		margin: 1em 0;
 	}
 	.additional_info_grid {
 		padding: 1em;

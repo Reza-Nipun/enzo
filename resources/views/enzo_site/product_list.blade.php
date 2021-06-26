@@ -44,34 +44,36 @@
                     <div class="w3ls_dresses_grid_right_grid3">
 
                         @foreach($products as $product)
-                            <div class="col-md-3 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
-                                <div class="agile_ecommerce_tab_left dresses_grid">
-                                    <div class="hs-wrapper hs-wrapper2">
-                                        @foreach($product->productimages as $product_image)
-                                            <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
-                                        @endforeach
-                                        <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                            <ul>
-                                                <li>
-                                                    <a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                                </li>
-                                            </ul>
+                            <a href="{{ route('view_single_product', $product->id) }}">
+                                <div class="col-md-3 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
+                                    <div class="agile_ecommerce_tab_left dresses_grid">
+                                        <div class="hs-wrapper hs-wrapper2">
+                                            @foreach($product->productimages as $product_image)
+                                                <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+                                            @endforeach
+                                            <div class="w3_hs_bottom w3_hs_bottom_sub1">
+                                                <ul>
+                                                    <li>
+                                                        {{--<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
+                                        <h5><a href="{{ route('view_single_product', $product->id) }}">{{ $product->product_name }}</a></h5>
+                                        <div class="simpleCart_shelfItem">
+                                            <p>
+                                                {{--<span>$420</span> --}}
+                                                <i class="item_price">৳ {{ $product->price_in_bdt }}</i>
+                                            </p>
+                                            <p><a class="" href="{{ route('view_single_product', $product->id) }}">View Detail</a></p>
+                                        </div>
+                                        {{--<div class="dresses_grid_pos">--}}
+                                            {{--<h6>New</h6>--}}
+                                        {{--</div>--}}
+                                        <div class="clearfix"> </div>
                                     </div>
-                                    <h5><a href="{{ route('view_single_product', $product->id) }}">{{ $product->product_name }}</a></h5>
-                                    <div class="simpleCart_shelfItem">
-                                        <p>
-                                            {{--<span>$420</span> --}}
-                                            <i class="item_price">৳ {{ $product->price_in_bdt }}</i>
-                                        </p>
-                                        <p><a class="" href="{{ route('view_single_product', $product->id) }}">View Detail</a></p>
-                                    </div>
-                                    {{--<div class="dresses_grid_pos">--}}
-                                        {{--<h6>New</h6>--}}
-                                    {{--</div>--}}
-                                    <div class="clearfix"> </div>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
 
                     </div>

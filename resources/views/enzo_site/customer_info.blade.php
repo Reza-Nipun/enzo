@@ -62,7 +62,7 @@
                             <tr>
                                 <th></th>
                                 <td>
-                                    <input type="submit" class="btn btn-success" value="SUBMIT" >
+                                    <input type="submit" class="btn btn-success" value="UPDATE" >
                                 </td>
                             </tr>
 

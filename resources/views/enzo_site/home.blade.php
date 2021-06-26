@@ -104,6 +104,7 @@
                                     @endphp
 
                                     @foreach($sub_cat_lastest_prods as $sub_cat_lastest_prod)
+										<a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">
                                         <div class="col-md-3 agile_ecommerce_tab_left">
                                             <div class="hs-wrapper">
                                                 @foreach($sub_cat_lastest_prod->productimages as $product_image)
@@ -114,7 +115,7 @@
                                                     <ul>
                                                         <li>
                                                             {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
-                                                            <a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                                            {{--<a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -129,6 +130,7 @@
                                                 <p><a class="" href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">View Detail</a></p>
                                             </div>
                                         </div>
+										</a>
                                     @endforeach
 
                                     <div class="clearfix"> </div>
@@ -709,40 +711,42 @@
 	{{--</div>--}}
 <!-- //special-deals -->
 <!-- new-products -->
-	<div class="new-products">
+	<div class="new-products" style="background: #ffffff;">
 		<div class="container">
 			<h3>New Products</h3>
 
 			<div class="agileinfo_new_products_grids">
 
 				@foreach($new_products as $new_product)
-					<div class="col-md-3 agileinfo_new_products_grid">
-						<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-							<div class="hs-wrapper hs-wrapper1">
-								@foreach($new_product->productimages as $product_image)
-									<img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
-								@endforeach
+					<a href="{{ route('view_single_product', $new_product->id) }}">
+						<div class="col-md-3 agileinfo_new_products_grid">
+							<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
+								<div class="hs-wrapper hs-wrapper1">
+									@foreach($new_product->productimages as $product_image)
+										<img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
+									@endforeach
 
-								<div class="w3_hs_bottom w3_hs_bottom_sub">
-									<ul>
-										<li>
-											<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-										</li>
-									</ul>
+									<div class="w3_hs_bottom w3_hs_bottom_sub">
+										<ul>
+											<li>
+												{{--<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
+											</li>
+										</ul>
+									</div>
+								</div>
+								<h5><a href="{{ route('view_single_product', $new_product->id) }}">{{ $new_product->product_name }}</a></h5>
+								<div class="simpleCart_shelfItem">
+									<p>
+										{{--<span>$320</span> --}}
+										<i class="item_price">
+											৳ {{ $new_product->price_in_bdt }}
+										</i>
+									</p>
+									<p><a class="" href="{{ route('view_single_product', $new_product->id) }}">View Detail</a></p>
 								</div>
 							</div>
-							<h5><a href="{{ route('view_single_product', $new_product->id) }}">{{ $new_product->product_name }}</a></h5>
-							<div class="simpleCart_shelfItem">
-								<p>
-									{{--<span>$320</span> --}}
-									<i class="item_price">
-										৳ {{ $new_product->price_in_bdt }}
-									</i>
-								</p>
-								<p><a class="" href="{{ route('view_single_product', $new_product->id) }}">View Detail</a></p>
-							</div>
 						</div>
-					</div>
+					</a>
 				@endforeach
 
 				<div class="clearfix"> </div>

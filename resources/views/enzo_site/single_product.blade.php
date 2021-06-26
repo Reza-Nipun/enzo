@@ -40,8 +40,20 @@
                 <!-- //zooming-effect -->
             </div>
             <div class="col-md-8 single-right">
-                <h3>{{ $product_info->product_name }}</h3>
-                <h5>Product Code: {{ $product_info->product_code }}</h5>
+                <h3>{{ $product_info->product_name }} </h3>
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <p style="font-size: 25px;">
+                            <b>৳ {{ $product_info->price_in_bdt }}</b>
+                        </p>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <span class="btn btn-warning" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</span>
+                    </div>
+                </div>
+
+
                 <input type="hidden" value="{{ $product_info->id }}" readonly="readonly" name="product_id" id="product_id">
                 <input type="hidden" value="{{ $product_info->product_name }}" readonly="readonly" name="product_name" id="product_name">
                 <input type="hidden" value="{{ $product_info->product_code }}" readonly="readonly" name="product_code" id="product_code">
@@ -78,84 +90,88 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div class="color-quality-right">
-                        <h5>Quantity :</h5>
-                        <div class="quantity">
-                            <div class="quantity-select">
-                                <div class="entry value-minus1">&nbsp;</div>
-                                <input type="text" class="entry value1" id="order_qty" value="1" readonly="readonly">
-                                <div class="entry value-plus1 active">&nbsp;</div>
-                            </div>
+                </div>
+                <div class="description">
+                    <h5>Quantity :</h5>
+                    <br />
+                    <div class="quantity">
+                        <div class="quantity-select">
+                            <div class="entry value-minus1">&nbsp;</div>
+                            <input type="text" class="entry value1" id="order_qty" value="1" readonly="readonly">
+                            <div class="entry value-plus1 active">&nbsp;</div>
                         </div>
-                        <!--quantity-->
-                        <script>
-                            $('.value-plus1').on('click', function(){
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)+1;
-                                divUpd.val(newVal);
-                            });
-
-                            $('.value-minus1').on('click', function(){
-                                var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)-1;
-                                if(newVal>=1) divUpd.val(newVal);
-                            });
-                        </script>
-                        <!--quantity-->
-
                     </div>
+                    <!--quantity-->
+                    <script>
+                        $('.value-plus1').on('click', function(){
+                            var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)+1;
+                            divUpd.val(newVal);
+                        });
+
+                        $('.value-minus1').on('click', function(){
+                            var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.val(), 10)-1;
+                            if(newVal>=1) divUpd.val(newVal);
+                        });
+                    </script>
+                    <!--quantity-->
+
                     <div class="clearfix"> </div>
                 </div>
-                <div class="occasional">
-                    <h5>Size :</h5>
-
-                    @foreach($product_sizes as $product_size)
-                        <div class="colr ert">
-                            <div class="check">
-                                <label class=""><input type="radio" name="size" id="size" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 18px; height: 18px;"><i> </i>{{ $product_size->size.' - '.$product_size->size_description }}</label>
-                            </div>
-                        </div>
+                <div class="description">
+                    <h5>SIZE: </h5>
+                    @foreach($product_sizes as $s => $product_size)
+                        {{--<div class="colr ert">--}}
+                            {{--<div class="check">--}}
+                                {{--<label class="">--}}
+                                    <input type="radio" name="size" id="size{{$s}}" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 20px; height: 20px;">
+                                    <label style="font-size: 21px; font-weight: 700" for="size{{$s}}"> {{ $product_size->size.' - '.$product_size->size_description }}</label>
+                                {{--</label>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     @endforeach
-
                     <div class="clearfix"> </div>
                 </div>
-                <div class="simpleCart_shelfItem">
-                    <p>
-                        {{--<span>$320</span> --}}
-                        <i class="item_price">৳ {{ $product_info->price_in_bdt }}</i>
-                    </p>
-                    <p><a class="" href="javaScript:void(0)" onclick="addToCart()">Add to cart</a></p>
+                <div class="occasional">
+                    <h5>Product Code: <span style="color: #000 !important;">{{ $product_info->product_code }}</span></h5>
                 </div>
                 <div class="occasional">
-                    <h5><i>Product Detail</i></h5>
+                    <h5>Product Detail</h5>
 
                     <div class="panel-group" id="accordion">
 
                         @foreach($product_specifications as $k => $product_specification)
-                            <div class="panel panel-warning">
+                            <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <h4><a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">{{ $product_specification->specification_name }}</a> <i class="fas fa-angle-down"></i></h4>
+                                        <a class="accordion-toggle btn-block" style="text-decoration:none; font-size: 23px; color: black;" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">
+                                            {!! $product_specification->specification_name !!}
+                                            <span class="fas fa-angle-down" style="float: right;"></span>
+                                         </a>
                                     </h4>
                                 </div>
                                 <div id="collapse{{ $k }}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        @php
+                                        {{--<div class="row">--}}
 
-                                            $product_specification_tags_array = explode (",", $product_specification->specification_description);
+                                            @php
 
-                                        @endphp
+                                                $product_specification_tags_array = explode (",", $product_specification->specification_description);
 
-                                        @foreach($product_specification_tags_array as $product_specification_tag)
+                                            @endphp
 
-                                            @if(!empty($product_specification_tag))
+                                            @foreach($product_specification_tags_array as $product_specification_tag)
 
-                                                    <span class="" style="font-size: 13px; background-color: rgba(89,106,29,0.1); color: #000000;">
-                                                    {{ $product_specification_tag }}
-                                                    </span><br />
+                                                @if(!empty($product_specification_tag))
+                                                    {{--<div class="col-sm-6">--}}
+                                                        <span class="btn btn-default" style="font-size: 18px; background-color: rgba(89,106,29,0.1); color: #000000; margin-top: 1px;margin-bottom: 10px; white-space: normal !important; word-wrap: break-word;">
+                                                        {{ $product_specification_tag }}
+                                                        </span><br />
+                                                    {{--</div>--}}
+                                                @endif
 
-                                            @endif
+                                            @endforeach
 
-                                        @endforeach
-
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +183,6 @@
 
         </div>
     </div>
-
 
     <div class="">
         <div class="container">
@@ -237,30 +252,32 @@
             <ul id="flexiselDemo2">
                 @foreach($related_products as $related_product)
                     <li>
-                        <div class="w3l_related_products_grid">
-                            <div class="agile_ecommerce_tab_left dresses_grid">
-                                <div class="hs-wrapper hs-wrapper3">
+                        <a href="{{ route('view_single_product', $related_product->id) }}">
+                            <div class="w3l_related_products_grid">
+                                <div class="agile_ecommerce_tab_left dresses_grid">
+                                    <div class="hs-wrapper hs-wrapper3">
 
-                                    @foreach($related_product->productimages as $product_image)
-                                        <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
-                                    @endforeach
+                                        @foreach($related_product->productimages as $product_image)
+                                            <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
+                                        @endforeach
 
-                                    <div class="w3_hs_bottom">
-                                        <div class="flex_ecommerce">
-                                            <a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+                                        <div class="w3_hs_bottom">
+                                            <div class="flex_ecommerce">
+                                                {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <h5><a href="{{ route('view_single_product', $related_product->id) }}">{{ $related_product->product_name }}</a></h5>
-                                <div class="simpleCart_shelfItem">
-                                    <p class="flexisel_ecommerce_cart">
-                                        {{--<span>৳ {{ $related_product->price_in_bdt }}</span>--}}
-                                        <i class="item_price">{{ $related_product->price_in_bdt }}</i>
-                                    </p>
-                                    <p><a class="item_add" href="{{ route('view_single_product', $related_product->id) }}">View Detail</a></p>
+                                    <h5><a href="{{ route('view_single_product', $related_product->id) }}">{{ $related_product->product_name }}</a></h5>
+                                    <div class="simpleCart_shelfItem">
+                                        <p class="flexisel_ecommerce_cart">
+                                            {{--<span>৳ {{ $related_product->price_in_bdt }}</span>--}}
+                                            <i class="item_price">{{ $related_product->price_in_bdt }}</i>
+                                        </p>
+                                        <p><a class="item_add" href="{{ route('view_single_product', $related_product->id) }}">View Detail</a></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </li>
                 @endforeach
             </ul>
@@ -349,7 +366,7 @@
                     <section>
                         <div class="modal-body modal-body-sub">
                             <div class="col-md-12">
-                                <h4><span class="btn btn-sm btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span> Please Select Product/Color/Size!</h4>
+                                <h4><span class="btn btn-sm btn-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span> Please Select Size!</h4>
                             </div>
                             <div class="clearfix"> </div>
                         </div>
