@@ -10,6 +10,14 @@
         {{--</div>--}}
     {{--</div>--}}
 
+    <style>
+        @media only screen and (min-width: 600px) {
+            #quantity_div {
+                margin-left: 8em;
+            }
+        }
+    </style>
+
     <div class="single">
         <div class="container">
             <div class="col-md-4 single-left">
@@ -45,11 +53,11 @@
                 <div class="row">
                     <div class="col-xs-6 col-md-3">
                         <p style="font-size: 25px;">
-                            <b>৳ {{ $product_info->price_in_bdt }}</b>
+                            ৳ {{ $product_info->price_in_bdt }}
                         </p>
                     </div>
                     <div class="col-xs-6 col-md-3">
-                        <span class="btn btn-warning" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</span>
+
                     </div>
                 </div>
 
@@ -78,21 +86,21 @@
                 {{--</span>--}}
                 {{--</div>--}}
                 <div class="description">
-                    <h5><i>Short Description</i></h5>
+                    <h5>SHORT DESCRIPTION:</h5>
                     <p>{!! $product_info->product_short_description !!}</p>
                 </div>
                 <div class="color-quality">
                     <div class="color-quality-left">
-                        <h5>Color: </h5>
+                        <h5>COLOR: </h5>
                         <ul>
                             @foreach($product_colors as $product_color)
-                                <li @if($product_images[0]->color_id == $product_color->id) style="border: dotted; border-color: #69d88a" @endif><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 20px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
+                                <li @if($product_images[0]->color_id == $product_color->id) style="border: dotted; border-color: #69d88a" @endif><a href="{{ route('view_single_product', [$product_info->id, $product_color->id]) }}"><span style="border-style: solid; width: 35px; height: 35px; background-color: {{ $product_color->color_code }}"></span> {{ $product_color->color }}</a></li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
-                <div class="description">
-                    <h5>Quantity :</h5>
+                <div class="description" id="quantity_div">
+                    <h5>QUANTITY :</h5>
                     <br />
                     <div class="quantity">
                         <div class="quantity-select">
@@ -124,18 +132,21 @@
                             {{--<div class="check">--}}
                                 {{--<label class="">--}}
                                     <input type="radio" name="size" id="size{{$s}}" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 20px; height: 20px;">
-                                    <label style="font-size: 21px; font-weight: 700" for="size{{$s}}"> {{ $product_size->size.' - '.$product_size->size_description }}</label>
+                                    <label style="font-size: 22px; font-weight: 600" for="size{{$s}}"> {{ $product_size->size.' - '.$product_size->size_description }}</label>
                                 {{--</label>--}}
                             {{--</div>--}}
                         {{--</div>--}}
                     @endforeach
                     <div class="clearfix"> </div>
                 </div>
-                <div class="occasional">
-                    <h5>Product Code: <span style="color: #000 !important;">{{ $product_info->product_code }}</span></h5>
+                <div class="description">
+                    <span class="btn btn-lg btn-danger" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</span>
                 </div>
                 <div class="occasional">
-                    <h5>Product Detail</h5>
+                    <h5>PRODUCT CODE: <span style="color: #000 !important;">{{ $product_info->product_code }}</span></h5>
+                </div>
+                <div class="occasional">
+                    <h5>PRODUCT DETAIL:</h5>
 
                     <div class="panel-group" id="accordion">
 
@@ -163,7 +174,7 @@
 
                                                 @if(!empty($product_specification_tag))
                                                     {{--<div class="col-sm-6">--}}
-                                                        <span class="btn btn-default" style="font-size: 18px; background-color: rgba(89,106,29,0.1); color: #000000; margin-top: 1px;margin-bottom: 10px; white-space: normal !important; word-wrap: break-word;">
+                                                        <span class="btn btn-default" style="font-size: 18px; background-color: rgba(89,106,29,0.1); color: #000000; margin-top: 1px; margin-left: -10px; margin-right: 10px; margin-bottom: 10px; white-space: normal !important; word-wrap: break-word; text-align: left;">
                                                         {{ $product_specification_tag }}
                                                         </span><br />
                                                     {{--</div>--}}
@@ -255,17 +266,17 @@
                         <a href="{{ route('view_single_product', $related_product->id) }}">
                             <div class="w3l_related_products_grid">
                                 <div class="agile_ecommerce_tab_left dresses_grid">
-                                    <div class="hs-wrapper hs-wrapper3">
+                                    <div class="">
 
-                                        @foreach($related_product->productimages as $product_image)
+                                        @foreach($related_product->productimages->take(1) as $product_image)
                                             <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive">
                                         @endforeach
 
-                                        <div class="w3_hs_bottom">
-                                            <div class="flex_ecommerce">
+                                        {{--<div class="w3_hs_bottom">--}}
+                                            {{--<div class="flex_ecommerce">--}}
                                                 {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $related_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
-                                            </div>
-                                        </div>
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                     <h5><a href="{{ route('view_single_product', $related_product->id) }}">{{ $related_product->product_name }}</a></h5>
                                     <div class="simpleCart_shelfItem">

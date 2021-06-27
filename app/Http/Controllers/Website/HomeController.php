@@ -132,7 +132,7 @@ class HomeController extends Controller
         $product_sizes = ProductSize::where('product_id', $id)->where('status', 1)->get();
         $product_specifications = ProductSpecification::where('product_id', $id)->where('status', 1)->get();
 
-        $related_products = Product::where('status', 1)->where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(4)->get();
+        $related_products = Product::where('status', 1)->where('id', '<>', $id)->where('sub_category_id', $product_sub_category_id)->orderBy('id', 'desc')->take(6)->get();
 
         $count_cart_items = 0;
         if(session()->has('cart')){

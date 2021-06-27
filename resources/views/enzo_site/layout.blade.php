@@ -170,9 +170,34 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <a href="{{ route('index') }}"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive center-block" width="200" height="100"></a>
+                <a href="{{ route('index') }}" id="home1"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive center-block" width="200" height="100"></a>
             </div>
-            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="pull-right" id="full_width_my_account">
+                    <nav class="">
+                        <div class="container-fluid">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ACCOUNT <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @if(!empty($customer_data['customer_id']))
+                                            <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}" class="btn btn-lg" style="text-align: left">My Profile</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('my_orders') }}" class="btn btn-lg" style="text-align: left">Order History</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('customer_logout') }}" class="btn btn-lg" style="text-align: left">Logout</a></li>
+
+                                        @else
+                                            <li><a href="javaScript:void(0)" class="btn btn-lg" data-toggle="modal" data-target="#myModal88" style="text-align: left">Sign In</a></li>
+                                            <div class="clearfix"></div>
+                                            <li><a href="{{ route('customer.create') }}" class="btn btn-lg" style="text-align: left">Register</a></li>
+                                        @endif
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
         <!--			<div class="search">-->
         <!--				<input class="search_box" type="checkbox" id="search_box">-->
@@ -211,7 +236,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav">
-                    <li class="active" id="home1"><a href="{{ route('index') }}" class="act">Home</a></li>
+                    <li class="active"><a href="{{ route('index') }}" class="act">Home</a></li>
                     <!-- Mega Menu -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -249,8 +274,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     </li>
                     <li><a href="{{ route('about_us') }}">About-Us</a></li>
                     <li><a href="{{ route('contact_us') }}">Contact</a></li>
-                    <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                    <li id="account_min_screen_div">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">ACCOUNT <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <div class="row">
 
@@ -258,16 +283,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <ul class="multi-column-dropdown">
 
                                         @if(!empty($customer_data['customer_id']))
-                                            <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}" style="margin-left: 5px">My Profile</a></li>
+                                            <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}" class="btn btn-md" style="margin-left: 5px">My Profile</a></li>
                                             <div class="clearfix"></div>
-                                            <li><a href="{{ route('my_orders') }}" style="margin-left: 5px">Order History</a></li>
+                                            <li><a href="{{ route('my_orders') }}" class="btn btn-md" style="margin-left: 5px;">Order History</a></li>
                                             <div class="clearfix"></div>
-                                            <li><a href="{{ route('customer_logout') }}" style="margin-left: 5px">Logout</a></li>
+                                            <li><a href="{{ route('customer_logout') }}" class="btn btn-md" style="margin-left: 5px">Logout</a></li>
 
                                         @else
-                                            <li><a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal88" style="margin-left: 5px">Sign In</a></li>
+                                            <li><a href="javaScript:void(0)" class="btn btn-md" data-toggle="modal" data-target="#myModal88" style="margin-left: 5px">Sign In</a></li>
                                             <div class="clearfix"></div>
-                                            <li><a href="{{ route('customer.create') }}" style="margin-left: 5px">Register</a></li>
+                                            <li><a href="{{ route('customer.create') }}" class="btn btn-md" style="margin-left: 5px">Register</a></li>
                                         @endif
                                     </ul>
                                 </div>
@@ -336,7 +361,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <li><a href="{{ route('about_us') }}">About</a></li>
                     <li><a href="{{ route('contact_us') }}">Contact Us</a></li>
                     {{--<li><a href="short-codes.php">Short Codes</a></li>--}}
-                    <li><a href="faq.php">FAQ's</a></li>
+                    <li><a href="javaScript:void(0)">FAQ's</a></li>
                     {{--<li><a href="products.php">Special Products</a></li>--}}
                 </ul>
             </div>
@@ -364,10 +389,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <h4>Follow Us</h4>
                 <div class="agileits_social_button">
                     <ul>
-                        <li><a href="#" class="facebook"> </a></li>
-                        <li><a href="#" class="twitter"> </a></li>
-                        <li><a href="#" class="google"> </a></li>
-                        <li><a href="#" class="pinterest"> </a></li>
+                        <li><a href="javaScript:void(0)" class="facebook" style="background-color: #366edd"> </a></li>
+                        <li><a href="javaScript:void(0)" class="twitter"> </a></li>
+                        {{--<li><a href="#" class="google"> </a></li>--}}
+                        <li><a href="javaScript:void(0)" class="pinterest"> </a></li>
                     </ul>
                 </div>
             </div>

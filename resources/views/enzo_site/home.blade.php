@@ -3,6 +3,7 @@
 @extends('enzo_site.layout')
 
 @section('content')
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -106,19 +107,19 @@
                                     @foreach($sub_cat_lastest_prods as $sub_cat_lastest_prod)
 										<a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">
                                         <div class="col-md-3 agile_ecommerce_tab_left">
-                                            <div class="hs-wrapper">
-                                                @foreach($sub_cat_lastest_prod->productimages as $product_image)
+                                            <div class="">
+                                                @foreach($sub_cat_lastest_prod->productimages->take(1) as $product_image)
                                                     <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
                                                 @endforeach
 
-                                                <div class="w3_hs_bottom">
-                                                    <ul>
-                                                        <li>
+                                                {{--<div class="w3_hs_bottom">--}}
+                                                    {{--<ul>--}}
+                                                        {{--<li>--}}
                                                             {{--<a href="javaScript:void(0)" data-toggle="modal" data-target="#myModal" onclick="viewProductShortDetail({{ $sub_cat_lastest_prod->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
                                                             {{--<a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                                        {{--</li>--}}
+                                                    {{--</ul>--}}
+                                                {{--</div>--}}
                                             </div>
                                             <h5><a href="{{ route('view_single_product', $sub_cat_lastest_prod->id) }}">{{ $sub_cat_lastest_prod->product_name }}</a></h5>
                                             <div class="simpleCart_shelfItem">
@@ -719,20 +720,20 @@
 
 				@foreach($new_products as $new_product)
 					<a href="{{ route('view_single_product', $new_product->id) }}">
-						<div class="col-md-3 agileinfo_new_products_grid">
+						<div class="col-md-4 agileinfo_new_products_grid">
 							<div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
-								<div class="hs-wrapper hs-wrapper1">
-									@foreach($new_product->productimages as $product_image)
+								<div class="">
+									@foreach($new_product->productimages->take(1) as $product_image)
 										<img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
 									@endforeach
 
-									<div class="w3_hs_bottom w3_hs_bottom_sub">
-										<ul>
-											<li>
+									{{--<div class="w3_hs_bottom w3_hs_bottom_sub">--}}
+										{{--<ul>--}}
+											{{--<li>--}}
 												{{--<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $new_product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
-											</li>
-										</ul>
-									</div>
+											{{--</li>--}}
+										{{--</ul>--}}
+									{{--</div>--}}
 								</div>
 								<h5><a href="{{ route('view_single_product', $new_product->id) }}">{{ $new_product->product_name }}</a></h5>
 								<div class="simpleCart_shelfItem">

@@ -3,18 +3,20 @@
 @section('content')
 
     <!-- banner -->
-    <div class="">
-        <img src="{{ asset('enzo_website_assets/images/cover_polo_other.jpg') }}" width="100%">
-    </div>
+    {{--<div class="">--}}
+        {{--<img src="{{ asset('enzo_website_assets/images/cover_polo_other.jpg') }}" width="100%">--}}
+    {{--</div>--}}
     <!-- //banner -->
 
     <!-- breadcrumbs -->
-    <div class="breadcrumb_dress">
+    <div class="w3l_related_products">
         <div class="container">
-            <ul>
-                <li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>
-                <li>{{ $sub_cat_info->sub_category_name }}</li>
-            </ul>
+            {{--<ul>--}}
+                {{--<li><a href="{{ url('/') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a> <i>/</i></li>--}}
+                {{--<li>{{ $sub_cat_info->sub_category_name }}</li>--}}
+            {{--</ul>--}}
+
+            <h3>{{ $sub_cat_info->sub_category_name }}</h3>
         </div>
     </div>
     <!-- //breadcrumbs -->
@@ -25,39 +27,23 @@
 
                 <div class="col-md-12 w3ls_dresses_grid_right">
 
-                    <div class="w3ls_dresses_grid_right_grid2">
-                        {{--<div class="w3ls_dresses_grid_right_grid2_left">--}}
-                            {{--<h3>Showing Results: 0-1</h3>--}}
-                        {{--</div>--}}
-                        {{--<div class="w3ls_dresses_grid_right_grid2_right">--}}
-                            {{--<select name="select_item" class="select_item">--}}
-                                {{--<option selected="selected">Default sorting</option>--}}
-                                {{--<option>Sort by popularity</option>--}}
-                                {{--<option>Sort by average rating</option>--}}
-                                {{--<option>Sort by newness</option>--}}
-                                {{--<option>Sort by price: low to high</option>--}}
-                                {{--<option>Sort by price: high to low</option>--}}
-                            {{--</select>--}}
-                        {{--</div>--}}
-                        <div class="clearfix"> </div>
-                    </div>
                     <div class="w3ls_dresses_grid_right_grid3">
 
                         @foreach($products as $product)
                             <a href="{{ route('view_single_product', $product->id) }}">
-                                <div class="col-md-3 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
+                                <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_dresses">
                                     <div class="agile_ecommerce_tab_left dresses_grid">
-                                        <div class="hs-wrapper hs-wrapper2">
-                                            @foreach($product->productimages as $product_image)
+                                        <div class="">
+                                            @foreach($product->productimages->take(1) as $product_image)
                                                 <img src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="img-responsive" />
                                             @endforeach
-                                            <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                                <ul>
-                                                    <li>
+                                            {{--<div class="w3_hs_bottom w3_hs_bottom_sub1">--}}
+                                                {{--<ul>--}}
+                                                    {{--<li>--}}
                                                         {{--<a href="javaScript:void(0)" onclick="viewProductShortDetail({{ $product->id }})"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>--}}
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                    {{--</li>--}}
+                                                {{--</ul>--}}
+                                            {{--</div>--}}
                                         </div>
                                         <h5><a href="{{ route('view_single_product', $product->id) }}">{{ $product->product_name }}</a></h5>
                                         <div class="simpleCart_shelfItem">
