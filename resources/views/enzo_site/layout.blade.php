@@ -61,6 +61,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- Rating Pluging End -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Icons -->
+    <link href="{{ asset('enzo_website_assets/washicons/styles.css') }}" media="all" rel="stylesheet" type="text/css"/>
+    <!-- Icons -->
+
 </head>
 
 <body>
@@ -168,16 +173,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="container">
 
         <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
+            <div class="col-sm-0 col-md-4"></div>
+            <div class="col-sm-12 col-md-4">
                 <a href="{{ route('index') }}" id="home1"><img src="{{ asset('storage/uploads/'.$company_info[0]->company_logo) }}" alt="ENZO" class="img-responsive center-block" width="200" height="100"></a>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-0 col-md-4">
                 <div class="pull-right" id="full_width_my_account">
                     <nav class="">
                         <div class="container-fluid">
                             <ul class="nav navbar-nav">
-                                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ACCOUNT <span class="caret"></span></a>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="javaScript:void(0)">
+                                        <h5><span class="glyphicon glyphicon-user" aria-hidden="true"></span> ACCOUNT<span class="caret"></span></h5>
+                                    </a>
                                     <ul class="dropdown-menu">
                                         @if(!empty($customer_data['customer_id']))
                                             <li><a href="{{ route('customer.show', $customer_data['customer_id']) }}" class="btn btn-lg" style="text-align: left">My Profile</a></li>

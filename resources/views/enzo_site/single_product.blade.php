@@ -15,6 +15,16 @@
             #quantity_div {
                 margin-left: 8em;
             }
+
+            #you_may_like_div{
+                display: block;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            #you_may_like_div {
+                display: none;
+            }
         }
     </style>
 
@@ -47,7 +57,7 @@
                 <script src="{{ asset('enzo_website_assets/js/imagezoom.js') }}"></script>
                 <!-- //zooming-effect -->
             </div>
-            <div class="col-md-8 single-right">
+            <div class="col-md-6 single-right">
                 <h3>{{ $product_info->product_name }} </h3>
 
                 <div class="row">
@@ -85,6 +95,9 @@
                     {{--<label for="rating1">1</label>--}}
                 {{--</span>--}}
                 {{--</div>--}}
+                <div class="occasional">
+                    <h5>PRODUCT CODE: <span style="color: #888888">{{ $product_info->product_code }}</span></h5>
+                </div>
                 <div class="description">
                     <h5>SHORT DESCRIPTION:</h5>
                     <p>{!! $product_info->product_short_description !!}</p>
@@ -132,7 +145,7 @@
                             {{--<div class="check">--}}
                                 {{--<label class="">--}}
                                     <input type="radio" name="size" id="size{{$s}}" class="" onclick="getAndSetSizeId('{{ $product_size->id }}', '{{ $product_size->size }}', '{{ $product_size->size_description }}')" style="width: 20px; height: 20px;">
-                                    <label style="font-size: 22px; font-weight: 600" for="size{{$s}}"> {{ $product_size->size.' - '.$product_size->size_description }}</label>
+                                    <label for="size{{$s}}"> {{ $product_size->size.' - '.$product_size->size_description }}</label>
                                 {{--</label>--}}
                             {{--</div>--}}
                         {{--</div>--}}
@@ -142,47 +155,104 @@
                 <div class="description">
                     <span class="btn btn-lg btn-danger" onclick="addToCart()"><i class="fas fa-shopping-cart"></i> Add to Cart</span>
                 </div>
-                <div class="occasional">
-                    <h5>PRODUCT CODE: <span style="color: #000 !important;">{{ $product_info->product_code }}</span></h5>
-                </div>
+
+            </div>
+            <div class="col-md-2 text-center" id="you_may_like_div" style="color: #888888;">
+                <h4><b>You May Like</b></h4>
+                <br />
+                @foreach($related_products as $k_1 => $related_product)
+                    @if($k_1 < 3)
+                        <a href="{{ route('view_single_product', $related_product->id) }}" style="text-decoration: none;">
+                        <div class="card">
+
+                            @foreach($related_product->productimages->take(1) as $product_image)
+                                <img class="card-img-top" src="{{ asset('storage/uploads/'.$product_image->image_url) }}" alt=" " class="{{ $related_product->product_name }}" width="120" height="120">
+                            @endforeach
+
+                            <div class="card-body">
+                                <p class="card-text">{{ $related_product->product_name }}</p>
+                            </div>
+                        </div>
+                        </a>
+                        <br />
+                    @endif
+                @endforeach
+                {{--<div class="card">--}}
+                    {{--<img class="card-img-top" src="http://10.234.34.143/storage/uploads/1_0_2_20210615162830.jpg" alt="Card image cap" width="120" height="120">--}}
+                    {{--<div class="card-body">--}}
+                        {{--<p class="card-text">Product Name</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<br />--}}
+                {{--<div class="card">--}}
+                    {{--<img class="card-img-top" src="http://10.234.34.143/storage/uploads/1_0_2_20210615162830.jpg" alt="Card image cap" width="120" height="120">--}}
+                    {{--<div class="card-body">--}}
+                        {{--<p class="card-text">Product Name</p>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+                {{--<br />--}}
+            </div>
+            <div class="col-md-12">
                 <div class="occasional">
                     <h5>PRODUCT DETAIL:</h5>
 
                     <div class="panel-group" id="accordion">
 
                         @foreach($product_specifications as $k => $product_specification)
-                            <div class="panel panel-info">
+                            <div class="panel" style="background-color: #F6F6F6">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a class="accordion-toggle btn-block" style="text-decoration:none; font-size: 23px; color: black;" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">
+                                        <a class="accordion-toggle btn-block" style="text-decoration:none; font-size: 22px; color: #888888; font-weight: normal" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">
                                             {!! $product_specification->specification_name !!}
                                             <span class="fas fa-angle-down" style="float: right;"></span>
-                                         </a>
+                                        </a>
                                     </h4>
                                 </div>
                                 <div id="collapse{{ $k }}" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        {{--<div class="row">--}}
 
-                                            @php
+                                        @php
 
-                                                $product_specification_tags_array = explode (",", $product_specification->specification_description);
+                                            $product_specification_tags_array = explode (",", $product_specification->specification_description);
 
-                                            @endphp
+                                        @endphp
 
-                                            @foreach($product_specification_tags_array as $product_specification_tag)
+                                        {{--@foreach($product_specification_tags_array as $product_specification_tag)--}}
 
-                                                @if(!empty($product_specification_tag))
-                                                    {{--<div class="col-sm-6">--}}
-                                                        <span class="btn btn-default" style="font-size: 18px; background-color: rgba(89,106,29,0.1); color: #000000; margin-top: 1px; margin-left: -10px; margin-right: 10px; margin-bottom: 10px; white-space: normal !important; word-wrap: break-word; text-align: left;">
-                                                        {{ $product_specification_tag }}
-                                                        </span><br />
-                                                    {{--</div>--}}
-                                                @endif
+                                        {{--@if(!empty($product_specification_tag))--}}
+                                        {{--<span class="btn btn-default" style="font-size: 18px; background-color: rgba(89,106,29,0.1); color: #000000; margin-top: 1px; margin-left: -10px; margin-right: 10px; margin-bottom: 10px; white-space: normal !important; word-wrap: break-word; text-align: left;">--}}
+                                        {{--{!! $product_specification_tag !!}--}}
+                                        {{--</span><br />--}}
+                                        {{--@endif--}}
 
-                                            @endforeach
+                                        {{--@endforeach--}}
 
-                                        {{--</div>--}}
+                                        <div class="row" style="margin-bottom: 20px;">
+                                            <div class="col-md-12">
+                                                @foreach($product_specification_tags_array as $k => $product_specification_tag)
+
+                                                    @php
+                                                        $reminder = ($k+1)%4;
+                                                    @endphp
+
+                                                    @if(!empty($product_specification_tag))
+                                                        <div class="col-md-3 text-center" style="height: 150px;">
+
+                                                            {!! $product_specification_tag !!}
+
+                                                        </div>
+
+                                                        @if($reminder == 0)
+                                                            <br />
+                                                        @endif
+
+                                                    @endif
+
+                                                @endforeach
+                                            </div>
+                                        </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +261,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

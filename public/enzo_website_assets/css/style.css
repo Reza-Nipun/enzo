@@ -7,14 +7,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 html, body{
     font-size: 100%;
 	background:	#fff;
-	font-family:'Open Sans', sans-serif;
+	font-family:'Calibri', sans-serif;
 }
 p{
 	margin:0;
 	font-size:14px;
 }
 h1,h2,h3,h4,h5,h6{
-	font-family: 'Glegoo', serif;
+	font-family: 'Calibri', serif;
 	margin:0;
 }
 ul,label{
@@ -533,12 +533,12 @@ ul.multi-column-dropdown h6 {
 }
 .simpleCart_shelfItem p{
 	font-size: 1.2em;
-    color: #212121;
+    color: #888888;
     margin: 0.5em 0 1em;
     font-weight: 600;
 }
 .simpleCart_shelfItem p span{
-	color: #000;
+	color: #888888;
     font-size: .8em;
     text-decoration: line-through;
     padding-right: 1em;
@@ -549,7 +549,7 @@ ul.multi-column-dropdown h6 {
 }
 .simpleCart_shelfItem p a{
     font-size: 14px;
-    color:#212121;
+    color:#888888;
     margin: 0;
     text-decoration: none;
     text-transform: uppercase;
@@ -719,7 +719,7 @@ ul.multi-column-dropdown h6 {
 }
 .color-quality ul li a {
     font-size: 14px;
-    color: #000;
+    color: #888888;
     text-decoration: none;
 }
 .color-quality ul li a span {
@@ -1138,19 +1138,19 @@ ul.wmuSliderPagination {
 	left:0;
 }
 .w3_footer_grid p{
-	color:#000;
+	color:#888888;
 	line-height:1.8em;
 	margin-bottom:2em;
 }
 .w3_footer_grid ul li {
     list-style-type: none;
     margin-bottom: 1em;
-    color: #000;
+    color: #888888;
     font-size: 14px;
 }
 .w3_footer_grid ul.address li i {
-    color:#414141;
-    border: 1px solid #414141;
+    color:#888888;
+    border: 1px solid #888888;
     padding: .5em;
     margin-right: 1em;
 }
@@ -1159,7 +1159,7 @@ ul.wmuSliderPagination {
     margin-left: 3em;
 }
 .w3_footer_grid ul li a {
-    color: #000;
+    color: #888888;
     text-decoration: none;
 }
 .w3_footer_grid ul li a:hover {
@@ -1241,7 +1241,7 @@ ul.wmuSliderPagination {
 .footer-copy p{
 	margin:4em 0 0;
 	text-align:center;
-	color:#000;
+	color:#8888;
 	line-height:1.8em;
 }
 .footer-copy p a{
@@ -2102,12 +2102,12 @@ h2.typoh2{
 /*-- //faq --*/
 /*-- about --*/
 .w3ls_about_grid_left p{
-	color:#000;
+	color:#888888;
 	line-height:1.8em;
 	margin-bottom:2em;
 }
 .w3ls_about_grid_left2 p{
-	color:#000;
+	color:#888888;
 	line-height:1.8em;
 }
 .w3ls_about_grid_left1 {
@@ -2189,13 +2189,13 @@ h2.typoh2{
 	margin:0 0 1em;
 }
 .contact-left p{
-	color: #000;
+	color: #888888;
     line-height: 1.8em;
     margin: 0;
     text-transform: capitalize;
 }
 .contact-left p span{
-	color:#212121;
+	color:#888888;
 	font-weight:700;
 }
 .contact-left ul{
@@ -2206,10 +2206,10 @@ h2.typoh2{
 	list-style-type: none;
     margin: 0 0 1em;
     font-size: 14px;
-    color: #000;
+    color: #888888;
 }
 .contact-left ul li a{
-	color:#000;
+	color:#888888;
 	text-decoration:none;
 }
 .contact-left ul li a:hover{
@@ -2219,7 +2219,7 @@ h2.typoh2{
 	background: none;
     border: 1px groove #000;
     /*border-top: none;*/
-    color: #424341;
+    color: #888888;
     padding: 10px;
     font-size: 14px;
     outline: none;
@@ -2277,9 +2277,14 @@ h2.typoh2{
     margin: 0;
 }
 .description p{
-	color: #000;
+	color: #888888;
     line-height: 1.8em;
     margin: 1em 0 0;
+}
+.description label{
+    font-size:22px !important;
+    color:#888888;
+    font-weight: normal;
 }
 .color-quality-left{
 	float:left;
@@ -2398,7 +2403,7 @@ h2.typoh2{
     width: 40px;
 	height:40px;
     padding: 8px 0px;
-    color: #A9A9A9;
+    color: #000000;
     line-height: 24px;
     border: 1px solid #E5E5E5;
     background-color: #E5E5E5;

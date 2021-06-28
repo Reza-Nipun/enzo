@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="018ae698-3bba-4023-81e3-e726b3825a7e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css" afterPath="$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/enzo_website_assets/css/style.css" afterPath="$PROJECT_DIR$/public/enzo_website_assets/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/home.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/product_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/product_list.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" afterPath="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +24,8 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="20" column="83" lean-forward="true" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+            <state relative-caret-position="340">
+              <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -37,7 +34,7 @@
       <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="2057">
               <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding>
                 <marker date="1624791078288" expanded="true" signature="2371:2920" ph="SELECT t1.*,... *" />
@@ -52,30 +49,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="170" column="39" lean-forward="true" selection-start-line="170" selection-start-column="39" selection-end-line="170" selection-end-column="39" />
+            <state relative-caret-position="81">
+              <caret line="180" column="60" lean-forward="true" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#3;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#p#1;n#div#1;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="4349" column="23" lean-forward="true" selection-start-line="4349" selection-start-column="23" selection-end-line="4349" selection-end-column="23" />
+            <state relative-caret-position="136">
+              <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -84,12 +75,50 @@
       <file leaf-file-name="single_product.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+            <state relative-caret-position="268">
+              <caret line="203" column="60" lean-forward="true" selection-start-line="203" selection-start-column="60" selection-end-line="203" selection-end-column="60" />
               <folding>
-                <element signature="e#8922#8943#0#HTML" expanded="true" />
-                <element signature="e#9929#10159#0#HTML" expanded="true" />
-                <marker date="1624790574810" expanded="true" signature="26365:26421" ph="..." />
+                <element signature="e#4842#4864#0#HTML" expanded="true" />
+                <element signature="e#8374#8397#0#HTML" expanded="true" />
+                <element signature="e#8664#8694#0#HTML" expanded="true" />
+                <element signature="e#10609#10642#0#HTML" expanded="true" />
+                <element signature="e#10843#10925#0#HTML" expanded="true" />
+                <element signature="e#11171#11192#0#HTML" expanded="true" />
+                <element signature="e#12563#12591#0#HTML" expanded="true" />
+                <element signature="e#13168#13190#0#HTML" expanded="true" />
+                <marker date="1624878411110" expanded="true" signature="17721:18050" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="17734:18029" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="20511:21467" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="20523:21445" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="28734:29772" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="29472:29681" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="29589:29645" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="29863:30421" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="30186:30407" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="30508:30659" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="30692:32558" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="31424:32426" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="31942:32404" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="31993:32085" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32109:32207" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32213:32377" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32453:32531" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32619:34546" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32632:33210" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32716:32894" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32751:32808" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32816:32876" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32949:33159" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="32984:33058" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33066:33141" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33473:33660" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33495:33643" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33697:33781" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33719:33780" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33818:33901" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33840:33900" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33925:34018" ph="..." />
+                <marker date="1624878411110" expanded="true" signature="33955:34017" ph="..." />
               </folding>
             </state>
           </provider>
@@ -99,36 +128,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>twitter</find>
-      <find>pinterest</find>
-      <find>contact-left</find>
-      <find>box_1</find>
-      <find>agile_ecommerce_tab_left</find>
-      <find>getSubCategoryWiseProductList</find>
-      <find>take</find>
-      <find>w3_hs_bottom</find>
-      <find>related product</find>
-      <find>w3_hs_bottom w3_hs_bottom_sub</find>
-      <find>nbs-flexisel-nav-left</find>
-      <find>related produc</find>
-      <find>faq</find>
-      <find>flexslider</find>
-      <find>flex-control-thumbs</find>
-      <find>slide</find>
-      <find>home1</find>
-      <find>flexiselDemo2</find>
-      <find>New Products</find>
-      <find>nav</find>
-      <find>24.2</find>
-      <find>product_list</find>
-      <find>navbar-toggle</find>
-      <find>acco</find>
-      <find>my account</find>
-      <find>single</find>
+      <find>color:</find>
+      <find>#000</find>
+      <find>.value1</find>
+      <find>w3ls_about_grid_left</find>
+      <find>agile_mail_grids</find>
+      <find>w3_footer_grids</find>
+      <find>address</find>
+      <find>footer</find>
+      <find>footer-copy</find>
+      <find>simpleCart_shelfItem</find>
+      <find>color-quality-left</find>
+      <find>color-quality</find>
+      <find>card-body</find>
+      <find>javascript</find>
+      <find>min</find>
       <find>full_width_my_account</find>
+      <find>you ma</find>
+      <find>transfor</find>
+      <find>flex</find>
+      <find>flex-viewport</find>
+      <find>flexslider</find>
+      <find>container</find>
+      <find>flex-control-nav</find>
+      <find>single-right</find>
       <find>account</find>
-      <find>.navigation</find>
-      <find>ACCOUNT</find>
+      <find>description</find>
+      <find>label</find>
+      <find>description p</find>
+      <find>font-fami</find>
+      <find>description</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -137,9 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/emails/welcome_email.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/emails/reset_password_email.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/reset_password.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2021_06_15_123949_add_thumbnail_to_product_images_table.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/database/migrations/2021_06_16_102203_create_order_details_table.php" />
@@ -154,7 +180,6 @@
         <option value="$PROJECT_DIR$/resources/views/emails/order_confirmation_email.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2021_06_17_114023_create_orders_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2021_06_19_093657_create_abouts_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/message_contact_form.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/order_list.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/CustomerController.php" />
@@ -183,11 +208,15 @@
         <option value="$PROJECT_DIR$/resources/views/enzo_site/contact_us.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/product_list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/home.blade.php" />
-        <option value="$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css" />
-        <option value="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php" />
-        <option value="$PROJECT_DIR$/public/enzo_website_assets/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php" />
+        <option value="$PROJECT_DIR$/public/enzo_website_assets/washicons/icons-reference.html" />
+        <option value="$PROJECT_DIR$/../enzo_demo/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php" />
+        <option value="$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css" />
+        <option value="$PROJECT_DIR$/public/enzo_website_assets/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php" />
+        <option value="$PROJECT_DIR$/public/enzo_website_assets/css/style.css" />
       </list>
     </option>
   </component>
@@ -435,7 +464,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -569,15 +598,17 @@
       <workItem from="1624505997776" duration="14194000" />
       <workItem from="1624556895084" duration="620000" />
       <workItem from="1624677420983" duration="19071000" />
-      <workItem from="1624765933031" duration="21567000" />
+      <workItem from="1624765933031" duration="21883000" />
+      <workItem from="1624805813386" duration="726000" />
+      <workItem from="1624852196417" duration="21364000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="470392000" />
+    <option name="totallyTimeSpent" value="492798000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20863836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -611,34 +642,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/category_list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="87" column="69" lean-forward="false" selection-start-line="87" selection-start-column="69" selection-end-line="87" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_admin/product_stock_list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="239" column="0" lean-forward="true" selection-start-line="239" selection-start-column="0" selection-end-line="239" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_17_114023_create_orders_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_19_093657_create_abouts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="33" lean-forward="true" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2021_06_16_144232_add_shipmentcharge_vat_to_company_infos_table.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -707,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="30" lean-forward="false" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -750,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="145" column="57" lean-forward="true" selection-start-line="145" selection-start-column="57" selection-end-line="145" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="117" column="34" lean-forward="true" selection-start-line="117" selection-start-column="34" selection-end-line="117" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -787,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="59" lean-forward="true" selection-start-line="12" selection-start-column="59" selection-end-line="12" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +823,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,12 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
           <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
-          <folding>
-            <marker date="1624442430256" expanded="true" signature="4387:4507" ph="SELECT * FRO... product_images" />
-            <marker date="1624442430256" expanded="true" signature="9927:11560" ph="SELECT t1.*,... *" />
-            <marker date="1624442430256" expanded="true" signature="10202:10234" ph="SELECT * FRO... orders" />
-            <marker date="1624442430256" expanded="true" signature="11133:11191" ph="SELECT * FRO... product_images" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -874,7 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,42 +879,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7021">
           <caret line="426" column="51" lean-forward="false" selection-start-line="426" selection-start-column="51" selection-end-line="426" selection-end-column="51" />
-          <folding>
-            <marker date="1624339225848" expanded="true" signature="856:1696" ph="SELECT t1.*,... products" />
-            <marker date="1624339225848" expanded="true" signature="1343:1646" ph="SELECT produ... product_stocks" />
-            <marker date="1624339225848" expanded="true" signature="1478:1522" ph="SELECT id FR... product_colors" />
-            <marker date="1624339225848" expanded="true" signature="1561:1604" ph="SELECT id FR... product_sizes" />
-            <marker date="1624339225848" expanded="true" signature="21101:21991" ph="SELECT t1.*,... products" />
-            <marker date="1624339225848" expanded="true" signature="21588:21891" ph="SELECT produ... product_stocks" />
-            <marker date="1624339225848" expanded="true" signature="21723:21767" ph="SELECT id FR... product_colors" />
-            <marker date="1624339225848" expanded="true" signature="21806:21849" ph="SELECT id FR... product_sizes" />
-            <marker date="1624339225848" expanded="true" signature="22780:22783" ph="..." />
-            <marker date="1624339225848" expanded="true" signature="22780:22807" ph="..." />
-            <marker date="1624339225848" expanded="true" signature="22780:22917" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="50" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/contact_us.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="20" column="83" lean-forward="true" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
+        <state relative-caret-position="340">
+          <caret line="20" column="83" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="83" />
           <folding />
         </state>
       </provider>
@@ -933,7 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,33 +901,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="37" column="70" lean-forward="false" selection-start-line="37" selection-start-column="70" selection-end-line="37" selection-end-column="70" />
-          <folding>
-            <marker date="1624787183686" expanded="true" signature="19592:19648" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
-          <folding>
-            <marker date="1624790132928" expanded="true" signature="39552:39608" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="194" column="17" lean-forward="true" selection-start-line="194" selection-start-column="17" selection-end-line="194" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Website/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
+        <state relative-caret-position="2057">
           <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <marker date="1624791078288" expanded="true" signature="2371:2920" ph="SELECT t1.*,... *" />
@@ -981,40 +920,138 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/style.css">
+    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/washicons/icons-reference.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="4349" column="23" lean-forward="true" selection-start-line="4349" selection-start-column="23" selection-end-line="4349" selection-end-column="23" />
+        <state relative-caret-position="268">
+          <caret line="33" column="96" lean-forward="false" selection-start-line="33" selection-start-column="96" selection-end-line="33" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../enzo_demo/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="2264" column="15" lean-forward="false" selection-start-line="2264" selection-start-column="12" selection-end-line="2264" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/about_us.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="16" column="41" lean-forward="false" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/contact_us.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="37" column="38" lean-forward="true" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1037">
+          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
+          <folding>
+            <marker date="1624790132928" expanded="true" signature="39552:39608" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="1602" column="21" lean-forward="true" selection-start-line="1602" selection-start-column="21" selection-end-line="1602" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/flexslider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="232" column="1" lean-forward="false" selection-start-line="232" selection-start-column="1" selection-end-line="232" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="180" column="60" lean-forward="true" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#p#1;n#div#1;n#div#1;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/washicons/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/single_product.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+        <state relative-caret-position="268">
+          <caret line="203" column="60" lean-forward="true" selection-start-line="203" selection-start-column="60" selection-end-line="203" selection-end-column="60" />
           <folding>
-            <element signature="e#8922#8943#0#HTML" expanded="true" />
-            <element signature="e#9929#10159#0#HTML" expanded="true" />
-            <marker date="1624790574810" expanded="true" signature="26365:26421" ph="..." />
+            <element signature="e#4842#4864#0#HTML" expanded="true" />
+            <element signature="e#8374#8397#0#HTML" expanded="true" />
+            <element signature="e#8664#8694#0#HTML" expanded="true" />
+            <element signature="e#10609#10642#0#HTML" expanded="true" />
+            <element signature="e#10843#10925#0#HTML" expanded="true" />
+            <element signature="e#11171#11192#0#HTML" expanded="true" />
+            <element signature="e#12563#12591#0#HTML" expanded="true" />
+            <element signature="e#13168#13190#0#HTML" expanded="true" />
+            <marker date="1624878411110" expanded="true" signature="17721:18050" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="17734:18029" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="20511:21467" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="20523:21445" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="28734:29772" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="29472:29681" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="29589:29645" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="29863:30421" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="30186:30407" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="30508:30659" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="30692:32558" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="31424:32426" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="31942:32404" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="31993:32085" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32109:32207" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32213:32377" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32453:32531" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32619:34546" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32632:33210" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32716:32894" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32751:32808" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32816:32876" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32949:33159" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="32984:33058" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33066:33141" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33473:33660" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33495:33643" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33697:33781" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33719:33780" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33818:33901" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33840:33900" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33925:34018" ph="..." />
+            <marker date="1624878411110" expanded="true" signature="33955:34017" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/enzo_site/layout.blade.php">
+    <entry file="file://$PROJECT_DIR$/public/enzo_website_assets/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="170" column="39" lean-forward="true" selection-start-line="170" selection-start-column="39" selection-end-line="170" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#3;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#4;n#ul#0;n#li#0;n#ul#0;n#div#0;n#nav#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#div#0;n#ul#0;n#li#4;n#ul#0;n#div#1;n#nav#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="11" column="2" lean-forward="true" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
