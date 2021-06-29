@@ -199,10 +199,10 @@
                     <div class="panel-group" id="accordion">
 
                         @foreach($product_specifications as $k => $product_specification)
-                            <div class="panel" style="background-color: #F6F6F6">
+                            <div class="panel" style="background-color: #F6F6F6;">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a class="accordion-toggle btn-block" style="text-decoration:none; font-size: 22px; color: #888888; font-weight: normal" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">
+                                        <a class="accordion-toggle btn-block" style="text-decoration:none; font-size: 25px; color: #7c7c7c; font-weight: normal" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ $k }}">
                                             {!! $product_specification->specification_name !!}
                                             <span class="fas fa-angle-down" style="float: right;"></span>
                                         </a>
