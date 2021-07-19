@@ -63,12 +63,16 @@ Route::post('/delete_product_specification', 'ProductController@deleteProductSpe
 Route::get('/product_stock_management/{id}', 'ProductController@productStockManagement')->name('product_stock_management');
 Route::post('/save_new_color_size_combination', 'ProductController@saveNewColorSizeCombination')->name('save_new_color_size_combination');
 Route::post('/update_product_stock', 'ProductController@updateProductStock')->name('update_product_stock');
-Route::get('/new_orders', 'OrderController@newOrders')->name('new_orders');
+Route::post('/filter_product', 'ProductController@filterProduct')->name('filter_product');
+
+Route::get('/orders', 'OrderController@index')->name('orders');
 Route::get('/new_order_detail/{id}', 'OrderController@newOrderDetail')->name('new_order_detail');
 Route::get('/order_confirm/{id}', 'OrderController@orderConfirm')->name('order_confirm');
+Route::get('/order_cancel/{id}', 'OrderController@orderCancel')->name('order_cancel');
 Route::put('/shipment_confirm/{id}', 'OrderController@shipmentConfirm')->name('shipment_confirm');
 Route::get('/order_deliver/{id}', 'OrderController@orderDeliver')->name('order_deliver');
-Route::post('/filter_product', 'ProductController@filterProduct')->name('filter_product');
+Route::post('/search_order', 'OrderController@searchOrder')->name('search_order');
+Route::get('/invoice/{id}', 'OrderController@generateInvoice')->name('invoice');
 
 
 // Artisan Commands

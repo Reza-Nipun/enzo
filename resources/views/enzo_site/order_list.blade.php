@@ -40,7 +40,7 @@
                                 ৳ {{ $order->net_amount }}
                             </td>
                             <td class="text-center">
-                                {{ ($order->payment_status = 1 ? 'Paid' : 'Not Paid') }}
+                                {{ ($order->payment_status == 1 ? 'Paid' : 'Not Paid') }}
                             </td>
                             <td class="text-center">
                                 {{ $order->shipment_by.($order->shipment_remarks != '' ? ' - '.$order->shipment_remarks : '') }}
@@ -51,15 +51,15 @@
                             <td class="text-center">
 
                                 @if($order->status == 0)
-                                    Cancel
+                                    <span class="badge badge-danger">Cancelled</span>
                                 @elseif($order->status == 1)
-                                    Order Received
+                                    <span class="badge badge-warning">Order Received</span>
                                 @elseif($order->status == 2)
-                                    Processing
+                                    <span class="badge badge-warning">Processing</span>
                                 @elseif($order->status == 3)
-                                    On Shipment
+                                    <span class="badge badge-warning">On Shipment</span>
                                 @elseif($order->status == 4)
-                                    Delivered
+                                    <span class="badge badge-success">Delivered</span>
                                 @endif
 
                             </td>

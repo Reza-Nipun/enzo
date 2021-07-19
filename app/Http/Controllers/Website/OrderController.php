@@ -160,59 +160,118 @@ class OrderController extends Controller
         $contact_person_email = $request->contact_person_email;
         $contact_person_shipping_address = $request->contact_person_shipping_address;
 
+        $payment_method = $request->payment_method;
+
         $is_invoice_no_exist = Order::where('invoice_no', $invoice_no)->get();
 
         if(sizeof($is_invoice_no_exist) == 0){
-            $order = new Order();
-            $order->invoice_no = $invoice_no;
-            $order->customer_id = $customer_id;
-            $order->total_amount = $total_amount;
-            $order->shipment_charge = $shipment_charge;
-            $order->vat_amount = $vat_amount;
-            $order->net_amount = $net_amount;
-            $order->payment_type = 2;
-            $order->payment_status = 1;
-            $order->status = 1;
-            $order->contact_person_name = $contact_person_name;
-            $order->contact_person_contact_no = $contact_person_contact_no;
-            $order->contact_person_email = $contact_person_email;
-            $order->contact_person_shipping_address = $contact_person_shipping_address;
-            $order->save();
 
-            $order_id = $order->id;
+            if($payment_method == 1){
+                $order = new Order();
+                $order->invoice_no = $invoice_no;
+                $order->customer_id = $customer_id;
+                $order->total_amount = $total_amount;
+                $order->shipment_charge = $shipment_charge;
+                $order->vat_amount = $vat_amount;
+                $order->net_amount = $net_amount;
+                $order->payment_type = 1;
+                $order->payment_status = 0;
+                $order->status = 1;
+                $order->contact_person_name = $contact_person_name;
+                $order->contact_person_contact_no = $contact_person_contact_no;
+                $order->contact_person_email = $contact_person_email;
+                $order->contact_person_shipping_address = $contact_person_shipping_address;
+                $order->save();
 
-            foreach ($product_ids as $k => $product_id){
+                $order_id = $order->id;
 
-                $order_detail = new OrderDetail();
+                foreach ($product_ids as $k => $product_id){
 
-                $order_detail->order_id = $order_id;
-                $order_detail->customer_id = $customer_id;
-                $order_detail->product_id = $product_id;
-                $order_detail->color_id = $color_ids[$k];
-                $order_detail->size_id = $size_ids[$k];
-                $order_detail->quantity = $quantitys[$k];
-                $order_detail->price = $prices[$k];
-                $order_detail->status = 0;
-                $order_detail->save();
+                    $order_detail = new OrderDetail();
+
+                    $order_detail->order_id = $order_id;
+                    $order_detail->customer_id = $customer_id;
+                    $order_detail->product_id = $product_id;
+                    $order_detail->color_id = $color_ids[$k];
+                    $order_detail->size_id = $size_ids[$k];
+                    $order_detail->quantity = $quantitys[$k];
+                    $order_detail->price = $prices[$k];
+                    $order_detail->status = 0;
+                    $order_detail->save();
+                }
+
+                $email = $session->get('email');
+
+                $data = array(
+                    'name' => $session->get('nick_name'),
+                    'invoice_no' => $invoice_no
+                );
+
+                Mail::send('emails.order_confirmation_email', $data, function($message) use($email, $invoice_no)
+                {
+                    $message
+                        ->to($email)
+                        ->subject("Your Order#$invoice_no is placed successful!");
+                });
+
+                session()->forget('cart');
+
+                \Session::flash('message', "Your order is successfully placed! Order No: $invoice_no");
             }
 
-            $email = $session->get('email');
+            if($payment_method == 2){
+                $order = new Order();
+                $order->invoice_no = $invoice_no;
+                $order->customer_id = $customer_id;
+                $order->total_amount = $total_amount;
+                $order->shipment_charge = $shipment_charge;
+                $order->vat_amount = $vat_amount;
+                $order->net_amount = $net_amount;
+                $order->payment_type = 2;
+                $order->payment_status = 1;
+                $order->status = 1;
+                $order->contact_person_name = $contact_person_name;
+                $order->contact_person_contact_no = $contact_person_contact_no;
+                $order->contact_person_email = $contact_person_email;
+                $order->contact_person_shipping_address = $contact_person_shipping_address;
+                $order->save();
 
-            $data = array(
-                'name' => $session->get('nick_name'),
-                'invoice_no' => $invoice_no
-            );
+                $order_id = $order->id;
 
-            Mail::send('emails.order_confirmation_email', $data, function($message) use($email, $invoice_no)
-            {
-                $message
-                    ->to($email)
-                    ->subject("Your Order#$invoice_no is placed successful!");
-            });
+                foreach ($product_ids as $k => $product_id){
 
-            session()->forget('cart');
+                    $order_detail = new OrderDetail();
 
-            \Session::flash('message', "Your order is successfully placed! Order No: $invoice_no");
+                    $order_detail->order_id = $order_id;
+                    $order_detail->customer_id = $customer_id;
+                    $order_detail->product_id = $product_id;
+                    $order_detail->color_id = $color_ids[$k];
+                    $order_detail->size_id = $size_ids[$k];
+                    $order_detail->quantity = $quantitys[$k];
+                    $order_detail->price = $prices[$k];
+                    $order_detail->status = 0;
+                    $order_detail->save();
+                }
+
+                $email = $session->get('email');
+
+                $data = array(
+                    'name' => $session->get('nick_name'),
+                    'invoice_no' => $invoice_no
+                );
+
+                Mail::send('emails.order_confirmation_email', $data, function($message) use($email, $invoice_no)
+                {
+                    $message
+                        ->to($email)
+                        ->subject("Your Order#$invoice_no is placed successful!");
+                });
+
+                session()->forget('cart');
+
+                \Session::flash('message', "Your order is successfully placed! Order No: $invoice_no");
+            }
+
         }else{
             \Session::flash('invalid_order_msg', "Invalid Order Request!");
         }

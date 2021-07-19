@@ -36,8 +36,39 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin_assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/bs-stepper/css/bs-stepper.min.css') }}">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="{{ asset('admin_assets/plugins/dropzone/min/dropzone.min.css') }}">
+
+    <style>
+        .loader {
+            border: 20px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 20px solid #3498db;
+            width: 35px;
+            height: 35px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse">
 <div class="wrapper">
 
     <!-- Preloader -->
@@ -274,8 +305,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item {{ request()->is('new_orders') ? 'menu-open' : ''}}">
-                        <a href="#" class="nav-link {{ request()->is('new_orders') ? 'active' : ''}}">
+                    <li class="nav-item {{ request()->is('orders') ? 'menu-open' : ''}}">
+                        <a href="#" class="nav-link {{ request()->is('orders') ? 'active' : ''}}">
                             <i class="fas fa-shopping-cart nav-icon"></i>
                             <p>
                                 Order Management
@@ -284,7 +315,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('new_orders') }}" class="nav-link {{ request()->is('new_orders') ? 'active' : ''}}">
+                                <a href="{{ route('orders') }}" class="nav-link {{ request()->is('orders') ? 'active' : ''}}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Orders</p>
                                 </a>
@@ -361,6 +392,58 @@
         //Colorpicker
         $('.my-colorpicker1').colorpicker()
 
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date picker
+        $('#reservationdate').datetimepicker({
+            format: 'L'
+        });
+
+        //Date and time picker
+        $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('.reservationtime').daterangepicker({
+//            timePicker: true,
+//            timePickerIncrement: 30,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        })
+        $('.reservationtime').val('');
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+            {
+                ranges   : {
+                    'Today'       : [moment(), moment()],
+                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                startDate: moment().subtract(29, 'days'),
+                endDate  : moment()
+            },
+            function (start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+            }
+        )
+
+        //Timepicker
+        $('#timepicker').datetimepicker({
+            format: 'LT'
+        })
+
+        bsCustomFileInput.init();
     })
 
 </script>
@@ -385,9 +468,21 @@
 <script src="{{ asset('admin_assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('admin_assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
-<!-- daterangepicker -->
+
+<!-- InputMask -->
 <script src="{{ asset('admin_assets/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('admin_assets/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+<!-- date-range-picker -->
 <script src="{{ asset('admin_assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="{{ asset('admin_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{ asset('admin_assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<!-- BS-Stepper -->
+<script src="{{ asset('admin_assets/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{ asset('admin_assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('admin_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
@@ -402,5 +497,6 @@
 <script src="{{ asset('admin_assets/dist/js/pages/dashboard.js') }}"></script>
 <!-- bootstrap color picker -->
 <script src="{{ asset('admin_assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+
 </body>
 </html>

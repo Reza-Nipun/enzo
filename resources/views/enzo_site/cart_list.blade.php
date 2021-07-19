@@ -32,7 +32,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">SL</th>
-                                {{--<th>Image</th>--}}
+                                <th class="text-center">Product Image</th>
                                 <th class="text-center">Product Name</th>
                                 <th class="text-center">Color</th>
                                 <th class="text-center">Size</th>
@@ -53,16 +53,16 @@
                         @foreach($cart_items as $k => $cart_item)
                             <tr>
                                 <td class="text-center">{{ $sl }}</td>
-                                {{--<td class="invert-image">--}}
-                                    {{--@php--}}
-                                        {{--$get_single_product_image = OrderController::getSingleProductImageByColor($cart_item['product_id'], $cart_item['color_id']);--}}
-                                    {{--@endphp--}}
+                                <td align="center">
+                                    @php
+                                        $get_single_product_image = OrderController::getSingleProductImageByColor($cart_item['product_id'], $cart_item['color_id']);
+                                    @endphp
 
                                     {{--<a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">--}}
-                                        {{--<img src="{{ asset('storage/uploads/'.$get_single_product_image[0]->image_url) }}" alt="{{ $cart_item['product_name'] }}" class="img-responsive" />--}}
+                                        <img src="{{ asset('storage/uploads/'.$get_single_product_image[0]->image_url) }}" alt="{{ $cart_item['product_name'] }}" class="img-responsive" width="80" height="" />
                                     {{--</a>--}}
-                                {{--</td>--}}
-                                <td>
+                                </td>
+                                <td class="text-center">
                                     <a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">
                                         {{ $cart_item['product_name'] }}
                                     </a>
@@ -88,7 +88,7 @@
                                         $total_amount += $amount;
                                     @endphp
 
-                                    <input type="hidden" name="price[]" value="{{ $amount }}">
+                                    <input type="hidden" name="price[]" value="{{ $cart_item['price_in_bdt'] }}">
                                 </td>
                                 <td class="text-center">
                                     {{--<a class="btn btn-sm btn-danger" onclick="productRemovingConfirmation('{{ $k }}');" href="{{ route('remove_from_cart', $k) }}">--}}
@@ -136,12 +136,12 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Total Amount</b></th>
-                                                <td class="text-left" width="50%"><span>৳ {{ $total_amount }} </span><input type="hidden" name="total_amount" value="{{ $total_amount }}" readonly="readonly"></td>
+                                                <th class="text-right" width="45%"><b>Total Amount</b></th>
+                                                <td class="text-left" width="55%"><span>৳ {{ $total_amount }} </span><input type="hidden" name="total_amount" value="{{ $total_amount }}" readonly="readonly"></td>
                                             </tr>
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Shipment Charge</b></th>
-                                                <td class="text-left" width="50%"><span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></td>
+                                                <th class="text-right" width="45%"><b>Shipment Charge</b></th>
+                                                <td class="text-left" width="55%"><span>৳ {{ $shipment_charge }} </span><input type="hidden" name="shipment_charge" value="{{ $shipment_charge }}" readonly="readonly"></td>
                                             </tr>
 
                                             @php
@@ -154,8 +154,8 @@
                                             @endphp
 
                                             <tr>
-                                                <th class="text-right" width="50%"><b>VAT(15%)</b></th>
-                                                <td class="text-left" width="50%"><span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></td>
+                                                <th class="text-right" width="45%"><b>VAT(15%)</b></th>
+                                                <td class="text-left" width="55%"><span>৳ {{ $vat_amount }} </span><input type="hidden" name="vat_amount" value="{{ $vat_amount }}" readonly="readonly"></td>
                                             </tr>
 
                                             @php
@@ -166,8 +166,18 @@
                                             @endphp
 
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Net Amount</b></th>
-                                                <td class="text-left" width="50%"><span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></td>
+                                                <th class="text-right" width="45%"><b>Net Amount</b></th>
+                                                <td class="text-left" width="55%"><span>৳ {{ $net_amount }}</span><input type="hidden" name="net_amount" value="{{ $net_amount }}" readonly="readonly"></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-right" width="45%"><b>Payment Method</b> <span style="color: red;">*</span></th>
+                                                <td class="text-left" width="55%">
+                                                    <select class="form-control" name="payment_method" id="payment_method" required="required">
+                                                        <option value="">Payment Method</option>
+                                                        <option value="1">Cash on Delivery</option>
+                                                        <option value="2">e-Payment</option>
+                                                    </select>
+                                                </td>
                                             </tr>
                                         </thead>
                                     </table>
@@ -187,29 +197,29 @@
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Contact Person Name <span style="color: red">*</span></b></th>
-                                                <td class="text-left" width="50%">
+                                                <th class="text-right" width="30%"><b>Contact Person Name <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="70%">
                                                     <input type="text" class="form-control" name="contact_person_name" id="contact_person_name" required="required">
                                                     <span id="customer_name" style="display: none;">{{ $customer_info->full_name }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Contact No. <span style="color: red">*</span></b></th>
-                                                <td class="text-left" width="50%">
+                                                <th class="text-right" width="30%"><b>Contact No. <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="70%">
                                                     <input type="text" class="form-control" name="contact_person_contact_no" id="contact_person_contact_no" required="required">
                                                     <span id="customer_contact_no" style="display: none;">{{ $customer_info->contact_no }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-right" width="50%"><b>Email</b></th>
-                                                <td class="text-left" width="50%">
+                                                <th class="text-right" width="30%"><b>Email</b></th>
+                                                <td class="text-left" width="70%">
                                                     <input type="text" class="form-control" name="contact_person_email" id="contact_person_email" required="required">
                                                     <span id="customer_email" style="display: none;">{{ $customer_info->email }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th class="text-right text-top" width="50%"><b>Shipping Address <span style="color: red">*</span></b></th>
-                                                <td class="text-left" width="50%">
+                                                <th class="text-right text-top" width="30%"><b>Shipping Address <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="70%">
                                                     <textarea type="text" class="form-control" name="contact_person_shipping_address" id="contact_person_shipping_address" required="required"></textarea>
                                                     <span id="customer_shipping_address" style="display: none;">{{ $customer_info->address }}</span>
                                                 </td>

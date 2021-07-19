@@ -42,41 +42,39 @@
 
             @endphp
 
-            <div class="progress" style="height: auto;">
-                <div class="progress-bar progress-bar-striped @if($order_status == 1 || $order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="Order Received" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
-                    Order Received
+            @if($order_status <> 0)
+                <div class="progress" style="height: auto;">
+                    <div class="progress-bar progress-bar-striped @if($order_status == 1 || $order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
+                         aria-valuenow="Order Received" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
+                        Order Received
+                    </div>
+                    <div class="progress-bar progress-bar-striped @if($order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
+                         aria-valuenow="Processing" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
+                        Processing
+                    </div>
+                    <div class="progress-bar progress-bar-striped @if($order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
+                         aria-valuenow="On Shipment" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
+                        On Shipment
+                    </div>
+                    <div class="progress-bar progress-bar-striped @if($order_status == 4) progress-bar-success @else active @endif" role="progressbar"
+                         aria-valuenow="Delivered" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
+                        Delivered
+                    </div>
                 </div>
-                <div class="progress-bar progress-bar-striped @if($order_status == 2 || $order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="Processing" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
-                    Processing
+            @elseif($order_status == 0)
+                <div class="progress" style="height: auto;">
+                    <div class="progress-bar progress-bar-striped progress-bar-danger" role="progressbar"
+                         aria-valuenow="Order Received" aria-valuemin="0" aria-valuemax="100" style="width:100%; font-weight: 700">
+                        Order Cancelled
+                    </div>
                 </div>
-                <div class="progress-bar progress-bar-striped @if($order_status == 3 || $order_status == 4) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="On Shipment" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
-                    On Shipment
-                </div>
-                <div class="progress-bar progress-bar-striped @if($order_status == 4) progress-bar-success @else active @endif" role="progressbar"
-                     aria-valuenow="Delivered" aria-valuemin="0" aria-valuemax="100" style="width:25%; font-weight: 700">
-                    Delivered
-                </div>
-            </div>
-
-            {{--<div class="progress">--}}
-                {{--<div class="progress-bar progress-bar-success" role="progressbar" style="width:40%">--}}
-                    {{--Free Space--}}
-                {{--</div>--}}
-                {{--<div class="progress-bar progress-bar-warning" role="progressbar" style="width:10%">--}}
-                    {{--Warning--}}
-                {{--</div>--}}
-                {{--<div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">--}}
-                    {{--Danger--}}
-                {{--</div>--}}
-            {{--</div>--}}
+            @endif
 
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
                     <tr>
+                        <th class="text-center">Image</th>
                         <th class="text-center">Product Name</th>
                         <th class="text-center">Color</th>
                         <th class="text-center">Size</th>
@@ -98,6 +96,15 @@
 
                     @foreach($order_detail as $order)
                         <tr>
+                            <td align="center">
+                                @php
+                                    $get_single_product_image = OrderController::getSingleProductImageByColor($order->product_id, $order->color_id);
+                                @endphp
+
+                                {{--<a href="{{ route('view_single_product', [$cart_item['product_id'], $cart_item['color_id']]) }}">--}}
+                                <img src="{{ asset('storage/uploads/'.$get_single_product_image[0]->image_url) }}" alt="{{ $order->product_name }}" class="img-responsive" width="80" height="" />
+                                {{--</a>--}}
+                            </td>
                             <td class="text-center">
                                 <a href="{{ route('view_single_product', [$order->product_id, $order->color_id]) }}" target="_blank">
                                     {{ $order->product_name.' '.$order->order_id }}
@@ -170,25 +177,38 @@
                                         </th>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%"><b>Total Amount</b></th>
-                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->total_amount }} </span></td>
+                                        <th class="text-right" width="45%"><b>Total Amount</b></th>
+                                        <td class="text-left" width="55%"><span>৳ {{ $orders[0]->total_amount }} </span></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%"><b>Shipment Charge</b></th>
-                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->shipment_charge }} </span></td>
+                                        <th class="text-right" width="45%"><b>Shipment Charge</b></th>
+                                        <td class="text-left" width="55%"><span>৳ {{ $orders[0]->shipment_charge }} </span></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%"><b>VAT(15%)</b></th>
-                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->vat_amount }} </span></td>
+                                        <th class="text-right" width="45%"><b>VAT(15%)</b></th>
+                                        <td class="text-left" width="55%"><span>৳ {{ $orders[0]->vat_amount }} </span></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%"><b>Net Amount</b></th>
-                                        <td class="text-left" width="50%"><span>৳ {{ $orders[0]->net_amount }}</span></td>
+                                        <th class="text-right" width="45%"><b>Net Amount</b></th>
+                                        <td class="text-left" width="55%">
+                                            <span>৳ {{ $orders[0]->net_amount }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-right" width="45%"><b>Payment Status</b></th>
+                                        <td class="text-left" width="55%">
+                                            {{ ($orders[0]->payment_type == 1 ? 'Cash on Delivery' : ($orders[0]->payment_type == 1 ? 'e-Payment' : '')) }}
+                                            @if($orders[0]->payment_status == 1)
+                                                <span class="badge badge-success">Paid</span>
+                                            @elseif($orders[0]->payment_status == 0)
+                                                <span class="badge badge-danger">Not Paid</span>
+                                            @endif
+                                        </td>
                                     </tr>
 
                                     @if(!empty($orders[0]->shipment_by))
                                         <tr>
-                                            <th class="text-center" colspan="2" style="background-color: #5cd817; color: #ffffff;">
+                                            <th class="text-center" colspan="2" style="background-color: #69d88a; color: #ffffff;">
                                                 <h4>Shipment Info</h4>
                                             </th>
                                         </tr>
@@ -216,33 +236,33 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th class="text-right" width="50%"><b>Contact Person Name</b></th>
-                                            <td class="text-left" width="50%">
+                                            <th class="text-right" width="30%"><b>Contact Person Name</b></th>
+                                            <td class="text-left" width="70%">
                                                 <span id="customer_name">{{ $orders[0]->contact_person_name }}</span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-right" width="50%"><b>Contact No.</b></th>
-                                            <td class="text-left" width="50%">
+                                            <th class="text-right" width="30%"><b>Contact No.</b></th>
+                                            <td class="text-left" width="70%">
                                                 <span id="customer_contact_no">{{ $orders[0]->contact_person_contact_no }}</span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-right" width="50%"><b>Email</b></th>
-                                            <td class="text-left" width="50%">
+                                            <th class="text-right" width="30%"><b>Email</b></th>
+                                            <td class="text-left" width="70%">
                                                 <span id="customer_email">{{ $orders[0]->contact_person_email }}</span>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="text-right text-top" width="50%"><b>Shipping Address</b></th>
-                                            <td class="text-left" width="50%">
+                                            <th class="text-right text-top" width="30%"><b>Shipping Address</b></th>
+                                            <td class="text-left" width="70%">
                                                 <span id="customer_shipping_address">{{ $orders[0]->contact_person_shipping_address }}</span>
                                             </td>
                                         </tr>
                                         @if($orders[0]->shipment_by != '')
                                             <tr>
-                                                <th class="text-right text-top" width="50%"><b>Shipping By <span style="color: red">*</span></b></th>
-                                                <td class="text-left" width="50%">
+                                                <th class="text-right text-top" width="30%"><b>Shipping By <span style="color: red">*</span></b></th>
+                                                <td class="text-left" width="70%">
                                                     <span id="customer_shipping_address">{{ $orders[0]->shipment_by.($orders[0]->shipment_remarks != '' ? ' ('.$orders[0]->shipment_remarks.')' : '') }}</span>
                                                 </td>
                                             </tr>

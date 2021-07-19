@@ -42,9 +42,8 @@
 <body>
 <p>Dear {{ $name }} ,</p>
 <p>Your order#<a href="{{ route('order_detail', $invoice_no) }}" class="button_2">{{ $invoice_no }}</a> is {{ $status }}. {{ $request_message }}</p>
-<p>Please note, we are unable to change your delivery address once your order is placed.​</p>
+<p>{{ $note_message }}​</p>
 
-<br />
 <br />
 <p>Regards,</p>
 <p><a href="{{ route('index') }}" target="_blank">ENZO.FASHION</a></p>

@@ -26,14 +26,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
+                <h3 class="card-title">
+                    <a href="{{ route('invoice', $order_info->id) }}" class="btn btn-sm btn-info">
+                        <i class="fas fa-receipt"></i> Invoice
+                    </a>
+                </h3>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
@@ -179,7 +176,7 @@
                                         <td class="text-left" width="50%"><span>৳ {{ $order_info->shipment_charge }} </span></td>
                                     </tr>
                                     <tr>
-                                        <th class="text-right" width="50%"><b>VAT(15%)</b></th>
+                                        <th class="text-right" width="50%"><b>VAT({{ $company_info[0]->vat_percentage }}%)</b></th>
                                         <td class="text-left" width="50%"><span>৳ {{ $order_info->vat_amount }} </span></td>
                                     </tr>
                                     <tr>
@@ -188,7 +185,14 @@
                                     </tr>
                                     <tr>
                                         <th class="text-right" width="50%"><b>Payment Status</b></th>
-                                        <td class="text-left" width="50%"><span>{{ ($order_info->payment_status == 1 ? 'Paid' : 'Pending') }}</span></td>
+                                        <td class="text-left" width="50%">
+                                            {{ ($order_info->payment_type == 1 ? 'Cash on Delivery' : ($order_info->payment_type == 1 ? 'e-Payment' : '')) }}
+                                            @if($order_info->payment_status == 1)
+                                                <span class="badge badge-success">Paid</span>
+                                            @elseif($order_info->payment_status == 0)
+                                                <span class="badge badge-danger">Not Paid</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th class="text-right" width="50%"><b>Order Status</b></th>
@@ -208,7 +212,9 @@
                                     </tr>
                                     @if($order_info->status == 1)
                                         <tr>
-                                            <th class="text-right" width="50%"></th>
+                                            <th class="text-right" width="50%">
+                                                <a href="{{ route('order_cancel', $order_info->id) }}" class="btn btn-danger">CANCEL ORDER</a>
+                                            </th>
                                             <td class="text-left" width="50%">
                                                 <a href="{{ route('order_confirm', $order_info->id) }}" class="btn btn-primary">CONFIRM ORDER</a>
                                             </td>
